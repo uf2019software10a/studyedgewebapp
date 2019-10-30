@@ -38,5 +38,17 @@ examTileSchema.pre('save', function(next) {
   next();
 });
 
+userSchema.pre('save', function(next) {
+  /* your code here */
+  var currDate = new Date();
+  this.updated_at = currDate;
+  if(!this.created_at)
+    this.created_at - currDate;
+  next();
+});
+
+
 var examTile = mongoose.model('examTile', examTileSchema);
 module.exports = examTile;
+var user = mongoose.model('user', userSchema);
+module.exports = user;
