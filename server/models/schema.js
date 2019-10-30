@@ -20,7 +20,7 @@ var examTileSchema = new Schema({
 
 var userSchema = new Schema({
 	name: { type: String, required: true},
-	exams: Number, //This is going to be an array of the _id that the student is enrolled in
+	exam_id: Number, //This is going to be an array of the _id that the student is enrolled in
 	email: { type: String, required: true, unique: true}
 });
 
