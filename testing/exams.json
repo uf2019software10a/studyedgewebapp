@@ -1,0 +1,49 @@
+{
+    "entries": [
+        {
+			"_id" : 1
+            "class": "MAC2313", 
+            "exam_num": 2,
+			"start": "January 1 1970 0:00"
+            "end": "January 1 1970 12:00"
+			"online": "false"
+			"location": {
+                "building": "Marston Science Library", 
+                "floor": "Basement",
+				"Decsription": "Carson"
+            }, 
+            "capactiy": 10
+			tutor: "John Doe"
+        },
+		{
+			"_id" : 2
+            "class": "MAC2313", 
+            "exam_num": 2,
+			"start": "January 1 1970 12:00"
+            "end": "January 1 1970 23:00"
+			"online": "false"
+			"location": {
+                "building": "Marston Science Library", 
+                "floor": "Basement",
+				"Decsription": "Carson"
+            }, 
+            "capactiy": 10
+			tutor: "John Doe"
+        },
+		{
+			"_id" : 3
+            "class": "MAC2313", 
+            "exam_num": 2,
+			"start": "January 1 1970 0:00"
+            "end": "January 1 1970 23:00"
+			"online": "false"
+			"location": {
+                "building": "Marston Science Library", 
+                "floor": "Basement",
+				"Decsription": "Carson"
+            }, 
+            "capactiy": 10
+			tutor: "John Doe"
+        }		
+    ]
+}
