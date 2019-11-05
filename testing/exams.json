@@ -1,6 +1,6 @@
 {
 	"entries": [{
-			"_id": 1,
+			"exam_id": 1,
 			"class": "MAC2313",
 			"exam_num": 2,
 			"start": "January 1 1970 0:00",
@@ -15,7 +15,7 @@
 			"tutor": "John Doe"
 		},
 		{
-			"_id": 2,
+			"exam_id": 2,
 			"class": "MAC2313",
 			"exam_num": 2,
 			"start": "January 1 1970 12:00",
@@ -30,7 +30,7 @@
 			"tutor": "John Doe"
 		},
 		{
-			"_id": 3,
+			"exam_id": 3,
 			"class": "MAC2313",
 			"exam_num": 2,
 			"start": "January 1 1970 0:00",
