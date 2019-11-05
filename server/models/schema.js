@@ -15,6 +15,12 @@ var examTileSchema = new Schema({
 	},
 	capacity: { type: Number, required: true},
 	enrolled: { type: Number, required: true, default: 0},
+	student_email: [{
+		type: Array,
+		contains: {
+			type: String
+		}
+	}],
 	tutor: String //This is going to be the Tutor's name & allows for tutor to be assigned a later date
 });
 

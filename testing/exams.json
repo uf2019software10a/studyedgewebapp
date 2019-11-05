@@ -12,6 +12,8 @@
 				"Decsription": "Carson"
 			},
 			"capactiy": 10,
+			"enrolled": 1,
+			"student_email": "gator@ufl.edu",
 			"tutor": "John Doe"
 		},
 		{
@@ -27,6 +29,8 @@
 				"Decsription": "Carson"
 			},
 			"capactiy": 10,
+			"enrolled": 1,
+			"student_email": "gator@ufl.edu",
 			"tutor": "John Doe"
 		},
 		{
@@ -42,6 +46,8 @@
 				"Decsription": "Carson"
 			},
 			"capactiy": 10,
+			"enrolled": 1,
+			"student_email": "gator@ufl.edu",
 			"tutor": "John Doe"
 		}
 	]
