@@ -20,12 +20,12 @@ var examTileSchema = new Schema({
 
 var userSchema = new Schema({
 	name: { type: String, required: true},
-	exam_id: [
-		"type": "array",
-		"contains": {
-			"type": "number"
+	exam_id: [{
+		type: Array,
+		contains: {
+			type: Number
 		}
-	], //This is going to be an array of the _id that the student is enrolled in
+	}], //This is going to be an array of the _id that the student is enrolled in
 	email: { type: String, required: true, unique: true}
 });
 
