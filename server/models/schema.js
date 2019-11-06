@@ -49,6 +49,8 @@ userSchema.pre('save', function(next) {
 
 
 var examTile = mongoose.model('examTile', examTileSchema);
-module.exports = examTile;
 var user = mongoose.model('user', userSchema);
-module.exports = user;
+module.exports = {
+	examTile: examTile,
+	user: user
+}
