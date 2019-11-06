@@ -30,7 +30,7 @@ client.connect(err => {
     	location: {
     		building: element.location.building,
     		floor: element.location.floor,
-    		description: element.location.Decsription
+    		description: element.location.description
     	},
     	capacity: element.capacity,
     	enrolled: element.enrolled,
