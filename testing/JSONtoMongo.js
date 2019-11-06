@@ -16,7 +16,7 @@ client.connect(err => {
    // ADD EXAMS ================================================================
   const collection_exams = client.db("test").collection("exams");
 
-  let rawExamData = fs.readFileSync('exams.json');
+  let rawExamData = fs.readFileSync('./exams.json');
   let exams = JSON.parse(rawExamData);
   var examsArr = exams.entries;
   examsArr.forEach(function(element) {
@@ -49,7 +49,7 @@ client.connect(err => {
   // ADD USERS =================================================================
   const collection_users = client.db("test").collection("users");
 
-  let rawUserData = fs.readFileSync('user.json');
+  let rawUserData = fs.readFileSync('./user.json');
   let users = JSON.parse(rawUserData);
   var usersArr = users.entries;
   usersArr.forEach(function(element) {
