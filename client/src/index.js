@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
+import exams from './data/exams.json'
 
 ReactDOM.render(
     <Router>
-        <App />
+        <App exams = {exams} />
     </Router>, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

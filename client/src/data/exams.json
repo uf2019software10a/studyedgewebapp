@@ -1,0 +1,51 @@
+{
+	"entries": [{
+			"exam_id": 1,
+			"class": "MAC2313",
+			"exam_num": 1,
+			"start": "January 1 1970 0:00",
+			"end": "January 1 1970 12:00",
+			"online": "false",
+			"location": {
+				"building": "Marston Science Library",
+				"floor": "Basement",
+				"description": "Carson"
+			},
+			"capactiy": 10,
+			"enrolled": 3,
+			"tutor": "John Doe"
+		},
+		{
+			"exam_id": 2,
+			"class": "MAC2313",
+			"exam_num": 2,
+			"start": "March 1 1970 12:00",
+			"end": "March 1 1970 23:00",
+			"online": "false",
+			"location": {
+				"building": "Marston Science Library",
+				"floor": "Basement",
+				"description": "Heisenberg"
+			},
+			"capactiy": 20,
+			"enrolled": 4,
+			"tutor": "John Doe"
+		},
+		{
+			"exam_id": 3,
+			"class": "MAC2313",
+			"exam_num": 3,
+			"start": "April 1 1970 0:00",
+			"end": "April 1 1970 23:00",
+			"online": "true",
+			"location": {
+				"building": "Marston Science Library",
+				"floor": "Basement",
+				"description": "Tesla"
+			},
+			"capactiy": 20,
+			"enrolled": 5,
+			"tutor": "John Doe"
+		}
+	]
+}
