@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
-import './index.css'
 import Home from "./views/Home/Home"
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
-import SessionList from "./components/SessionList"
+import SessionList from "./components/SessionList/SessionList"
+import Menu from "./components/Menu/Menu"
 
 
 const App = ({exams}) => {
@@ -21,19 +21,47 @@ const App = ({exams}) => {
     [],
   );
 
+  const classNameUpdate = React.useCallback(
+      (newClass) => {
+        setClassFilter(newClass);
+        console.log('class name filter: ', newClass);
+      },
+      [],
+  );
+
+  const examNumberUpdate = React.useCallback(
+      (newExam) => {
+        setExamFilter(newExam);
+        console.log('exam num filter: ', newExam);
+      },
+      [],
+  );
+
   //console.log(exams)
   //console.log(updatedSessions);
   return (
     <div>
-      <header>Study Edge Review Sessions</header>
-      <SessionList
+      <Header/>
+        <Menu
+            title="Select Class"
+            list={updatedSessions}
+            element={'class'}
+            filterUpdate={classNameUpdate}
+        />
+        <Menu
+            title="Select Exam"
+            list={updatedSessions}
+            element={'exam_num'}
+            filterUpdate={examNumberUpdate}
+        />
+        <SessionList
         sessions={updatedSessions}
         classFilter={classFilter}
         examFilter={examFilter}
         selectedSessionUpdate={selectedUpdate}
-      />
+        />
       <Switch>
-        <Route exact path="/Home" component={Home} />
+        <Route exact path="/Home"/>
         <Route exact path="/">
           <Redirect to="/Home" />
         </Route>
@@ -41,6 +69,6 @@ const App = ({exams}) => {
       </Switch>
     </div>
   );
-}
+};
 
 export default App;

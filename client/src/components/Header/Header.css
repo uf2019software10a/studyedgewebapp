@@ -1,3 +1,13 @@
+.header {
+    padding: 120px;
+    background-color: #34b7eb;
+    background-image: url("./study-edge-logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 2rem;
+    color: #ff8000;
+    align-self: center;
+}
 
 #wrapper {
     display: grid;

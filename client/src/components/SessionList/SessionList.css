@@ -1,0 +1,17 @@
+p {
+	text-align: justify-all;
+}
+
+button {
+	width: 200px;
+	height: 200px;
+	background: #ccdef9;
+	padding: 20px;
+	font-size: 1rem;
+	border: solid 2px #000000;
+	margin: 1rem;
+	border-radius: 25px;
+}
+button:hover {
+	background: #1f7acf;
+}
