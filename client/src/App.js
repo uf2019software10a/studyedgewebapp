@@ -5,6 +5,7 @@ import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
 import SessionList from "./components/SessionList/SessionList"
 import Menu from "./components/Menu/Menu"
+import "./index.css"
 
 
 const App = ({exams}) => {
@@ -24,7 +25,7 @@ const App = ({exams}) => {
   const classNameUpdate = React.useCallback(
       (newClass) => {
         setClassFilter(newClass);
-        console.log('class name filter: ', newClass);
+        //console.log('class name filter: ', newClass);
       },
       [],
   );
@@ -32,7 +33,7 @@ const App = ({exams}) => {
   const examNumberUpdate = React.useCallback(
       (newExam) => {
         setExamFilter(newExam);
-        console.log('exam num filter: ', newExam);
+        //console.log('exam num filter: ', newExam);
       },
       [],
   );
@@ -42,24 +43,31 @@ const App = ({exams}) => {
   return (
     <div>
       <Header/>
-        <Menu
-            title="Select Class"
-            list={updatedSessions}
-            element={'class'}
-            filterUpdate={classNameUpdate}
-        />
-        <Menu
-            title="Select Exam"
-            list={updatedSessions}
-            element={'exam_num'}
-            filterUpdate={examNumberUpdate}
-        />
-        <SessionList
-        sessions={updatedSessions}
-        classFilter={classFilter}
-        examFilter={examFilter}
-        selectedSessionUpdate={selectedUpdate}
-        />
+        <div className="instructions">
+            Select class and exam number:
+        </div>
+        <div className="search">
+            <Menu
+                title="Class..."
+                list={updatedSessions}
+                element={'class'}
+                filterUpdate={classNameUpdate}
+            />
+            <Menu
+                title="Exam..."
+                list={updatedSessions}
+                element={'exam_num'}
+                filterUpdate={examNumberUpdate}
+            />
+        </div>
+        <div className="sessions">
+            <SessionList
+            sessions={updatedSessions}
+            classFilter={classFilter}
+            examFilter={examFilter}
+            selectedSessionUpdate={selectedUpdate}
+            />
+        </div>
       <Switch>
         <Route exact path="/Home"/>
         <Route exact path="/">

@@ -27,7 +27,7 @@ class SessionList extends React.Component {
 						<p>{start_dt_split[0]} {start_dt_split[1]}</p>
 						<p>{start_dt_split[3]} - {end_dt_split[3]}</p>
 						<p>{locType}</p>
-						<p>{session.enrolled}/10 slots left!</p>
+						<p>{session.enrolled}/{session.capacity} slots left!</p>
 					</button>
 				);
 			});
