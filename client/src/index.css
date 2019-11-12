@@ -1,41 +1,24 @@
-header {
-	padding: 60px;
-	background: #3498db;
-	margin-bottom: 2rem;
-	font-size: 3rem;
-	text-align: center;
-	font-weight: bold;
-	color: #ff8000;
+.instructions {
+    position: center;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    width: 30%;
+    padding-bottom: 10px;
 }
 
-tr {
-	text-align: center;
-	padding: 0;
-}
-th {
-	position: left;
-	list-style: none;
-	padding: 0.25rem 0.75rem;
-	margin: 2px;
-	border-radius: 3px;
-}
-td:hover {
-	position: left;
-	cursor: pointer;
-	background-color: #ffac30;
+.search {
+    position: center;
+    margin: auto;
+    width: 30%;
+    padding: 10px 10px 100px;
 }
 
-button {
-	background: #ccdef9;
-	color: #3b3b3b;
-	padding: 1rem 1rem;
-	font-size: 0.8rem;
-	border: solid 1px #c7c7c7;
-	margin: 1rem 1rem;
-	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 3px;
-	outline: none;
-}
-button:hover {
-	background: #1f7acf;
+.sessions {
+    width: 50%;
+    position: center;
+    margin: auto;
+    padding: 10px;
+    background-color: white;
+    border: solid;
 }

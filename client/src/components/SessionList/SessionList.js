@@ -1,4 +1,5 @@
 import React from 'react';
+import './SessionList.css'
 
 class SessionList extends React.Component {
 	render() {
@@ -20,13 +21,13 @@ class SessionList extends React.Component {
 				const end_dt_split = session.end.split(" ");
 				return (
 					<button onClick={() => selectedSessionUpdate(session.exam_id)}>
-						<tr>Exam {session.exam_num} Review</tr>
-						<tr>{session.class}</tr>
-						<tr>{session.tutor}</tr>
-						<tr>{start_dt_split[0]} {start_dt_split[1]}</tr>
-						<tr>{start_dt_split[3]} - {end_dt_split[3]}</tr>
-						<tr>{locType}</tr>
-						<tr>{session.enrolled}/10 slots left!</tr>
+						<p>Exam {session.exam_num} Review</p>
+						<p>{session.class}</p>
+						<p>{session.tutor}</p>
+						<p>{start_dt_split[0]} {start_dt_split[1]}</p>
+						<p>{start_dt_split[3]} - {end_dt_split[3]}</p>
+						<p>{locType}</p>
+						<p>{session.enrolled}/{session.capacity} slots left!</p>
 					</button>
 				);
 			});
