@@ -1,8 +1,8 @@
 
 /* Dependencies */
 var mongoose = require('mongoose'),
-    Listing = require('../models/listings.server.model.js'),
-    coordinates = require('./coordinates.server.controller.js');
+    examTile = require('../models/schema.js').examTile;
+    user = require('../models/schema.js').user;
 
 /*
   In this file, you should use Mongoose queries in order to retrieve/add/remove/update listings.
@@ -26,14 +26,6 @@ exports.create = function(req, res) {
 
   /* Instantiate a Listing */
   var listing = new Listing(req.body);
-
-  /* save the coordinates (located in req.results if there is an address property) */
-  if(req.results) {
-    listing.coordinates = {
-      latitude: req.results.lat,
-      longitude: req.results.lng
-    };
-  }
 
   /* Then save the listing */
   listing.save(function(err) {

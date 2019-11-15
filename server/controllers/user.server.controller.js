@@ -1,48 +1,117 @@
-var config = require('../config/config'),
-    request = require('request');
+
+/* Dependencies */
+var mongoose = require('mongoose'),
+    ExamTile = require('../models/schema.js').examTile;
+    User = require('../models/schema.js').user;
 
 
+    /* Retreive all the users, sorted alphabetically by  */
+    exports.list = function(req, res) {
+      User.find({}, function(err, exams) {
+        var arr = [];
 
-module.exports = function(req, res, next) {
-  if(req.body.address) {
-      //This code just formats the address so that it doesn't have space and commas using escape characters
-      var addressTemp = req.body.address;
-      var addressTemp2 = addressTemp.toLowerCase();
-      var addressTemp3 = addressTemp2.replace(/\s/g, "%20");
-      var addressTemp4 = addressTemp3.replace(/,/g , "%2C");
+        listings.forEach(function(exams) {
+          arr.push(exams);
+        });
 
-    //Setup your options q and key are provided. Feel free to add others to make the JSON response less verbose and easier to read
-    var options = {
-      q: addressTemp4,
-      key: config.openCage.key,
-    }
+        res.send(arr);
+      });
+    };
 
-    //Setup your request using URL and options - see ? for format
-    request({
-      url: 'https://api.opencagedata.com/geocode/v1/json',
-      qs: options
-    }, function(err, response, body) {
-        //For ideas about response and error processing see https://opencagedata.com/tutorials/geocode-in-nodejs
+    /*
+      Middleware: find an exam by its ID, then pass it to the next request handler.
 
-        //JSON.parse to get contents. Remember to look at the response's JSON format in open cage data
-
-        /*Save the coordinates in req.results ->
-          this information will be accessed by listings.server.model.js
-          to add the coordinates to the listing request to be saved to the database.
-
-          Assumption: if we get a result we will take the coordinates from the first result returned
-        */
-        //  req.results = stores you coordinates
-        if (err) {
-          console.log(err);
-          res.send(err);
+      HINT: Find the listing using a mongoose query,
+            bind it to the request object as the property 'listing',
+            then finally call next
+     */
+    exports.userById = function(req, res, next, id) {
+      User.findById(id).exec(function(err, user) {
+        if(err) {
+          res.status(400).send(err);
+        } else {
+          req.user = user;
+          next();
         }
+      });
+    };
 
-        var json = JSON.parse(body);
-        req.results = json.results[0].geometry;
-        next();
-    });
-  } else {
-    next();
-  }
+
+/* Create a user */
+// exports.create = function(req, res) {
+//
+//   /* Instantiate a Listing */
+//   var listing = new Listing(req.body);
+//
+//   /* Then save the listing */
+//   listing.save(function(err) {
+//     if(err) {
+//       console.log(err);
+//       res.status(400).send(err);
+//     } else {
+//       res.json(listing);
+//       console.log(listing)
+//     }
+//   });
+// };
+
+/* Show the current listing */
+exports.read = function(req, res) {
+  /* send back the listing as json from the request */
+  res.json(req.listing);
+};
+
+/* Update a listing - note the order in which this function is called by the router*/
+exports.update = function(req, res) {
+  var listing = req.listing;
+
+  /* Replace the listings's properties with the new properties found in req.body */
+   Listing.findById(req.listing._id, function (err, listing) {
+     if (err)
+         res.send(err);
+
+     listing.code = req.body.code;
+     listing.name = req.body.name;
+     listing.address = req.body.address ? req.body.address : listing.address;
+
+     /*save the coordinates (located in req.results if there is an address property) */
+     if(req.results) {
+       listing.coordinates = {
+         latitude: req.results.lat,
+         longitude: req.results.lng
+       };
+     }
+
+     /* Save the listing */
+     listing.save(function(err) {
+       if(err) {
+         console.log(err);
+         res.status(400).send(err);
+       } else {
+         res.json(listing);
+         console.log(listing)
+       }
+     });
+  });
+}
+
+/* Delete a listing */
+exports.delete = function(req, res) {
+  var listing = req.listing;
+
+  /* Add your code to remove the listings */
+  Listing.remove({
+      _id: listing._id
+  }, function (err, contact) {
+      if (err) {
+        console.log(err);
+        res.send(err);
+
+      }
+
+      res.json({
+          status: "success",
+          message: 'Listing deleted'
+      });
+  });
 };
