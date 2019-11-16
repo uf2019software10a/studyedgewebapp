@@ -1,11 +1,15 @@
-var users = require('../controllers/user.server.controller.js'),
+var exams = require('../controllers/exam.server.controller.js'),
     express = require('express'), //refers to Express the middleware helper for Node.js
     router = express.Router(); //refers to the Router() function in Express the middleware helper for Node.js
 
-router.route('/username=:userName')
-  .get(users.list);
 
-router.route('/email=:userEmail')
-  .get(users.list);
+router.route('/')
+  .get(exams.list);
+
+router.route('/className=:className')
+  .get(exams.list);
+
+router.route('/examNum=:examNum')
+  .get(exams.list);
 
 module.exports = router;
