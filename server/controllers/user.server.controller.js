@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     User = require('../models/schema.js').user;
 
 
-    /* Retreive all the users, sorted alphabetically by  */
+    /* Retreive all the users,  */
     exports.list = function(req, res) {
       User.find({}, function(err, exams) {
         var arr = [];

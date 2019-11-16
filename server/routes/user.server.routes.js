@@ -2,11 +2,11 @@ var user = require('../controllers/user.server.controller.js'),
     express = require('express'), //refers to Express the middleware helper for Node.js
     router = express.Router(); //refers to the Router() function in Express the middleware helper for Node.js
 
-router.route('/api/username=:userName')
+router.route('/api/users/username=:userName')
   .get(user.list)
   .post(getCoordinates, listings.create);
 
-router.route('/api/email=:userEmail')
+router.route('/api/users/email=:userEmail')
   .get(listings.read)
   .put(getCoordinates, listings.update)
   .delete(listings.delete);
