@@ -4,13 +4,19 @@ var exams = require('../controllers/exam.server.controller.js'),
 
 
 router.route('/')
-  .get(exams.list);
+  .get(exams.list)
+  .put(exams.update)
+  .post(exams.create);
 
 router.route('/className=:className')
   .get(exams.read);
 
 router.route('/examNum=:examNum')
   .get(exams.read);
+
+router.route('/className=:className,examNum=:examNum')
+  .delete(exams.delete);
+
 
 router.param('className', exams.examByClass);
 router.param('examNum', exams.examByNum);

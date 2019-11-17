@@ -18,13 +18,7 @@ var mongoose = require('mongoose'),
       });
     };
 
-    /*
-      Middleware: find an exam by its ID, then pass it to the next request handler.
-
-      HINT: Find the listing using a mongoose query,
-            bind it to the request object as the property 'listing',
-            then finally call next
-     */
+    /* Middleware: find a user by its ID, then pass it to the next request handler. */
     exports.userById = function(req, res, next, id) {
       User.findById(id).exec(function(err, user) {
         if(err) {
@@ -57,7 +51,6 @@ var mongoose = require('mongoose'),
 
 /* Show the current listing */
 exports.read = function(req, res) {
-  /* send back the listing as json from the request */
   res.json(req.listing);
 };
 
@@ -99,7 +92,6 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
   var listing = req.listing;
 
-  /* Add your code to remove the listings */
   Listing.remove({
       _id: listing._id
   }, function (err, contact) {
