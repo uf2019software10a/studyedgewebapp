@@ -12,6 +12,7 @@ module.exports.init = () => {
     });
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
+    mongoose.set('useUnifiedTopology', true);
 
     // initialize app
     const app = express();

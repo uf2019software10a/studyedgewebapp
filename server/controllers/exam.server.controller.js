@@ -30,7 +30,32 @@ var mongoose = require('mongoose'),
         }
       });
     };
-    
+
+    /* Middleware: find a listing by its class name, then pass it to the next request handler. */
+    exports.examByClass = function(req, res, next, className) {
+      ExamTile.find({class: className}).exec(function(err, examTile) {
+        if(err) {
+          res.status(400).send(err);
+        } else {
+          req.examTile = examTile;
+          next();
+        }
+      });
+    };
+
+    /* Middleware: find a listing by its class name, then pass it to the next request handler. */
+    exports.examByNum = function(req, res, next, examNum) {
+      ExamTile.find({exam_num: examNum}).exec(function(err, examTile) {
+        if(err) {
+          res.status(400).send(err);
+        } else {
+          req.examTile = examTile;
+          next();
+        }
+      });
+    };
+
+
     /* Show the current listing */
     exports.read = function(req, res) {
       /* send back the listing as json from the request */

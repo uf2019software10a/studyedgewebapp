@@ -7,9 +7,12 @@ router.route('/')
   .get(exams.list);
 
 router.route('/className=:className')
-  .get(exams.list);
+  .get(exams.read);
 
 router.route('/examNum=:examNum')
-  .get(exams.list);
+  .get(exams.read);
+
+router.param('className', exams.examByClass);
+router.param('examNum', exams.examByNum);
 
 module.exports = router;
