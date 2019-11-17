@@ -53,6 +53,44 @@ var mongoose = require('mongoose'),
     };
 
 
+        /* Create a user */
+        exports.create = function(req, res) {
+          var user = new User(req.body);
+          User.save(function(err) {
+            if(err) {
+              console.log(err);
+              res.status(400).send(err);
+            } else {
+              res.json(user);
+              console.log(user);
+            }
+          });
+        };
+
+        /* Update a user */
+        exports.update = function(req, res) {
+          var user = req.userRouter;
+          User.findById(user._id, function (err, user) {
+             if (err)
+                 res.send(err);
+
+             user.name = req.body.name;
+             user.exam_id = req.body.exam_id;
+             user.email = req.body.email;
+
+             user.save(function(err) {
+               if(err) {
+                 console.log(err);
+                 res.status(400).send(err);
+               } else {
+                 res.json(user);
+                 console.log(user)
+               }
+             });
+          });
+        }
+
+
     /* Middleware: find a user by its ID, then pass it to the next request handler. */
     exports.userById = function(req, res, next, id) {
       User.findById(id).exec(function(err, user) {

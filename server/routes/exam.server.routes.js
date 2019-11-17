@@ -17,7 +17,6 @@ router.route('/examNum=:examNum')
 router.route('/className=:className,examNum=:examNum')
   .delete(exams.delete);
 
-
 router.param('className', exams.examByClass);
 router.param('examNum', exams.examByNum);
 
