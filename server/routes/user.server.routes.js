@@ -8,4 +8,7 @@ router.route('/username=:userName')
 router.route('/email=:userEmail')
   .get(users.list);
 
+router.param('userName', users.userByName);
+router.param('userEmail', users.userByEmail);
+
 module.exports = router;

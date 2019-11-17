@@ -2,7 +2,6 @@
 /* Dependencies */
 var mongoose = require('mongoose'),
     ExamTile = require('../models/schema.js').examTile;
-    user = require('../models/schema.js').user;
 
 
     /* Retreive all the directory listings, sorted alphabetically by listing code */
@@ -85,7 +84,7 @@ var mongoose = require('mongoose'),
       });
     }
 
-    /* Middleware: find a listing by its ID, then pass it to the next request handler. */
+    /* Middleware: find an exam by its ID, then pass it to the next request handler. */
     exports.examByID = function(req, res, next, id) {
       ExamTile.findById(id).exec(function(err, examTile) {
         if(err) {
