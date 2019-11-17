@@ -6,15 +6,50 @@ var mongoose = require('mongoose'),
 
     /* Retreive all the users,  */
     exports.list = function(req, res) {
-      User.find({}, function(err, exams) {
+      User.find({}, function(err, users) {
         var arr = [];
 
-        listings.forEach(function(exams) {
-          arr.push(exams);
+        users.forEach(function(user) {
+          arr.push(user);
         });
 
         res.send(arr);
       });
+    };
+
+    /* Delete a user */
+    exports.delete = function(req, res) {
+      // Check if array or singular object
+      if(req.user.constructor === Array) {
+        if(req.user.length === 0) { // EMPTY ARRAY
+          res.json({
+              status: "error",
+              message: 'User not found'
+          });
+        } else {
+          user = req.user[0];
+        }
+      } else {
+        user = req.user;
+      }
+
+      User.deleteOne({_id: user._id}, function (err, contact) {
+          if (err) {
+            console.log(err);
+            res.send(err);
+          }
+          if (contact.deletedCount == 0) {
+            res.json({
+                status: "error",
+                message: 'User not found'
+            });
+          } else {
+            res.json({
+                status: "success",
+                message: 'User deleted'
+            });
+          }
+      }).exec();
     };
 
 
@@ -32,7 +67,7 @@ var mongoose = require('mongoose'),
 
     /* Middleware: find a user by its name, then pass it to the next request handler. */
     exports.userByName = function(req, res, next, userName) {
-      ExamTile.find({name: userName}).exec(function(err, user) {
+      User.find({name: userName}).exec(function(err, user) {
         if(err) {
           res.status(400).send(err);
         } else {
@@ -44,7 +79,7 @@ var mongoose = require('mongoose'),
 
     /* Middleware: find a user by its email, then pass it to the next request handler. */
     exports.userByEmail = function(req, res, next, userEmail) {
-      ExamTile.find({email: userEmail}).exec(function(err, user) {
+      User.find({email: userEmail}).exec(function(err, user) {
         if(err) {
           res.status(400).send(err);
         } else {

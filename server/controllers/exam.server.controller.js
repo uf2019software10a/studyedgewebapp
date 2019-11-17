@@ -26,7 +26,7 @@ var mongoose = require('mongoose'),
           if (contact.deletedCount == 0) {
             res.json({
                 status: "error",
-                message: 'Exam ID not found'
+                message: 'Exam not found'
             });
           } else {
             res.json({
