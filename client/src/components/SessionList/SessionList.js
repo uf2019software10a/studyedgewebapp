@@ -1,5 +1,6 @@
 import React from 'react';
 import './SessionList.css'
+import militaryToStandard from "../TimeUtility"
 
 class SessionList extends React.Component {
 	render() {
@@ -8,8 +9,8 @@ class SessionList extends React.Component {
 		const sessionList = sessions.entries
 			.filter((session) => {
 				return (session.class.indexOf(classFilter) >= 0) &&
-				(session.exam_num.toString(10).indexOf(examFilter) >= 0);
-			})			
+				(session.exam_num.toString().indexOf(examFilter) >= 0);
+			})
 			.map((session) => {
 				let locType = '';
 				if(session.online) {
@@ -18,14 +19,15 @@ class SessionList extends React.Component {
 					locType = 'In-person';
 				}
 				const start_dt_split = session.start.split(" ");
-				const end_dt_split = session.end.split(" ");
+				const start_time = militaryToStandard(session.start);
+				const end_time = militaryToStandard(session.end);
 				return (
 					<button onClick={() => selectedSessionUpdate(session.exam_id)}>
 						<p>Exam {session.exam_num} Review</p>
 						<p>{session.class}</p>
 						<p>{session.tutor}</p>
 						<p>{start_dt_split[0]} {start_dt_split[1]}</p>
-						<p>{start_dt_split[3]} - {end_dt_split[3]}</p>
+						<p>{start_time} - {end_time}</p>
 						<p>{locType}</p>
 						<p>{session.enrolled}/{session.capacity} slots left!</p>
 					</button>

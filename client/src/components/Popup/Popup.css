@@ -37,13 +37,12 @@ h1 {
 }
 
 .text {
-    height: 45%;
+    height: 50%;
     width: 90%;
     background-color: #ccdef9;
     position: center;
     margin: 10px auto auto;
     border: solid 2px #000000;
-    border-radius: 25px;
 }
 
 p {
@@ -78,7 +77,7 @@ p {
     padding: 10px;
     font-size: 1rem;
     border: solid 2px #000000;
-    margin: 10px auto 10px;
+    margin: 8px auto auto;
     font-family: Arial, sans-serif;
     text-align: center;
 }
@@ -88,8 +87,8 @@ p {
 }
 
 .sessionInfo {
-    width: 180px;
-    height: 130px;
+    width: 200px;
+    height: 150px;
     background: #ccdef9;
     margin: 10px auto auto;
     padding: 10px;
