@@ -17,6 +17,12 @@ var mongoose = require('mongoose'),
       });
     };
 
+    /* Show the current user */
+    exports.read = function(req, res) {
+      console.log("READ: " + req.user.constructor.toString());
+      res.json(req.user);
+    };
+
     /* Delete a user */
     exports.delete = function(req, res) {
       // Check if array or singular object
@@ -125,10 +131,4 @@ var mongoose = require('mongoose'),
           next();
         }
       });
-    };
-
-
-    /* Show the current user */
-    exports.read = function(req, res) {
-      res.json(req.user);
     };

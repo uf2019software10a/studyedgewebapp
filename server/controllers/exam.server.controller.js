@@ -15,6 +15,13 @@ var mongoose = require('mongoose'),
       });
     };
 
+
+    /* Show the current exam */
+    exports.read = function(req, res) {
+      res.json(req.examTile);
+    };
+
+
     /* Delete an examTile */
     exports.delete = function(req, res) {
       var examTile = req.examTile[0];
@@ -54,7 +61,7 @@ var mongoose = require('mongoose'),
     /* Update an exam */
     exports.update = function(req, res) {
       var examTile = req.examTile;
-      Listing.findById(examTile._id, function (err, examTile) {
+      ExamTile.findById(examTile._id, function (err, examTile) {
          if (err)
              res.send(err);
 
@@ -77,8 +84,8 @@ var mongoose = require('mongoose'),
              console.log(err);
              res.status(400).send(err);
            } else {
-             res.json(listing);
-             console.log(listing)
+             res.json(examTile);
+             console.log(examTile)
            }
          });
       });
@@ -118,11 +125,4 @@ var mongoose = require('mongoose'),
           next();
         }
       });
-    };
-
-
-    /* Show the current listing */
-    exports.read = function(req, res) {
-      /* send back the listing as json from the request */
-      res.json(req.examTile);
     };

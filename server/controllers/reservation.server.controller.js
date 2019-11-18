@@ -3,10 +3,10 @@ var mongoose = require('mongoose'),
     Reservation = require('../models/schema.js').reservation;
     ExamTile = require('../models/schema.js').examTile;
     User = require('../models/schema.js').user;
-    
+
     /* Show the current reservation */
     exports.read = function(req, res) {
-      res.json(req.user);
+      res.json(req.reservation);
     };
 
     /* Delete a reservation */
@@ -37,37 +37,40 @@ var mongoose = require('mongoose'),
       console.log("REQ.BODY: " + req.body);
       console.log("req.user: " + req.user);
       console.log("req.examTile: " + req.examTile);
+      var reservations = new Reservation(req.body);
       Reservation.save(function(err) {
         if(err) {
           console.log(err);
           res.status(400).send(err);
         } else {
-          res.json(user);
-          console.log(user);
+          res.json(reservations);
+          console.log(reservations);
         }
       });
     };
 
 
     /* Middleware: find a user by its name, then pass it to the next request handler. */
-    exports.getUserId = function(req, res, next, userId) {
-      User.find({_id: userId}).exec(function(err, user) {
+    exports.getResByUserId = function(req, res, next, userId) {
+      var id = mongoose.Types.ObjectId(userId);
+      Reservation.find({user_id: id}).exec(function(err, reservation) {
         if(err) {
           res.status(400).send(err);
         } else {
-          req.user = user;
+          req.reservation = reservation;
           next();
         }
       });
     };
 
     /* Middleware: find a user by its email, then pass it to the next request handler. */
-    exports.getExamId = function(req, res, next, examId) {
-      ExamTile.find({_id: examId}).exec(function(err, examTile) {
+    exports.getResByExamId = function(req, res, next, examId) {
+      var id = mongoose.Types.ObjectId(examId);
+      Reservation.find({exam_id: id}).exec(function(err, reservation) {
         if(err) {
           res.status(400).send(err);
         } else {
-          req.examTile = examTile;
+          req.reservation = reservation;
           next();
         }
       });
