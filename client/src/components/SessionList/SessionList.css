@@ -3,13 +3,14 @@ p {
 	margin: auto;
 	font-family: Arial, sans-serif;
 	font-size: 1rem;
+	padding-bottom: 4px;
 }
 
 button {
-	width: 200px;
-	height: 200px;
+	width: 210px;
+	height: 210px;
 	background: #ccdef9;
-	padding: 20px;
+	padding: 10px 8px;
 	font-size: 1rem;
 	border: solid 2px #000000;
 	margin: 1rem;

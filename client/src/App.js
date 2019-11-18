@@ -5,6 +5,7 @@ import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
 import SessionList from "./components/SessionList/SessionList"
 import Menu from "./components/Menu/Menu"
+import Confirmation from "./components/Popup/Confirmation"
 import "./index.css"
 
 
@@ -13,11 +14,13 @@ const App = ({exams}) => {
   const [classFilter, setClassFilter] = useState('');
   const [examFilter, setExamFilter] = useState('');
   const [selectedSession, setSelectedSession] = useState('');
+  const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
 
   const selectedUpdate = React.useCallback(
     (newSession) => {
       setSelectedSession(newSession);
-      console.log('updated selected session ID: ', newSession);
+      openConfirmationPopup();
+      //console.log('updated selected session ID: ', newSession);
     },
     [],
   );
@@ -38,11 +41,33 @@ const App = ({exams}) => {
       [],
   );
 
+  const openConfirmationPopup = React.useCallback(
+      () => {
+          setShowConfirmationPopup(true);
+      },
+      [],
+  );
+
+  const closeConfirmationPopup = React.useCallback(
+      () => {
+          setShowConfirmationPopup(false);
+      },
+      [],
+  );
+
   //console.log(exams)
   //console.log(updatedSessions);
   return (
     <div>
       <Header/>
+        {showConfirmationPopup ?
+            <Confirmation
+                text='Confirm Reservation'
+                closePopup={closeConfirmationPopup}
+                session={updatedSessions.entries[selectedSession - 1]}
+            />
+            : null
+        }
         <div className="instructions">
             Select class and exam number:
         </div>
