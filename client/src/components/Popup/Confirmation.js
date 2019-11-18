@@ -19,16 +19,21 @@ class Confirmation extends React.Component {
                     Go Back
                 </div>
                 <h1>{text}</h1>
-                <div className='sessionInfo'>
-                    <p>Exam {session.exam_num} Review</p>
-                    <p>{session.class}</p>
-                    <p>{session.tutor}</p>
-                    <p>{start_dt_split[0]} {start_dt_split[1]}</p>
-                    <p>{start_dt_split[3]} - {end_dt_split[3]}</p>
-                    <p>{locType}</p>
-                    <p>{session.enrolled}/{session.capacity} slots left!</p>
-                </div>
-                <div className='popup\_inner'>
+                <div className="popup_inner">
+                    <div className='sessionInfo'>
+                        <p>Exam {session.exam_num} Review</p>
+                        <p>{session.class}</p>
+                        <p>{session.tutor}</p>
+                        <p>{start_dt_split[0]} {start_dt_split[1]}</p>
+                        <p>{start_dt_split[3]} - {end_dt_split[3]}</p>
+                        <p>{locType}</p>
+                        <p>{session.enrolled}/{session.capacity} slots left!</p>
+                    </div>
+                    <div className="text">
+                    </div>
+                    <div className="confirm">
+                        Sign Up
+                    </div>
                 </div>
             </div>
         );

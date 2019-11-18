@@ -64,7 +64,7 @@ const App = ({exams}) => {
             <Confirmation
                 text='Confirm Reservation'
                 closePopup={closeConfirmationPopup}
-                session={updatedSessions.entries[selectedSession]}
+                session={updatedSessions.entries[selectedSession - 1]}
             />
             : null
         }

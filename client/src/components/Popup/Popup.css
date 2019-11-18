@@ -1,23 +1,26 @@
 .popup {
     position: fixed;
-    width: 100%;
-    height: 100%;
+    width: 70%;
+    height: 80%;
+    background-color: #3b6a9b;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgba(0,0,0, 0.5);
+    border: solid 2px #000000;
+    border-radius: 25px;
+    z-index: 1;
 }
-.popup\_inner {
-    position: absolute;
-    left: 25%;
-    right: 25%;
-    top: 25%;
-    bottom: 25%;
-    margin: auto;
-    border-radius: 20px;
-    background: white;
+
+.popup_inner {
+    background-color: white;
+    position:center;
+    margin:auto;
+    height: 75%;
+    width: 90%;
+    border: solid 2px #000000;
+    border-radius: 25px;
 }
 
 h1 {
@@ -25,10 +28,20 @@ h1 {
     position: center;
     text-align: center;
     width: 30%;
-    margin: auto;
+    margin: 10px auto 10px;
     padding: 10px;
     font-family: Arial, sans-serif;
     font-size: 2rem;
+    border: solid 2px #000000;
+    border-radius: 25px;
+}
+
+.text {
+    height: 45%;
+    width: 90%;
+    background-color: #ccdef9;
+    position: center;
+    margin: 10px auto auto;
     border: solid 2px #000000;
     border-radius: 25px;
 }
@@ -41,30 +54,47 @@ p {
 }
 
 .close {
-    position: center;
+    position: absolute;
     width: 70px;
     height: 20px;
     background: #f9000d;
     padding: 10px;
     font-size: 1rem;
     border: solid 2px #000000;
-    border-radius: 25px;
-    margin: auto;
+    margin: 10px;
     font-family: Arial, sans-serif;
     text-align: center;
 }
 .close:hover {
     background-color: #a20008;
+    cursor: pointer;
+}
+
+.confirm {
+    position: center;
+    width: 90px;
+    height: 20px;
+    background: #18b920;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 10px auto 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.confirm:hover {
+    background-color: #0d8116;
+    cursor: pointer;
 }
 
 .sessionInfo {
-    width: 200px;
+    width: 180px;
     height: 130px;
     background: #ccdef9;
-    padding: 20px;
+    margin: 10px auto auto;
+    padding: 10px;
     font-size: 1rem;
     border: solid 2px #000000;
-    margin: auto;
     border-radius: 25px;
     text-align: center;
 }
