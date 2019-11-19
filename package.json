@@ -36,8 +36,12 @@
     "supertest": "^4.0.2",
     "validator": "^12.0.0"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme",
   "devDependencies": {
     "nodemon": "^1.19.4"
   }
+=======
+  "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
+>>>>>>> origin/master
 }

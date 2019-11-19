@@ -1,0 +1,99 @@
+.popup {
+    position: fixed;
+    width: 70%;
+    height: 80%;
+    background-color: #3b6a9b;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: solid 2px #000000;
+    border-radius: 25px;
+    z-index: 1;
+}
+
+.popup_inner {
+    background-color: white;
+    position:center;
+    margin:auto;
+    height: 75%;
+    width: 90%;
+    border: solid 2px #000000;
+    border-radius: 25px;
+}
+
+h1 {
+    background-color: white;
+    position: center;
+    text-align: center;
+    width: 30%;
+    margin: 10px auto 10px;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 2rem;
+    border: solid 2px #000000;
+    border-radius: 25px;
+}
+
+.text {
+    height: 50%;
+    width: 90%;
+    background-color: #ccdef9;
+    position: center;
+    margin: 10px auto auto;
+    border: solid 2px #000000;
+}
+
+p {
+    position: center;
+    margin: auto;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+}
+
+.close {
+    position: absolute;
+    width: 70px;
+    height: 20px;
+    background: #f9000d;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.close:hover {
+    background-color: #a20008;
+    cursor: pointer;
+}
+
+.confirm {
+    position: center;
+    width: 90px;
+    height: 20px;
+    background: #18b920;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 8px auto auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.confirm:hover {
+    background-color: #0d8116;
+    cursor: pointer;
+}
+
+.sessionInfo {
+    width: 200px;
+    height: 150px;
+    background: #ccdef9;
+    margin: 10px auto auto;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    border-radius: 25px;
+    text-align: center;
+}

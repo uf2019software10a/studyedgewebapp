@@ -3,18 +3,17 @@ const path = require('path'),
     mongoose = require('mongoose'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
-    exampleRouter = require('../routes/examples.server.routes');
+    examRouter = require('../routes/exam.server.routes');
+    userRouter = require('../routes/user.server.routes');
+    reservationRouter = require('../routes/reservation.server.routes');
 
 module.exports.init = () => {
-    /* 
-        connect to database
-        - reference README for db uri
-    */
     mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
         useNewUrlParser: true
     });
     mongoose.set('useCreateIndex', true);
     mongoose.set('useFindAndModify', false);
+    mongoose.set('useUnifiedTopology', true);
 
     // initialize app
     const app = express();
@@ -26,7 +25,9 @@ module.exports.init = () => {
     app.use(bodyParser.json());
 
     // add a router
-    app.use('/api/example', exampleRouter);
+    app.use('/api/exams', examRouter);
+    app.use('/api/users', userRouter);
+    app.use('/api/reservations', reservationRouter);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
@@ -40,4 +41,3 @@ module.exports.init = () => {
 
     return app
 }
-
