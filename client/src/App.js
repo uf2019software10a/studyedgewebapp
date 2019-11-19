@@ -64,12 +64,12 @@ const App = ({exams}) => {
             <Confirmation
                 text='Confirm Reservation'
                 closePopup={closeConfirmationPopup}
-                session={updatedSessions.entries[selectedSession - 1]}
+                session={updatedSessions.entries.find((session) => session._id === selectedSession)}
             />
             : null
         }
         <div className="instructions">
-            Select class and exam number:
+            Select class or exam number:
         </div>
         <div className="search">
             <Menu

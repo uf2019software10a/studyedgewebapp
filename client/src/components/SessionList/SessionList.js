@@ -22,7 +22,7 @@ class SessionList extends React.Component {
 				const start_time = militaryToStandard(session.start);
 				const end_time = militaryToStandard(session.end);
 				return (
-					<button onClick={() => selectedSessionUpdate(session.exam_id)}>
+					<button onClick={() => selectedSessionUpdate(session._id)}>
 						<p>Exam {session.exam_num} Review</p>
 						<p>{session.class}</p>
 						<p>{session.tutor}</p>
