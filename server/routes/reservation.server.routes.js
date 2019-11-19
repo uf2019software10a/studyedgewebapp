@@ -4,14 +4,16 @@ var reservations = require('../controllers/reservation.server.controller.js'),
     express = require('express'), //refers to Express the middleware helper for Node.js
     router = express.Router(); //refers to the Router() function in Express the middleware helper for Node.js
 
+router.route('/')
+  .post(reservations.create);
+
 router.route('/user=:userId')
-  .get(users.read);
+  .get(reservations.read);
 
 router.route('/exam=:examId')
-  .get(exams.read);
+  .get(reservations.read);
 
-router.route('/user=:userId/exams=:examId')
-  .post(reservations.create)
+router.route('/user=:user/exam=:exam')
   .delete(reservations.delete);
 
 
