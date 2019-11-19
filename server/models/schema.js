@@ -29,6 +29,11 @@ var userSchema = new Schema({
 	email: { type: String, required: true, unique: true}
 });
 
+var reservationSchema = new Schema({
+	user_id: { type: Schema.ObjectId, required: true},
+	exam_id: { type: Schema.ObjectId, required: true},
+});
+
 examTileSchema.pre('save', function(next) {
   /* your code here */
   var currDate = new Date();
@@ -47,10 +52,21 @@ userSchema.pre('save', function(next) {
   next();
 });
 
+reservationSchema.pre('save', function(next) {
+  /* your code here */
+  var currDate = new Date();
+  this.updated_at = currDate;
+  if(!this.created_at)
+    this.created_at - currDate;
+  next();
+});
+
 
 var examTile = mongoose.model('examTile', examTileSchema);
 var user = mongoose.model('user', userSchema);
+var reservation = mongoose.model('reservation', reservationSchema)
 module.exports = {
 	examTile: examTile,
-	user: user
+	user: user,
+	reservation: reservation,
 }

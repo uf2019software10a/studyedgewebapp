@@ -1,0 +1,52 @@
+Here are the API routes available, each has its associated route and the methods accepted for said route.
+For example, to get a list of all the exams in the database, access the following URL:
+
+127.0.0.1:3000/api/exams/
+
+
+
+** EXAM APIS ** 
+/api/exams/
+- GET: list of exams
+- PUT: update exam
+- POST: create exam
+
+/api/exams/className=:className
+- GET: list of exams by class name
+
+/api/exams/examNum=:examNum
+- GET: list of exams by exam number
+
+/api/exams/className=:className,examNum=:examNum
+- DELETE: by exam name and number
+
+
+** USER APIS ** 
+/api/users/
+- GET: list of users
+- PUT: update user
+- POST: create user
+
+/api/users/id=id
+- DELETE: user by id
+
+/api/users/userName=:userName
+- GET: users by name
+
+/api/users/userEmail=:userEmail
+- GET: users by email
+- DELETE: user by email
+
+** RESERVATIONS APIS ** 
+
+/api/reservations/
+- POST: create reservation
+
+/api/reservations/user=:userId
+- GET: list of reservations associated with user
+
+/api/reservations/exam=:examId
+- GET: list of reservations associated with exam
+
+/api/reservations/user=:userId/exam=:examId
+- DELETE: delete reservation

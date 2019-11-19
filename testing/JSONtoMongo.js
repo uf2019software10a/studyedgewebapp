@@ -14,7 +14,7 @@ const client = new MongoClient(config.db.uri, { useNewUrlParser: true, useUnifie
 client.connect(err => {
 
    // ADD EXAMS ================================================================
-  const collection_exams = client.db("test").collection("exams");
+  const collection_exams = client.db("test").collection("examtiles");
 
   let rawExamData = fs.readFileSync('./exams.json');
   let exams = JSON.parse(rawExamData);
