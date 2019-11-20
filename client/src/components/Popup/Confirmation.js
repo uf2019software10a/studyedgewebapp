@@ -4,8 +4,10 @@ import militaryToStandard from "../TimeUtility"
 
 class Confirmation extends React.Component {
     infoSubmitted = () => {
-        console.log(this.email);
-        console.log(this.comments);
+        const userEmailAddr = this.email.value;
+        const specificTopicsPara = this.comments.value;
+        console.log('my email: ', userEmailAddr);
+        console.log('my comments: ', specificTopicsPara);
         this.props.closePopup();
     };
 
