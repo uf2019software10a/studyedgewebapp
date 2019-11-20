@@ -58,7 +58,7 @@ const App = ({exams}) => {
   //console.log(exams)
   //console.log(updatedSessions);
   return (
-    <div>
+    <div className="app">
       <Header/>
         {showConfirmationPopup ?
             <Confirmation
