@@ -32,6 +32,29 @@ var mongoose = require('mongoose'),
       }).exec();
     };
 
+    /* Finds a reservation */
+    exports.find = function(req, res) {
+      var user_id = req.params["user"];
+      var exam_id = req.params["exam"];
+        Reservation.find({user_id: user_id, exam_id: exam_id}).exec(function (err, reservation) {
+            if (err) {
+              res.json({
+                  status: "error",
+                  message: 'Reservation not found'
+              });
+            } else {
+              if (typeof reservation === 'undefined' || reservation.length === 0) {
+                res.json({
+                    status: "error",
+                    message: 'Reservation not found'
+                });
+              } else {
+                res.json(reservation);
+              }  
+            }
+        });
+    };
+
 
     /* Create a reservation */
     exports.create = function(req, res) {

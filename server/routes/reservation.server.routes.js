@@ -14,6 +14,7 @@ router.route('/exam=:examId')
   .get(reservations.read);
 
 router.route('/user=:user/exam=:exam')
+  .get(reservations.find)
   .delete(reservations.delete);
 
 
