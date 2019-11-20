@@ -3,6 +3,14 @@ import './Popup.css'
 import militaryToStandard from "../TimeUtility"
 
 class Confirmation extends React.Component {
+    infoSubmitted = () => {
+        const userEmailAddr = this.email.value;
+        const specificTopicsPara = this.comments.value;
+        console.log('my email: ', userEmailAddr);
+        console.log('my comments: ', specificTopicsPara);
+        this.props.closePopup();
+    };
+
     render() {
         const { closePopup, text, session } = this.props;
         //console.log(session);
@@ -32,10 +40,29 @@ class Confirmation extends React.Component {
                         <p>{session.enrolled}/{session.capacity} slots left!</p>
                     </div>
                     <div className="text">
-                        placeholder
+                        <div className="text_box_label">
+                            <form>
+                                Preferred email:
+                                <input
+                                    style={ {height : 20} }
+                                    type="text"
+                                    ref={ (email) => this.email = email}
+                                />
+                            </form>
+                        </div>
+                        <div className="text_box_label">
+                            <form>
+                            Specific topics for tutor:
+                                <input
+                                    style={ {height : 100} }
+                                    type="text"
+                                    ref={ (comments) => this.comments = comments}
+                                />
+                            </form>
+                        </div>
                     </div>
                 </div>
-                <div className="confirm">
+                <div className="confirm" onClick={() => this.infoSubmitted()}>
                     Sign Up
                 </div>
             </div>

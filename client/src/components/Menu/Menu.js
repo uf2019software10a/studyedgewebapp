@@ -49,7 +49,7 @@ class Menu extends React.Component {
                 {this.state.displayMenu && <ul>
                     {listReduced
                         .map((item) => (
-                            <li key={item.exam_id} onClick={() =>
+                            <li key={item._id} onClick={() =>
                                 filterUpdate(item[element], this.elementSelected(item[element]))}>
                                 {element === 'exam_num' ? 'Exam ' : null}
                                 {item[element]}
