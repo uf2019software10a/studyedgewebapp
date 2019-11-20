@@ -6,6 +6,7 @@ import Header from "./components/Header/Header"
 import SessionList from "./components/SessionList/SessionList"
 import Menu from "./components/Menu/Menu"
 import Confirmation from "./components/Popup/Confirmation"
+import ReservationError from "./components/Popup/ReservationError";
 import "./index.css"
 
 
@@ -15,6 +16,7 @@ const App = ({exams}) => {
   const [examFilter, setExamFilter] = useState('');
   const [selectedSession, setSelectedSession] = useState('');
   const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
+  const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
 
   const selectedUpdate = React.useCallback(
     (newSession) => {
@@ -55,6 +57,19 @@ const App = ({exams}) => {
       [],
   );
 
+  const openReservationErrorPopup = React.useCallback(
+      () => {
+          setShowReservationErrorPopup(true);
+      }
+  );
+
+  const closeReservationErrorPopup = React.useCallback(
+      () => {
+          setShowReservationErrorPopup(false);
+      },
+      [],
+  );
+
   //console.log(exams)
   //console.log(updatedSessions);
   return (
@@ -65,6 +80,13 @@ const App = ({exams}) => {
                 text='Confirm Reservation'
                 closePopup={closeConfirmationPopup}
                 session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+            />
+            : null
+        }
+        {showReservationErrorPopup ?
+            <ReservationError
+                text='Exam Slot Error'
+                closePopup={closeReservationErrorPopup}
             />
             : null
         }
