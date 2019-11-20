@@ -50,13 +50,11 @@ var mongoose = require('mongoose'),
 
     /* Middleware: find a user by its name, then pass it to the next request handler. */
     exports.getResByUserId = function(req, res, next, userId) {
-      console.log("RES USER ID: " + userId)
       var id = mongoose.Types.ObjectId(userId);
       Reservation.find({user_id: id}).exec(function(err, reservation) {
         if(err) {
           res.status(400).send(err);
         } else {
-          console.log("RESERVATION: " + reservation);
           req.reservation = reservation;
           next();
         }
@@ -65,22 +63,13 @@ var mongoose = require('mongoose'),
 
     /* Middleware: find a user by its email, then pass it to the next request handler. */
     exports.getResByExamId = function(req, res, next, examId) {
-      console.log("RES EXAM ID: " + examId)
       var id = mongoose.Types.ObjectId(examId);
       Reservation.find({exam_id: id}).exec(function(err, reservation) {
         if(err) {
           res.status(400).send(err);
         } else {
-          console.log("RESERVATION: " + reservation);
           req.reservation = reservation;
           next();
         }
       });
     };
-
-    exports.getResByUserAndExam = function(req, res, next, userId, examId) {
-      console.log("GET BY BOTH");
-      console.log("user: " + userId);
-      console.log("exam: " + examId);
-      next();
-    }

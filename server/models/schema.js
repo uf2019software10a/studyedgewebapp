@@ -32,6 +32,7 @@ var userSchema = new Schema({
 var reservationSchema = new Schema({
 	user_id: { type: Schema.ObjectId, required: true},
 	exam_id: { type: Schema.ObjectId, required: true},
+	topics: { type: String, required: true, default: ""}
 });
 
 examTileSchema.pre('save', function(next) {
