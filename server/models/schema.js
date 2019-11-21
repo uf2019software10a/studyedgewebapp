@@ -62,6 +62,16 @@ reservationSchema.pre('save', function(next) {
   next();
 });
 
+userSchema.pre('remove', function(next) {
+    Reservation.remove({user_id: this._id}).exec();
+    next();
+});
+
+examTileSchema.pre('remove', function(next) {
+    Reservation.remove({exam_id: this._id}).exec();
+    next();
+});
+
 
 var examTile = mongoose.model('examTile', examTileSchema);
 var user = mongoose.model('user', userSchema);
