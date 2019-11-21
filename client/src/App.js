@@ -58,18 +58,18 @@ const App = ({exams}) => {
   //console.log(exams)
   //console.log(updatedSessions);
   return (
-    <div>
+    <div className="app">
       <Header/>
         {showConfirmationPopup ?
             <Confirmation
                 text='Confirm Reservation'
                 closePopup={closeConfirmationPopup}
-                session={updatedSessions.entries[selectedSession - 1]}
+                session={updatedSessions.entries.find((session) => session._id === selectedSession)}
             />
             : null
         }
         <div className="instructions">
-            Select class and exam number:
+            Select class or exam number:
         </div>
         <div className="search">
             <Menu
