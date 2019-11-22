@@ -39,6 +39,15 @@ var mongoose = require('mongoose'),
         user = req.user;
       }
 
+      try {
+        user._id;
+      } catch(e) {
+        res.json({
+            status: "error",
+            message: "User not found"
+          });
+      }
+
       User.deleteOne({_id: user._id}, function (err, contact) {
           if (err) {
             console.log(err);

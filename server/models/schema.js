@@ -61,23 +61,42 @@ reservationSchema.pre('save', function(next) {
     this.created_at - currDate;
   next();
 });
+var reservation = mongoose.model('reservation', reservationSchema)
 
-userSchema.pre('remove', function(next) {
-    Reservation.remove({user_id: this._id}).exec();
-    next();
+// ============================================================
+// ATTENTION ==================================================
+// ============================================================
+// DO NOT FUCKING MOVE THESE OKAY IT WILL BREAK A LOT OF THINGS
+//
+// ============================================================
+
+userSchema.pre('remove', { document: true, query: false }, function() {
+  console.log("removing res by user...")
+	reservation.remove({user_id: this._id}).exec();
 });
 
-examTileSchema.pre('remove', function(next) {
-    Reservation.remove({exam_id: this._id}).exec();
-    next();
+examTileSchema.pre('remove', { document: true, query: false }, function() {
+  console.log("removing res by exam...")
+	reservation.remove({exam_id: this._id}).exec();
 });
-
 
 var examTile = mongoose.model('examTile', examTileSchema);
 var user = mongoose.model('user', userSchema);
-var reservation = mongoose.model('reservation', reservationSchema)
 module.exports = {
 	examTile: examTile,
 	user: user,
 	reservation: reservation,
 }
+
+
+//
+// userSchema.pre('deleteOne', function(next) {
+//     reservation.remove({user_id: this._id}).exec();
+//     next();
+// });
+//
+// examTileSchema.pre('deleteOne', function(next) {
+// 		console.log("calling cascade...");
+//     reservation.remove({exam_id: this._id}).exec();
+//     next();
+// });

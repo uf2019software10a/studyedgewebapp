@@ -24,7 +24,24 @@ var mongoose = require('mongoose'),
 
     /* Delete an examTile */
     exports.delete = function(req, res) {
-      var examTile = req.examTile[0];
+      // Check if array or singular object
+      try {
+        examTile = req.examTile[0];
+        examTile._id;
+      } catch(e) {
+        examTile = req.examTile;
+      }
+
+      // check if object is null
+      try {
+        examTile._id;
+      } catch(e) {
+        res.json({
+            status: "error",
+            message: "Exam not found"
+          });
+      }
+
       ExamTile.deleteOne({_id: examTile._id}, function (err, contact) {
           if (err) {
             console.log(err);

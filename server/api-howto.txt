@@ -11,11 +11,15 @@ URL parameters are indicated using the ":". For example, to find an exam by clas
 
 
 
-// EXAM APIS ==============================================================
+** EXAM APIS ** 
 /api/exams/
 - GET: list of exams
 - PUT: update exam
 - POST: create exam
+
+/api/exams/id=:id
+- GET: get exam by ID
+- DELETE: delete exam by ID
 
 /api/exams/className=:className
 - GET: list of exams by class name
@@ -23,20 +27,23 @@ URL parameters are indicated using the ":". For example, to find an exam by clas
 /api/exams/examNum=:examNum
 - GET: list of exams by exam number
 
-/api/exams/className=:className/examNum=:examNum
+/api/exams/className=:className,examNum=:examNum
 - DELETE: by exam name and number
 
 
 
 
-// USER APIS =============================================================
+
+
+** USER APIS ** 
 /api/users/
 - GET: list of users
 - PUT: update user
 - POST: create user
 
-/api/users/id=id
-- DELETE: user by id
+/api/users/id=:id
+- GET: get user by ID
+- DELETE: delete user by ID
 
 /api/users/userName=:userName
 - GET: users by name
@@ -48,10 +55,15 @@ URL parameters are indicated using the ":". For example, to find an exam by clas
 
 
 
-// RESERVATION APIS ======================================================
+
+** RESERVATIONS APIS ** 
 
 /api/reservations/
 - POST: create reservation
+
+/api/reservations/id=:id
+- GET: get reservation by ID
+- DELETE: delete reservation by ID
 
 /api/reservations/user=:userId
 - GET: list of reservations associated with user
