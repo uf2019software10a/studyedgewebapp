@@ -115,3 +115,10 @@ input {
     white-space: normal;
     position: absolute;
 }
+
+.message {
+    margin: 1rem;
+    padding: 10px;
+    position: center;
+    align-content: center;
+}
