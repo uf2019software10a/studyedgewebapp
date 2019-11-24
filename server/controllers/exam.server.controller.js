@@ -18,7 +18,14 @@ var mongoose = require('mongoose'),
 
     /* Show the current exam */
     exports.read = function(req, res) {
-      res.json(req.examTile);
+      if(req.examTile) {
+        res.json(req.examTile);
+      } else {
+        res.json({
+            status: "error",
+            message: "Exam not found"
+          });
+      }
     };
 
 
@@ -39,26 +46,25 @@ var mongoose = require('mongoose'),
         res.json({
             status: "error",
             message: "Exam not found"
-          });
+        });
+        return;
       }
 
-      ExamTile.deleteOne({_id: examTile._id}, function (err, contact) {
-          if (err) {
-            console.log(err);
-            res.send(err);
-          }
-          if (contact.deletedCount == 0) {
-            res.json({
-                status: "error",
-                message: 'Exam not found'
-            });
-          } else {
+      ExamTile.findById(req.examTile._id, function(err, examTile)
+      {
+          if(!err){
+            examTile.deleteOne();
             res.json({
                 status: "success",
                 message: 'Exam deleted'
             });
+          } else {
+            res.json({
+                status: "error",
+                message: 'Exam not found'
+            });
           }
-      }).exec();
+      });
     };
 
     /* Create an exam */

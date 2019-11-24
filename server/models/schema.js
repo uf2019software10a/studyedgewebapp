@@ -70,14 +70,12 @@ var reservation = mongoose.model('reservation', reservationSchema)
 //
 // ============================================================
 
-userSchema.pre('remove', { document: true, query: false }, function() {
-  console.log("removing res by user...")
-	reservation.remove({user_id: this._id}).exec();
+userSchema.pre('deleteOne', { document: true, query: false }, function() {
+	reservation.deleteOne({user_id: this._id}).exec();
 });
 
-examTileSchema.pre('remove', { document: true, query: false }, function() {
-  console.log("removing res by exam...")
-	reservation.remove({exam_id: this._id}).exec();
+examTileSchema.pre('deleteOne', { document: true, query: false }, function() {
+	reservation.deleteOne({exam_id: this._id}).exec();
 });
 
 var examTile = mongoose.model('examTile', examTileSchema);
