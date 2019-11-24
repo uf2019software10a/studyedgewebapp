@@ -50,7 +50,7 @@ var mongoose = require('mongoose'),
                 });
               } else {
                 res.json(reservation);
-              }  
+              }
             }
         });
     };
@@ -70,6 +70,17 @@ var mongoose = require('mongoose'),
       });
     };
 
+    /* Middleware: find a reservation by its ID, then pass it to the next request handler. */
+    exports.reservationById = function(req, res, next, id) {
+      Reservation.findById(id).exec(function(err, reservation) {
+        if(err) {
+          res.status(400).send(err);
+        } else {
+          req.reservation = reservation;
+          next();
+        }
+      });
+    };
 
     /* Middleware: find a user by its name, then pass it to the next request handler. */
     exports.getResByUserId = function(req, res, next, userId) {
