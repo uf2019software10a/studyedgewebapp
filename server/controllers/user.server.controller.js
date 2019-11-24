@@ -61,7 +61,7 @@ var mongoose = require('mongoose'),
           } else {
             res.json({
                 status: "error",
-                message: 'User not found 2'
+                message: 'User not found'
             });
           }
       });
