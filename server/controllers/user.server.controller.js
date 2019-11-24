@@ -19,52 +19,52 @@ var mongoose = require('mongoose'),
 
     /* Show the current user */
     exports.read = function(req, res) {
-      console.log("READ: " + req.user.constructor.toString());
-      res.json(req.user);
+      if(req.user) {
+        res.json(req.user);
+      } else {
+        res.json({
+            status: "error",
+            message: "User not found"
+          });
+      }
     };
 
     /* Delete a user */
     exports.delete = function(req, res) {
       // Check if array or singular object
-      if(req.user.constructor === Array) {
-        if(req.user.length === 0) { // EMPTY ARRAY
-          res.json({
-              status: "error",
-              message: 'User not found'
-          });
-        } else {
-          user = req.user[0];
-        }
-      } else {
+      try {
+        user = req.user[0];
+        user._id;
+      } catch(e) {
         user = req.user;
       }
 
+      // check if object is null
       try {
         user._id;
       } catch(e) {
         res.json({
             status: "error",
             message: "User not found"
-          });
+        });
+        return;
       }
 
-      User.deleteOne({_id: user._id}, function (err, contact) {
-          if (err) {
-            console.log(err);
-            res.send(err);
-          }
-          if (contact.deletedCount == 0) {
-            res.json({
-                status: "error",
-                message: 'User not found'
-            });
-          } else {
+      User.findById(req.user._id, function(err, user)
+      {
+          if(!err){
+            user.deleteOne();
             res.json({
                 status: "success",
                 message: 'User deleted'
             });
+          } else {
+            res.json({
+                status: "error",
+                message: 'User not found 2'
+            });
           }
-      }).exec();
+      });
     };
 
 
