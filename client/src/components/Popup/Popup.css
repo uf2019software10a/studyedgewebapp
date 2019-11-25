@@ -97,3 +97,28 @@ p {
     border-radius: 25px;
     text-align: center;
 }
+
+.text_box_label {
+    margin: 30px 10px 30px;
+    font-family: Arial, sans-serif;
+}
+
+input {
+    width: 60%;
+    margin: auto 8px auto;
+    border: solid 2px #000000;
+    padding-left: 6px;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    text-align: left;
+    word-wrap: break-word;
+    white-space: normal;
+    position: absolute;
+}
+
+.message {
+    margin: 1rem;
+    padding: 10px;
+    position: center;
+    align-content: center;
+}

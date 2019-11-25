@@ -32,6 +32,29 @@ var mongoose = require('mongoose'),
       }).exec();
     };
 
+    /* Finds a reservation */
+    exports.find = function(req, res) {
+      var user_id = req.params["user"];
+      var exam_id = req.params["exam"];
+        Reservation.find({user_id: user_id, exam_id: exam_id}).exec(function (err, reservation) {
+            if (err) {
+              res.json({
+                  status: "error",
+                  message: 'Reservation not found'
+              });
+            } else {
+              if (typeof reservation === 'undefined' || reservation.length === 0) {
+                res.json({
+                    status: "error",
+                    message: 'Reservation not found'
+                });
+              } else {
+                res.json(reservation);
+              }
+            }
+        });
+    };
+
 
     /* Create a reservation */
     exports.create = function(req, res) {
@@ -47,16 +70,25 @@ var mongoose = require('mongoose'),
       });
     };
 
+    /* Middleware: find a reservation by its ID, then pass it to the next request handler. */
+    exports.reservationById = function(req, res, next, id) {
+      Reservation.findById(id).exec(function(err, reservation) {
+        if(err) {
+          res.status(400).send(err);
+        } else {
+          req.reservation = reservation;
+          next();
+        }
+      });
+    };
 
     /* Middleware: find a user by its name, then pass it to the next request handler. */
     exports.getResByUserId = function(req, res, next, userId) {
-      console.log("RES USER ID: " + userId)
       var id = mongoose.Types.ObjectId(userId);
       Reservation.find({user_id: id}).exec(function(err, reservation) {
         if(err) {
           res.status(400).send(err);
         } else {
-          console.log("RESERVATION: " + reservation);
           req.reservation = reservation;
           next();
         }
@@ -65,22 +97,13 @@ var mongoose = require('mongoose'),
 
     /* Middleware: find a user by its email, then pass it to the next request handler. */
     exports.getResByExamId = function(req, res, next, examId) {
-      console.log("RES EXAM ID: " + examId)
       var id = mongoose.Types.ObjectId(examId);
       Reservation.find({exam_id: id}).exec(function(err, reservation) {
         if(err) {
           res.status(400).send(err);
         } else {
-          console.log("RESERVATION: " + reservation);
           req.reservation = reservation;
           next();
         }
       });
     };
-
-    exports.getResByUserAndExam = function(req, res, next, userId, examId) {
-      console.log("GET BY BOTH");
-      console.log("user: " + userId);
-      console.log("exam: " + examId);
-      next();
-    }

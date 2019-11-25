@@ -6,6 +6,8 @@ import Header from "./components/Header/Header"
 import SessionList from "./components/SessionList/SessionList"
 import Menu from "./components/Menu/Menu"
 import Confirmation from "./components/Popup/Confirmation"
+import ReservationError from "./components/Popup/ReservationError";
+import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css"
 
 
@@ -15,6 +17,8 @@ const App = ({exams}) => {
   const [examFilter, setExamFilter] = useState('');
   const [selectedSession, setSelectedSession] = useState('');
   const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
+  const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
+  const [showReservationConfirmedPopup, setShowReservationConfirmedPopup] = useState(false);
 
   const selectedUpdate = React.useCallback(
     (newSession) => {
@@ -55,21 +59,64 @@ const App = ({exams}) => {
       [],
   );
 
+  const openReservationErrorPopup = React.useCallback(
+      () => {
+          setShowReservationErrorPopup(true);
+      },
+      [],
+  );
+
+  const closeReservationErrorPopup = React.useCallback(
+      () => {
+          setShowReservationErrorPopup(false);
+      },
+      [],
+  );
+
+  const openReservationConfirmedPopup = React.useCallback(
+      () => {
+          setShowReservationConfirmedPopup(true);
+      },
+      [],
+  );
+
+    const closeReservationConfirmedPopup = React.useCallback(
+        () => {
+            setShowReservationConfirmedPopup(false);
+        },
+        [],
+    );
+
   //console.log(exams)
   //console.log(updatedSessions);
   return (
-    <div>
+    <div className="app">
       <Header/>
         {showConfirmationPopup ?
             <Confirmation
                 text='Confirm Reservation'
                 closePopup={closeConfirmationPopup}
-                session={updatedSessions.entries[selectedSession - 1]}
+                session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+            />
+            : null
+        }
+        {showReservationErrorPopup ?
+            <ReservationError
+                text='Exam Slot Error'
+                closePopup={closeReservationErrorPopup}
+            />
+            : null
+        }
+        {showReservationConfirmedPopup ?
+            <ReservationConfirmed
+                text='Exam Slot Confirmed!'
+                closePopup={closeReservationConfirmedPopup}
+                session={updatedSessions.entries.find((session) => session._id === selectedSession)}
             />
             : null
         }
         <div className="instructions">
-            Select class and exam number:
+            Select class or exam number:
         </div>
         <div className="search">
             <Menu

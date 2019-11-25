@@ -3,6 +3,12 @@ For example, to get a list of all the exams in the database, access the followin
 
 127.0.0.1:3000/api/exams/
 
+URL parameters are indicated using the ":". For example, to find an exam by className, we use the following URL:
+
+127.0.0.1:3000/api/exams/className=MAC2313
+
+** NOTE: PARAMETERS SUCH AS "className" ARE CASE SENSITIVE, 'MAC2313' IS NOT THE SAME AS 'mac2313' **
+
 
 
 ** EXAM APIS ** 
@@ -10,6 +16,10 @@ For example, to get a list of all the exams in the database, access the followin
 - GET: list of exams
 - PUT: update exam
 - POST: create exam
+
+/api/exams/id=:id
+- GET: get exam by ID
+- DELETE: delete exam by ID
 
 /api/exams/className=:className
 - GET: list of exams by class name
@@ -21,14 +31,19 @@ For example, to get a list of all the exams in the database, access the followin
 - DELETE: by exam name and number
 
 
+
+
+
+
 ** USER APIS ** 
 /api/users/
 - GET: list of users
 - PUT: update user
 - POST: create user
 
-/api/users/id=id
-- DELETE: user by id
+/api/users/id=:id
+- GET: get user by ID
+- DELETE: delete user by ID
 
 /api/users/userName=:userName
 - GET: users by name
@@ -37,10 +52,18 @@ For example, to get a list of all the exams in the database, access the followin
 - GET: users by email
 - DELETE: user by email
 
+
+
+
+
 ** RESERVATIONS APIS ** 
 
 /api/reservations/
 - POST: create reservation
+
+/api/reservations/id=:id
+- GET: get reservation by ID
+- DELETE: delete reservation by ID
 
 /api/reservations/user=:userId
 - GET: list of reservations associated with user
@@ -49,4 +72,5 @@ For example, to get a list of all the exams in the database, access the followin
 - GET: list of reservations associated with exam
 
 /api/reservations/user=:userId/exam=:examId
+- GET: check if reservation exists
 - DELETE: delete reservation

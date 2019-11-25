@@ -1,6 +1,6 @@
 {
 	"entries": [{
-			"exam_id": 1,
+			"_id": "aaaa",
 			"class": "MAC2312",
 			"exam_num": 2,
 			"start": "January 1 1970 0:00",
@@ -16,7 +16,7 @@
 			"tutor": "John Doe"
 		},
 		{
-			"exam_id": 2,
+			"_id": "bbbb",
 			"class": "CHM2045",
 			"exam_num": 1,
 			"start": "March 1 1970 12:00",
@@ -32,11 +32,11 @@
 			"tutor": "John Doe"
 		},
 		{
-			"exam_id": 3,
+			"_id": "cccc",
 			"class": "PHY2049",
 			"exam_num": 3,
-			"start": "April 1 1970 0:00",
-			"end": "April 1 1970 23:00",
+			"start": "April 1 1970 8:45",
+			"end": "April 1 1970 13:45",
 			"online": true,
 			"location": {
 				"building": "Marston Science Library",
@@ -48,7 +48,7 @@
 			"tutor": "John Doe"
 		},
 		{
-			"exam_id": 4,
+			"_id": "dddd",
 			"class": "MAC2312",
 			"exam_num": 2,
 			"start": "April 1 1970 0:00",
@@ -64,7 +64,7 @@
 			"tutor": "John Doe"
 		},
 		{
-			"exam_id": 5,
+			"_id": "eeee",
 			"class": "CHM2045",
 			"exam_num": 3,
 			"start": "April 1 1970 0:00",
@@ -80,7 +80,7 @@
 			"tutor": "John Doe"
 		},
 		{
-			"exam_id": 6,
+			"_id": "ffff",
 			"class": "MAC2313",
 			"exam_num": 4,
 			"start": "April 1 1970 0:00",
