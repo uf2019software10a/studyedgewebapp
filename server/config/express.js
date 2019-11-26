@@ -6,6 +6,7 @@ const path = require('path'),
     examRouter = require('../routes/exam.server.routes');
     userRouter = require('../routes/user.server.routes');
     reservationRouter = require('../routes/reservation.server.routes');
+    adminRouter = require('../routes/reservation.server.routes');
 
 module.exports.init = () => {
     mongoose.connect(process.env.DB_URI || require('./config').db.uri, {
@@ -28,6 +29,7 @@ module.exports.init = () => {
     app.use('/api/exams', examRouter);
     app.use('/api/users', userRouter);
     app.use('/api/reservations', reservationRouter);
+    app.use('/api/Admin/login', adminRouter);
 
     if (process.env.NODE_ENV === 'production') {
         // Serve any static files
