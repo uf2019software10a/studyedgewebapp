@@ -3,7 +3,6 @@ import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "./views/Home/Home"
 import NotFound from "./views/NotFound"
 import Admin from "./views/Admin/Admin"
-import index_load from "./views/index/index"
 import Header from "./components/Header/Header"
 import SessionList from "./components/SessionList/SessionList"
 import Menu from "./components/Menu/Menu"

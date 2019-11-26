@@ -5,21 +5,24 @@ import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './App';
 import exams from './data/exams.json'
-import Admin from "./views/Admin/Admin"
+import AdminApp from "./views/Admin/Admin"
 import NotFound from "./views/NotFound"
 
 
 ReactDOM.render(
     <Router>
       <Switch>
-        <Route path="/Home" App exams = {exams}/>
-        <Route exact path="/" App exams = {exams}>
-          <Redirect to="/Home" App exams = {exams}/>
-          <Route App exams = {exams}/>
+        <Route path="/Home">
+          <App exams = {exams}/>
         </Route>
-        <Route path="/Admin" component={Admin}>
+        <Route exact path="/">
+          <Redirect to="/Home"/>
+        </Route>
+        <Route exact path="/Admin/login">
+          <AdminApp exams ={exams}/>
+        </Route>
+        <Route path="/Admin">
           <Redirect to="/Admin/login"/>
-          <Route component={Admin}/>
         </Route>
         <Route component={NotFound}/>
       </Switch>
