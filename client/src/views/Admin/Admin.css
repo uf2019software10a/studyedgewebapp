@@ -1,0 +1,16 @@
+.AdminLogin {
+  font-family: Arial, sans-serif;
+  padding: 60px;
+  text-align: center;
+  color: white;
+}
+
+input[type="text"] {
+  margin: auto;
+  background: #fff;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  padding: 0 2rem;
+  width: 50%;
+  height: 4rem;
+}
