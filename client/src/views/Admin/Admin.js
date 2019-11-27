@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
-import Home from "./views/Home/Home"
-import NotFound from "./views/NotFound"
-import Admin from "./views/Admin/Admin"
-import Header from "./components/Header/Header"
-import SessionList from "./components/SessionList/SessionList"
-import Menu from "./components/Menu/Menu"
-import Confirmation from "./components/Popup/Confirmation"
-import ReservationError from "./components/Popup/ReservationError";
-import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
-import "./index.css"
+import Home from "../../views/Home/Home"
+import NotFound from "../../views/NotFound"
+import Admin from "../../views/Admin/Admin"
+import Header from "../../components/Header/Header"
+import SessionList from "../../components/SessionList/SessionList"
+import Menu from "../../components/Menu/Menu"
+import Confirmation from "../../components/Popup/Confirmation"
+import ReservationError from "../../components/Popup/ReservationError";
+import ReservationConfirmed from "../../components/Popup/ReservationConfirmed";
+import "../../index.css"
 
 
-const App = ({exams}) => {
+const AdminApp = ({exams}) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
   const [classFilter, setClassFilter] = useState('');
   const [examFilter, setExamFilter] = useState('');
@@ -91,17 +91,10 @@ const App = ({exams}) => {
   //console.log(exams)
   //console.log(updatedSessions);
   return (
-    <div className="app">
+    <div className="AdminApp">
     <Header/>
-     {showConfirmationPopup ?
-          <Confirmation
-              text='Confirm Reservation'
-              closePopup={closeConfirmationPopup}
-              session={updatedSessions.entries.find((session) => session._id === selectedSession)}
-          />
-          : null
-      }
-      {showReservationErrorPopup ?
+    At the Admin Login page
+     {showReservationErrorPopup ?
           <ReservationError
               text='Exam Slot Error'
               closePopup={closeReservationErrorPopup}
@@ -145,4 +138,4 @@ const App = ({exams}) => {
   );
 };
 
-export default App;
+export default AdminApp;
