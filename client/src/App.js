@@ -10,7 +10,6 @@ import ReservationError from "./components/Popup/ReservationError";
 import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css"
 
-
 const App = ({exams}) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
   const [classFilter, setClassFilter] = useState('');
@@ -92,32 +91,32 @@ const App = ({exams}) => {
   return (
     <div className="app">
       <Header/>
-        {showConfirmationPopup ?
-            <Confirmation
-                text='Confirm Reservation'
-                closePopup={closeConfirmationPopup}
-                session={updatedSessions.entries.find((session) => session._id === selectedSession)}
-            />
-            : null
-        }
-        {showReservationErrorPopup ?
-            <ReservationError
-                text='Exam Slot Error'
-                closePopup={closeReservationErrorPopup}
-            />
-            : null
-        }
-        {showReservationConfirmedPopup ?
-            <ReservationConfirmed
-                text='Exam Slot Confirmed!'
-                closePopup={closeReservationConfirmedPopup}
-                session={updatedSessions.entries.find((session) => session._id === selectedSession)}
-            />
-            : null
-        }
-        <div className="instructions">
-            Select class or exam number:
-        </div>
+      {showConfirmationPopup ?
+          <Confirmation
+              text='Confirm Reservation'
+              closePopup={closeConfirmationPopup}
+              session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+          />
+          : null
+      }
+      {showReservationErrorPopup ?
+          <ReservationError
+              text='Exam Slot Error'
+              closePopup={closeReservationErrorPopup}
+          />
+          : null
+      }
+      {showReservationConfirmedPopup ?
+          <ReservationConfirmed
+              text='Exam Slot Confirmed!'
+              closePopup={closeReservationConfirmedPopup}
+              session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+          />
+          : null
+      }
+      <div className="instructions">
+          Select class or exam number:
+      </div>
         <div className="search">
             <Menu
                 title="Class..."
