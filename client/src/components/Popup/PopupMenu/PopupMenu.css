@@ -12,12 +12,13 @@ ul {
     border-radius: 2px;
     background-color: white;
     font-weight:bold;
-    position: absolute;
+    position: fixed;
     z-index: 1;
+    overflow: auto;
 }
 
 li {
-    padding: 6px 8px;
+    padding: 0 4px;
     border-bottom: 1px solid #e5e5e5;
     font-family: Arial, sans-serif;
 }

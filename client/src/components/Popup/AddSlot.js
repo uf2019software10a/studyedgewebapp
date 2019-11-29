@@ -17,9 +17,16 @@ class AddSlot extends React.Component {
         }
     }
 
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
+        'October', 'November', 'December'];
+
     updateMonth = (newMonth) => {
-        //console.log(newMonth);
-        this.setState({sessionMonth : newMonth})
+        let monthNumeric = String(this.months.indexOf(newMonth) + 1);
+        if(monthNumeric < 10) {
+            monthNumeric = '0' + monthNumeric;
+        }
+        //console.log(monthNumeric);
+        this.setState({sessionMonth : monthNumeric });
     };
 
     updateStartHour = (newHour) => {
@@ -47,39 +54,40 @@ class AddSlot extends React.Component {
     };
 
     infoSubmitted = () => {
-        // this object should be the exam session schema
+        // the session object should be used to create an instance of the exam session schema
+        let dayNumeric = String(this.day.value);
+        if(dayNumeric < 10) {
+            dayNumeric = '0' + dayNumeric;
+        }
         const session = {
-            className : this.className.value,
-            examNum : this.examNum.value,
-            description : this.description.value,
-            date: this.state.sessionMonth + ' ' +  this.day.value + ' ' + this.year.value,
+            className: this.className.value,
+            examNum: this.examNum.value,
+            description: this.description.value,
+            date: this.year.value + '-' + this.state.sessionMonth + '-' + dayNumeric,
             startTime: this.state.startHour + ':' + this.state.startMinute + ' ' + this.state.startPeriod,
             endTime: this.state.endHour + ':' + this.state.endMinute + ' ' + this.state.endPeriod,
             location: this.location.value,
             maxCapacity: this.capacity.value,
             tutor: this.tutor.value
         };
-        //console.log(session);
+        console.log(session);
         this.props.closePopup();
     };
 
     render() {
-        const { closePopup, text } = this.props;
+        const { closePopup } = this.props;
 
         const hours = ['1', '2', '3', '4', '5', '6',
         '7', '8', '9', '10', '11', '12'];
         const minutes = ['00', '15', '30', '45'];
         const periods = ['AM', 'PM'];
 
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-        'October', 'November', 'December'];
-
         return (
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
                     Back
                 </div>
-                <h1>{text}</h1>
+                <h1>Add Slot</h1>
                 <div className='popup_inner'>
                     <div className='message'>
                         <div className='input_label_admin'>
@@ -117,7 +125,7 @@ class AddSlot extends React.Component {
                                 Date
                                 <PopupMenu
                                     title='Month'
-                                    list={months}
+                                    list={this.months}
                                     filterUpdate={this.updateMonth.bind(this)}
                                 />
                                 <input
@@ -196,7 +204,7 @@ class AddSlot extends React.Component {
                         </div>
                         <div className='input_label_admin'>
                             <form>
-                                Description
+                                Tutor Name
                                 <input
                                     style={ { height: 20} }
                                     type='text'

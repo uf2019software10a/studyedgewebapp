@@ -2,16 +2,16 @@ var mongoose = require('mongoose'),
 		Schema = mongoose.Schema;
 
 var examTileSchema = new Schema({
-	class: { type: String, required: true},
-	exam_num: { type: Number, required: true},
-	start: { type: Date, required: true},
-	end: { type: Date, required: true},
-	online: { type: Boolean, required: true},
-	location_details: { type: String },
-	capacity: { type: Number, required: true},
-	enrolled: { type: Number, required: true, default: 0},
-	tutor: String, //This is going to be the Tutor's name & allows for tutor to be assigned a later date
-	description: String
+	class_name: { type: String, required: true },
+	exam_num: { type: Number, required: true },
+	description: { type: String, required: true },
+	date: { type: Date, required: true },
+	start_time: String,
+	end_time: String,
+	location: String,
+	capacity: { type: Number, required: true },
+	enrolled: { type: Number, default: 0 },
+	tutor: String
 });
 
 var userSchema = new Schema({
