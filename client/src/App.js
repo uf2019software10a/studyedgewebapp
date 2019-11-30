@@ -69,7 +69,7 @@ const App = ({exams}) => {
             : null
         }
         <div className="instructions">
-            Select class or exam number:
+            Select Class or Exam Number:
         </div>
         <div className="search">
             <Menu
