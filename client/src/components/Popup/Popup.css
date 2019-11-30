@@ -64,11 +64,26 @@ p {
     font-family: Arial, sans-serif;
     text-align: center;
 }
+.edit {
+    position: static;
+    width: 70px;
+    height: 20px;
+    background: #00ff00;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
 .close:hover {
     background-color: #a20008;
     cursor: pointer;
 }
-
+.edit:hover {
+    background-color: #01cc20;
+    cursor: pointer;
+}
 .confirm {
     position: center;
     width: 90px;

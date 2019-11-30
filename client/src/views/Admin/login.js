@@ -9,11 +9,10 @@ import Menu from "../../components/Menu/Menu"
 import Confirmation from "../../components/Popup/Confirmation"
 import ReservationError from "../../components/Popup/ReservationError";
 import ReservationConfirmed from "../../components/Popup/ReservationConfirmed";
-import AdminInformation from "../../components/Popup/AdminInformation";
 import "../../index.css"
 
 
-const AdminHome = ({exams}) => {
+const Login = ({exams}) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
   const [classFilter, setClassFilter] = useState('');
   const [examFilter, setExamFilter] = useState('');
@@ -21,13 +20,11 @@ const AdminHome = ({exams}) => {
   const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
   const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
   const [showReservationConfirmedPopup, setShowReservationConfirmedPopup] = useState(false);
-  const [showAdminInformationPopup, setShowAdminInformtaionPopup] = useState(false);
-
 
   const selectedUpdate = React.useCallback(
     (newSession) => {
       setSelectedSession(newSession);
-      openAdminInformtaionPopup();
+      openConfirmationPopup();
       //console.log('updated selected session ID: ', newSession);
     },
     [],
@@ -90,32 +87,13 @@ const AdminHome = ({exams}) => {
         },
         [],
     );
-    const closeAdminInformationPopup = React.useCallback(
-        () => {
-            setShowAdminInformtaionPopup(false);
-        },
-        [],
-    );const openAdminInformtaionPopup = React.useCallback(
-        () => {
-            setShowAdminInformtaionPopup(true);
-        },
-        [],
-    );
 
   //console.log(exams)
   //console.log(updatedSessions);
   return (
-    <div className="AdminHome">
+    <div className="AdminApp">
     <Header/>
-    At the Admin Dashboard page
-    {showAdminInformationPopup ?
-         <AdminInformation
-             text='Confirm Reservation'
-             closePopup={closeAdminInformationPopup}
-             session={updatedSessions.entries.find((session) => session._id === selectedSession)}
-         />
-         : null
-     }
+    At the Admin Login page
      {showReservationErrorPopup ?
           <ReservationError
               text='Exam Slot Error'
@@ -160,4 +138,4 @@ const AdminHome = ({exams}) => {
   );
 };
 
-export default AdminHome;
+export default Login;
