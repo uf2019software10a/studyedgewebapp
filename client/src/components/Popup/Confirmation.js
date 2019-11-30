@@ -33,11 +33,12 @@ class Confirmation extends React.Component {
                     <div className='sessionInfo'>
                         <p>Exam {session.exam_num} Review</p>
                         <p>{session.class}</p>
-                        <p>{session.tutor}</p>
+                        <p>Study Expert Name:{session.tutor}</p>
                         <p>{start_dt_split[0]} {start_dt_split[1]}</p>
                         <p>{start_time} - {end_time}</p>
                         <p>{locType}</p>
-                        <p>{session.enrolled}/{session.capacity} slots left!</p>
+                        <p>{session.enrolled} of {session.capacity} Slots Left!</p>
+                        <p>{session.description}</p>
                     </div>
                     <div className="text">
                         <div className="text_box_label">

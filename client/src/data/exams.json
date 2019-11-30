@@ -13,7 +13,8 @@
 			},
 			"capacity": 10,
 			"enrolled": 3,
-			"tutor": "John Doe"
+			"tutor": "John Doe",
+			"description": "This is for chapters 3,4,5"
 		},
 		{
 			"_id": "bbbb",
