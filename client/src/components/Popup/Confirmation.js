@@ -26,14 +26,14 @@ class Confirmation extends React.Component {
         return (
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
-                    Go Back
+                    X
                 </div>
-                <h1>{text}</h1>
+               <h1></h1>
                 <div className="popup_inner">
                     <div className='sessionInfo'>
                         <p>Exam {session.exam_num} Review</p>
                         <p>{session.class}</p>
-                        <p>Study Expert Name:{session.tutor}</p>
+                        <p>Study Expert Name: {session.tutor}</p>
                         <p>{start_dt_split[0]} {start_dt_split[1]}</p>
                         <p>{start_time} - {end_time}</p>
                         <p>{locType}</p>
@@ -41,6 +41,16 @@ class Confirmation extends React.Component {
                         <p>{session.description}</p>
                     </div>
                     <div className="text">
+                    <div className="text_box_label">
+                        <form>
+                            Name:
+                            <input
+                                style={ {height : 20} }
+                                type="text"
+                                ref={ (name) => this.name = name}
+                            />
+                        </form>
+                    </div>
                         <div className="text_box_label">
                             <form>
                                 Preferred email:
@@ -53,7 +63,7 @@ class Confirmation extends React.Component {
                         </div>
                         <div className="text_box_label">
                             <form>
-                            Specific topics for tutor:
+                            Topics to Cover:
                                 <input
                                     style={ {height : 100} }
                                     type="text"
@@ -64,7 +74,7 @@ class Confirmation extends React.Component {
                     </div>
                 </div>
                 <div className="confirm" onClick={() => this.infoSubmitted()}>
-                    Sign Up
+                    Book Now
                 </div>
             </div>
         );
