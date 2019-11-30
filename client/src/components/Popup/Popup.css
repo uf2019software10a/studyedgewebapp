@@ -58,7 +58,7 @@ p {
     height: 20px;
     background: #f9000d;
     padding: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border: solid 2px #000000;
     margin: 10px;
     font-family: Arial, sans-serif;
@@ -88,13 +88,13 @@ p {
 
 .confirm {
     position: center;
-    width: 90px;
-    height: 20px;
+    width: 120px;
+    height: 50px;
     background: #18b920;
-    padding: 10px;
-    font-size: 1rem;
+    padding: 5px;
+    font-size: 1.6rem;
     border: solid 2px #000000;
-    margin: 8px auto auto;
+    margin: 10px auto auto;
     font-family: Arial, sans-serif;
     text-align: center;
 }
@@ -105,7 +105,7 @@ p {
 
 .sessionInfo {
     width: 200px;
-    height: 150px;
+    height: 160px;
     background: #ccdef9;
     margin: 10px auto auto;
     padding: 10px;

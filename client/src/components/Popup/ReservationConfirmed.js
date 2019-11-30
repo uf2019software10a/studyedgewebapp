@@ -17,7 +17,7 @@ class ReservationConfirmed extends React.Component {
         return (
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
-                    Back
+                    X
                 </div>
                 <h1>{text}</h1>
                 <div className="popup_inner">

@@ -28,18 +28,18 @@ class Confirmation extends React.Component {
         return (
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
-                    Go Back
+                    X
                 </div>
-                <h1>{text}</h1>
-                <div className="popup_inner">
+                <div className="popup_inner"
+                style={{margin: '60px auto 0'}}>
                     <div className='sessionInfo'>
                         <p>Exam {session.exam_num} Review</p>
                         <p>{session.class_name}</p>
-                        <p>{session.tutor}</p>
+                        <p>Study Expert Name: {session.tutor}</p>
                         <p>{month} {day}</p>
                         <p>{startTime} - {endTime}</p>
                         <p>{locType}</p>
-                        <p>{session.enrolled}/{session.capacity} slots left!</p>
+                        <p>{session.enrolled} of {session.capacity} slots left!</p>
                     </div>
                     <div className="text">
                         <div className="text_box_label">
@@ -56,7 +56,7 @@ class Confirmation extends React.Component {
                             <form>
                             Specific topics for tutor:
                                 <input
-                                    style={ {height : 100} }
+                                    style={ {height : 80} }
                                     type="text"
                                     ref={ (comments) => this.comments = comments}
                                 />
@@ -65,7 +65,7 @@ class Confirmation extends React.Component {
                     </div>
                 </div>
                 <div className="confirm" onClick={() => this.infoSubmitted()}>
-                    Sign Up
+                    Book Now
                 </div>
             </div>
         );
