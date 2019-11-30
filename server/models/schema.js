@@ -9,12 +9,12 @@ var examTileSchema = new Schema({
 	start_time: {
 		start_hr: Number, // 0 - 12
 		start_min: Number, // 00, 15, 30, or 45
-		start_per: String, // AM or PM
+		start_per: String // AM or PM
 	},
 	end_time: {
 		end_hr: Number,
 		end_min: Number,
-		end_per: Number
+		end_per: String
 	},
 	location: String,
 	capacity: { type: Number, required: true },
