@@ -10,6 +10,7 @@ import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css"
 import AddSlot from "./components/Popup/AddSlot";
 import EditOrDelete from "./components/Popup/EditOrDelete";
+import ViewSlot from "./components/Popup/ViewSlot";
 
 const App = ({exams}) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
@@ -19,6 +20,14 @@ const App = ({exams}) => {
   const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
   const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
   const [showReservationConfirmedPopup, setShowReservationConfirmedPopup] = useState(false);
+  const [confirmationEmailAddress, setConfirmationEmailAddress] = useState('');
+
+  const emailUpdate = React.useCallback(
+      (email) => {
+          setConfirmationEmailAddress(email);
+      },
+      [],
+  );
 
   const selectedUpdate = React.useCallback(
     (newSession) => {
@@ -55,7 +64,6 @@ const App = ({exams}) => {
   const closeConfirmationPopup = React.useCallback(
       () => {
           setShowConfirmationPopup(false);
-          true ? openReservationConfirmedPopup() : openReservationErrorPopup();
       },
       [],
   );
@@ -94,6 +102,12 @@ const App = ({exams}) => {
     <div className="app">
       <Header/>
         {false ?
+        <ViewSlot
+            session={updatedSessions.entries[0]}
+            closePopup={() => {}}
+        />
+        : null }
+        {false ?
         <EditOrDelete
             session={updatedSessions.entries[0]}
             closePopup={() => {}}
@@ -109,6 +123,9 @@ const App = ({exams}) => {
               text='Confirm Reservation'
               closePopup={closeConfirmationPopup}
               session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+              emailUpdate={emailUpdate}
+              openReservationConfirmedPopup={openReservationConfirmedPopup}
+              openReservationErrorPopup={openReservationErrorPopup}
           />
           : null
       }
@@ -124,6 +141,7 @@ const App = ({exams}) => {
               text='Exam Slot Confirmed!'
               closePopup={closeReservationConfirmedPopup}
               session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+              email={confirmationEmailAddress}
           />
           : null
       }

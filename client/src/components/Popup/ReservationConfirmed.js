@@ -4,14 +4,15 @@ import {militaryToStandard, isOnline, getMonthName} from "../DateTimeUtil";
 
 class ReservationConfirmed extends React.Component {
     render() {
-        const { closePopup, text, session } = this.props;
+        const { closePopup, text, session, email } = this.props;
 
         const locLabel = isOnline(session.location) ? 'link: ' : 'location: ';
-        const month = getMonthName(session.date.substr(5,2));
-        const day = session.date.substr(8);
-
-        const start_time = militaryToStandard(session.start);
-        const end_time = militaryToStandard(session.end);
+        const startDate = new Date(session.start);
+        const endDate = new Date(session.end);
+        const month = getMonthName(startDate.getMonth() + 1);
+        const day = startDate.getDate();
+        const startTime = militaryToStandard(startDate.getHours(), startDate.getMinutes());
+        const endTime = militaryToStandard(endDate.getHours(), endDate.getMinutes());
 
         return (
             <div className='popup'>
@@ -22,13 +23,13 @@ class ReservationConfirmed extends React.Component {
                 <div className="popup_inner">
                     <div className="message">
                         <p>A confirmation email has been sent to: </p>
-                        <p>PLACEHOLDER EMAIL</p>
+                        <p>{email}</p>
                         <p>--------------</p>
                         <p>{session.class_name} Exam {session.exam_num}</p>
                         <p>Session details: {session.description}</p>
                         <p>{session.tutor}</p>
                         <p>{month} {day}</p>
-                        <p>{start_time} - {end_time}</p>
+                        <p>{startTime} - {endTime}</p>
                         <p>{locLabel} {session.location}</p>
                     </div>
                 </div>

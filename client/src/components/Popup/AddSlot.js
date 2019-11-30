@@ -19,12 +19,9 @@ class AddSlot extends React.Component {
     }
 
     updateMonth = (newMonth) => {
-        let monthNumeric = getMonthNumber(newMonth);
-        if(monthNumeric < 10 && monthNumeric >= 0) {
-            monthNumeric = '0' + monthNumeric;
-        }
+        const monthNumeric = getMonthNumber(newMonth);
         //console.log(monthNumeric);
-        this.setState({sessionMonth : monthNumeric });
+        this.setState({sessionMonth : monthNumeric});
     };
 
     updateStartHour = (newHour) => {
@@ -54,33 +51,27 @@ class AddSlot extends React.Component {
     infoSubmitted = () => {
         // the session object should be used to create an instance of the exam session schema
         // trim() sanitizes any whitespace at the start of end of the string
-        let dayNumeric = (String(this.day.value)).trim();
-        if(dayNumeric < 10 && dayNumeric !== '') {
-            dayNumeric = '0' + dayNumeric;
-        }
+        const dayNumeric = (String(this.day.value)).trim();
         const yearNumeric = (String(this.year.value).trim());
+        const startDate = new Date(this.state.sessionMonth + ' ' + dayNumeric + ' ' + yearNumeric + ' ' +
+            this.state.startHour + ':' + this.state.startMinute + ' ' + this.state.startPeriod);
+        const endDate = new Date(this.state.sessionMonth + ' ' + dayNumeric + ' ' + yearNumeric + ' ' +
+            this.state.endHour + ':' + this.state.endMinute + ' ' + this.state.endPeriod);
+        //console.log(startDate);
+        //console.log(endDate);
+
         const session = {
             class_name: this.className.value,
             exam_num: this.examNum.value,
             description: this.description.value,
-            date: yearNumeric + '-' + this.state.sessionMonth + '-' + dayNumeric,
-            start_time: {
-                start_hr: this.state.startHour,
-                start_min: this.state.startMinute,
-                start_per: this.state.startPeriod
-            },
-            end_time: {
-                end_hr: this.state.endHour,
-                end_min: this.state.endMinute,
-                start_per: this.state.startPeriod
-            },
+            start: startDate,
+            end: endDate,
             location: this.location.value,
             capacity: this.capacity.value,
             tutor: this.tutor.value,
         };
         console.log(session);
-        // create exam session in database
-        // TODO
+        // TODO: create exam session in database
         this.props.closePopup();
     };
 

@@ -5,17 +5,8 @@ var examTileSchema = new Schema({
 	class_name: { type: String, required: true },
 	exam_num: { type: Number, required: true },
 	description: { type: String, required: true },
-	date: { type: Date, required: true }, // use format YYYY-MM-DD
-	start_time: {
-		start_hr: Number, // 0 - 12
-		start_min: Number, // 00, 15, 30, or 45
-		start_per: String // AM or PM
-	},
-	end_time: {
-		end_hr: Number,
-		end_min: Number,
-		end_per: String
-	},
+	start: { type: Date, required: true },
+	end: {type: Date, required: true},
 	location: String,
 	capacity: { type: Number, required: true },
 	enrolled: { type: Number, default: 0 },

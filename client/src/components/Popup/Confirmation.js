@@ -8,17 +8,23 @@ class Confirmation extends React.Component {
         const specificTopicsPara = this.comments.value;
         console.log('my email: ', userEmailAddr);
         console.log('my comments: ', specificTopicsPara);
+        this.props.emailUpdate(userEmailAddr);
         this.props.closePopup();
+        // TODO: setup this boolean
+        true ? this.props.openReservationConfirmedPopup() : this.props.openReservationErrorPopup();
     };
 
     render() {
         const { closePopup, text, session } = this.props;
         //console.log(session);
         const locType = isOnline(session.location) ? 'Online' : 'In-Person';
-        const month = getMonthName(session.date.substr(5,2));
-        const day = session.date.substr(8);
-        const start_time = militaryToStandard(session.start);
-        const end_time = militaryToStandard(session.end);
+        const startDate = new Date(session.start);
+        const endDate = new Date(session.end);
+        const month = getMonthName(startDate.getMonth() + 1);
+        const day = startDate.getDate();
+        const startTime = militaryToStandard(startDate.getHours(), startDate.getMinutes());
+        const endTime = militaryToStandard(endDate.getHours(), endDate.getMinutes());
+
         return (
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
@@ -31,7 +37,7 @@ class Confirmation extends React.Component {
                         <p>{session.class_name}</p>
                         <p>{session.tutor}</p>
                         <p>{month} {day}</p>
-                        <p>{start_time} - {end_time}</p>
+                        <p>{startTime} - {endTime}</p>
                         <p>{locType}</p>
                         <p>{session.enrolled}/{session.capacity} slots left!</p>
                     </div>
