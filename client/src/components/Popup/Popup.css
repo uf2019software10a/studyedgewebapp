@@ -24,7 +24,7 @@
 }
 
 h1 {
-    background-color: white;
+    background-color: #3b6a9b;
     position: center;
     text-align: center;
     width: 30%;
@@ -32,8 +32,7 @@ h1 {
     padding: 10px;
     font-family: Arial, sans-serif;
     font-size: 2rem;
-    border: solid 2px #000000;
-    border-radius: 25px;
+  
 }
 
 .text {
@@ -118,6 +117,7 @@ p {
 .text_box_label {
     margin: 30px 10px 30px;
     font-family: Arial, sans-serif;
+    text-align: left;
 }
 
 .input_label_admin {

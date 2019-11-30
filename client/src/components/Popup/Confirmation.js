@@ -42,6 +42,16 @@ class Confirmation extends React.Component {
                         <p>{session.enrolled} of {session.capacity} slots left!</p>
                     </div>
                     <div className="text">
+                    <div className="text_box_label">
+                        <form>
+                            Name:
+                            <input
+                                style={ {height : 20} }
+                                type="text"
+                                ref={ (name) => this.name = name}
+                            />
+                        </form>
+                    </div>
                         <div className="text_box_label">
                             <form>
                                 Preferred email:
@@ -54,7 +64,7 @@ class Confirmation extends React.Component {
                         </div>
                         <div className="text_box_label">
                             <form>
-                            Specific topics for tutor:
+                            Topics to Cover:
                                 <input
                                     style={ {height : 80} }
                                     type="text"
