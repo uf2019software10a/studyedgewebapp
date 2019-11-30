@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../assets/logo.svg';
+import logo from '../../assets/study-edge-logo-colored.png';
 import './Home.css';
 
 function Home() {

@@ -69,6 +69,23 @@ p {
     cursor: pointer;
 }
 
+.delete {
+    position: center;
+    width: 70px;
+    height: 20px;
+    background: #f9000d;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 10px auto auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.delete:hover {
+    background-color: #a20008;
+    cursor: pointer;
+}
+
 .confirm {
     position: center;
     width: 90px;

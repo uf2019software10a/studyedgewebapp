@@ -32,8 +32,8 @@ class Menu extends React.Component {
         const listReduced = [...new Map(list.entries.map((item) => [item[element], item])).values()];
 
         // sort in alphanumeric order for dropdown menu display
-        if(element === 'class') {
-            listReduced.sort((a,b) => a.class.localeCompare(b.class));
+        if(element === 'class_name') {
+            listReduced.sort((a,b) => a.class_name.localeCompare(b.class_name));
         } else if (element === 'exam_num') {
             listReduced.sort((a,b) => a.exam_num.toString().localeCompare(b.exam_num.toString()));
         }

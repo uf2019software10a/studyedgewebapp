@@ -1,6 +1,6 @@
 import React from 'react'
 import './Popup.css'
-import militaryToStandard from "../TimeUtility"
+import {militaryToStandard, isOnline, getMonthName} from "../DateTimeUtil"
 
 class Confirmation extends React.Component {
     infoSubmitted = () => {
@@ -14,13 +14,9 @@ class Confirmation extends React.Component {
     render() {
         const { closePopup, text, session } = this.props;
         //console.log(session);
-        let locType = '';
-        if(session.online) {
-            locType = 'Online';
-        } else {
-            locType = 'In-person';
-        }
-        const start_dt_split = session.start.split(" ");
+        const locType = isOnline(session.location) ? 'Online' : 'In-Person';
+        const month = getMonthName(session.date.substr(5,2));
+        const day = session.date.substr(8);
         const start_time = militaryToStandard(session.start);
         const end_time = militaryToStandard(session.end);
         return (
@@ -32,9 +28,9 @@ class Confirmation extends React.Component {
                 <div className="popup_inner">
                     <div className='sessionInfo'>
                         <p>Exam {session.exam_num} Review</p>
-                        <p>{session.class}</p>
+                        <p>{session.class_name}</p>
                         <p>{session.tutor}</p>
-                        <p>{start_dt_split[0]} {start_dt_split[1]}</p>
+                        <p>{month} {day}</p>
                         <p>{start_time} - {end_time}</p>
                         <p>{locType}</p>
                         <p>{session.enrolled}/{session.capacity} slots left!</p>

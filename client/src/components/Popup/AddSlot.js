@@ -2,6 +2,7 @@ import React from 'react'
 import './Popup.css'
 import './PopupMenu/PopupMenu'
 import PopupMenu from "./PopupMenu/PopupMenu";
+import {months, hours, minutes, periods, getMonthNumber} from "../DateTimeUtil"
 
 class AddSlot extends React.Component {
     constructor(props) {
@@ -17,12 +18,9 @@ class AddSlot extends React.Component {
         }
     }
 
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-        'October', 'November', 'December'];
-
     updateMonth = (newMonth) => {
-        let monthNumeric = String(this.months.indexOf(newMonth) + 1);
-        if(monthNumeric < 10) {
+        let monthNumeric = getMonthNumber(newMonth);
+        if(monthNumeric < 10 && monthNumeric >= 0) {
             monthNumeric = '0' + monthNumeric;
         }
         //console.log(monthNumeric);
@@ -30,11 +28,11 @@ class AddSlot extends React.Component {
     };
 
     updateStartHour = (newHour) => {
-        this.setState({startHour : newHour})
+        this.setState({startHour : parseInt(newHour)})
     };
 
     updateStartMinute = (newMin) => {
-        this.setState({startMinute : newMin})
+        this.setState({startMinute : parseInt(newMin)})
     };
 
     updateStartPeriod = (newPer) => {
@@ -42,11 +40,11 @@ class AddSlot extends React.Component {
     };
 
     updateEndHour = (newHour) => {
-        this.setState({endHour : newHour})
+        this.setState({endHour : parseInt(newHour)})
     };
 
     updateEndMinute = (newMin) => {
-        this.setState({endMinute : newMin})
+        this.setState({endMinute : parseInt(newMin)})
     };
 
     updateEndPeriod = (newPer) => {
@@ -55,32 +53,39 @@ class AddSlot extends React.Component {
 
     infoSubmitted = () => {
         // the session object should be used to create an instance of the exam session schema
-        let dayNumeric = String(this.day.value);
-        if(dayNumeric < 10) {
+        // trim() sanitizes any whitespace at the start of end of the string
+        let dayNumeric = (String(this.day.value)).trim();
+        if(dayNumeric < 10 && dayNumeric !== '') {
             dayNumeric = '0' + dayNumeric;
         }
+        const yearNumeric = (String(this.year.value).trim());
         const session = {
-            className: this.className.value,
-            examNum: this.examNum.value,
+            class_name: this.className.value,
+            exam_num: this.examNum.value,
             description: this.description.value,
-            date: this.year.value + '-' + this.state.sessionMonth + '-' + dayNumeric,
-            startTime: this.state.startHour + ':' + this.state.startMinute + ' ' + this.state.startPeriod,
-            endTime: this.state.endHour + ':' + this.state.endMinute + ' ' + this.state.endPeriod,
+            date: yearNumeric + '-' + this.state.sessionMonth + '-' + dayNumeric,
+            start_time: {
+                start_hr: this.state.startHour,
+                start_min: this.state.startMinute,
+                start_per: this.state.startPeriod
+            },
+            end_time: {
+                end_hr: this.state.endHour,
+                end_min: this.state.endMinute,
+                start_per: this.state.startPeriod
+            },
             location: this.location.value,
-            maxCapacity: this.capacity.value,
-            tutor: this.tutor.value
+            capacity: this.capacity.value,
+            tutor: this.tutor.value,
         };
         console.log(session);
+        // create exam session in database
+        // TODO
         this.props.closePopup();
     };
 
     render() {
         const { closePopup } = this.props;
-
-        const hours = ['1', '2', '3', '4', '5', '6',
-        '7', '8', '9', '10', '11', '12'];
-        const minutes = ['00', '15', '30', '45'];
-        const periods = ['AM', 'PM'];
 
         return (
             <div className='popup'>
@@ -125,7 +130,7 @@ class AddSlot extends React.Component {
                                 Date
                                 <PopupMenu
                                     title='Month'
-                                    list={this.months}
+                                    list={months}
                                     filterUpdate={this.updateMonth.bind(this)}
                                 />
                                 <input

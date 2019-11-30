@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
-import Home from "./views/Home/Home"
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
 import SessionList from "./components/SessionList/SessionList"
@@ -9,6 +8,8 @@ import Confirmation from "./components/Popup/Confirmation"
 import ReservationError from "./components/Popup/ReservationError";
 import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css"
+import AddSlot from "./components/Popup/AddSlot";
+import EditOrDelete from "./components/Popup/EditOrDelete";
 
 const App = ({exams}) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
@@ -54,6 +55,7 @@ const App = ({exams}) => {
   const closeConfirmationPopup = React.useCallback(
       () => {
           setShowConfirmationPopup(false);
+          true ? openReservationConfirmedPopup() : openReservationErrorPopup();
       },
       [],
   );
@@ -91,6 +93,17 @@ const App = ({exams}) => {
   return (
     <div className="app">
       <Header/>
+        {false ?
+        <EditOrDelete
+            session={updatedSessions.entries[0]}
+            closePopup={() => {}}
+        />
+        : null }
+        {false ?
+            <AddSlot
+                closePopup={() => {}}
+            />
+            : null }
       {showConfirmationPopup ?
           <Confirmation
               text='Confirm Reservation'
@@ -121,7 +134,7 @@ const App = ({exams}) => {
             <Menu
                 title="Class..."
                 list={updatedSessions}
-                element={'class'}
+                element={'class_name'}
                 filterUpdate={classNameUpdate}
             />
             <Menu

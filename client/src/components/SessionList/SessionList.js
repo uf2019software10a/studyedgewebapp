@@ -1,6 +1,6 @@
 import React from 'react';
 import './SessionList.css'
-import militaryToStandard from "../TimeUtility"
+import {militaryToStandard, isOnline, getMonthName} from "../DateTimeUtil"
 
 class SessionList extends React.Component {
 	render() {
@@ -8,25 +8,21 @@ class SessionList extends React.Component {
 
 		const sessionList = sessions.entries
 			.filter((session) => {
-				return (session.class.indexOf(classFilter) >= 0) &&
+				return (session.class_name.indexOf(classFilter) >= 0) &&
 				(session.exam_num.toString().indexOf(examFilter) >= 0);
 			})
 			.map((session) => {
-				let locType = '';
-				if(session.online) {
-					locType = 'Online';
-				} else {
-					locType = 'In-person';
-				}
-				const start_dt_split = session.start.split(" ");
+				const locType = isOnline(session.location) ? 'Online' : 'In-Person';
+				const month = getMonthName(session.date.substr(5,2));
+				const day = session.date.substr(8);
 				const start_time = militaryToStandard(session.start);
 				const end_time = militaryToStandard(session.end);
 				return (
-					<button onClick={() => selectedSessionUpdate(session._id)}>
+					<button key={session._id} onClick={() => selectedSessionUpdate(session._id)}>
 						<p>Exam {session.exam_num} Review</p>
-						<p>{session.class}</p>
+						<p>{session.class_name}</p>
 						<p>{session.tutor}</p>
-						<p>{start_dt_split[0]} {start_dt_split[1]}</p>
+						<p>{month} {day}</p>
 						<p>{start_time} - {end_time}</p>
 						<p>{locType}</p>
 						<p>{session.enrolled}/{session.capacity} slots left!</p>

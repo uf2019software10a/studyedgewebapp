@@ -36,7 +36,7 @@ class PopupMenu extends React.Component {
                 {this.state.displayMenu && <ul>
                     {list
                         .map((item) => (
-                            <li onClick={() =>
+                            <li key={item} onClick={() =>
                                 filterUpdate(item, this.elementSelected(item))}>
                                 {item}
                             </li>

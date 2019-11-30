@@ -1,6 +1,6 @@
 import React from 'react'
 import './Popup.css'
-import militaryToStandard from "../TimeUtility";
+import militaryToStandard from "../DateTimeUtil";
 
 class ViewSlot extends React.Component {
     render() {
