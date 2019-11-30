@@ -5,24 +5,53 @@ import Admin from "../../views/Admin/Admin";
 import Header from "../../components/Header/Header";
 import "../../index.css";
 import "../../views/Admin/Admin.css";
+import axios from "axios";
 
-const AdminApp = ({ exams }) => {
-  return (
-    <div className="AdminApp">
-      <Header />
-      <center>
-        <div className="AdminLogin">
-          <b>
-            <font size="7">Admin Login</font>
-          </b>
-        </div>
-      </center>
-      <form>
-        <input type="text" placeholder="Enter Password" />
-        <button> Submit </button>
-      </form>
-    </div>
-  );
-};
+class AdminApp extends React.Component {
+  passwordUpdate = () => {
+    const password = this.pwInput.value;
+    console.log("password: ", password);
+
+    axios
+      .post("/Admin/login", { password: password })
+      .then(res => {
+        console.log("axios sent:", res.data);
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+  };
+  render() {
+    return (
+      <div className="AdminApp">
+        <Header />
+        <center>
+          <div className="AdminLogin">
+            <b>
+              <font size="7">Admin Login</font>
+            </b>
+          </div>
+        </center>
+        <form>
+          <input
+            type="text"
+            ref={pwInput => (this.pwInput = pwInput)}
+            placeholder="Enter Password"
+          />
+          <button
+            type="button"
+            onClick={e => {
+              this.passwordUpdate();
+              e.preventDefault();
+            }}
+          >
+            {" "}
+            Submit{" "}
+          </button>
+        </form>
+      </div>
+    );
+  }
+}
 
 export default AdminApp;
