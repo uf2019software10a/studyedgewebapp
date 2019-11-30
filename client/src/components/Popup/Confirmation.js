@@ -1,6 +1,6 @@
 import React from 'react'
 import './Popup.css'
-import militaryToStandard from "../TimeUtility"
+import {militaryToStandard, isOnline, getMonthName} from "../DateTimeUtil"
 
 class Confirmation extends React.Component {
     infoSubmitted = () => {
@@ -8,37 +8,38 @@ class Confirmation extends React.Component {
         const specificTopicsPara = this.comments.value;
         console.log('my email: ', userEmailAddr);
         console.log('my comments: ', specificTopicsPara);
+        this.props.emailUpdate(userEmailAddr);
         this.props.closePopup();
+        // TODO: setup this boolean
+        true ? this.props.openReservationConfirmedPopup() : this.props.openReservationErrorPopup();
     };
 
     render() {
         const { closePopup, text, session } = this.props;
         //console.log(session);
-        let locType = '';
-        if(session.online) {
-            locType = 'Online';
-        } else {
-            locType = 'In-person';
-        }
-        const start_dt_split = session.start.split(" ");
-        const start_time = militaryToStandard(session.start);
-        const end_time = militaryToStandard(session.end);
+        const locType = isOnline(session.location) ? 'Online' : 'In-Person';
+        const startDate = new Date(session.start);
+        const endDate = new Date(session.end);
+        const month = getMonthName(startDate.getMonth() + 1);
+        const day = startDate.getDate();
+        const startTime = militaryToStandard(startDate.getHours(), startDate.getMinutes());
+        const endTime = militaryToStandard(endDate.getHours(), endDate.getMinutes());
+
         return (
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
                     X
                 </div>
-               <h1></h1>
-                <div className="popup_inner">
+                <div className="popup_inner"
+                style={{margin: '60px auto 0'}}>
                     <div className='sessionInfo'>
                         <p>Exam {session.exam_num} Review</p>
-                        <p>{session.class}</p>
+                        <p>{session.class_name}</p>
                         <p>Study Expert Name: {session.tutor}</p>
-                        <p>{start_dt_split[0]} {start_dt_split[1]}</p>
-                        <p>{start_time} - {end_time}</p>
+                        <p>{month} {day}</p>
+                        <p>{startTime} - {endTime}</p>
                         <p>{locType}</p>
-                        <p>{session.enrolled} of {session.capacity} Slots Left!</p>
-                        <p>{session.description}</p>
+                        <p>{session.enrolled} of {session.capacity} slots left!</p>
                     </div>
                     <div className="text">
                     <div className="text_box_label">
@@ -65,7 +66,7 @@ class Confirmation extends React.Component {
                             <form>
                             Topics to Cover:
                                 <input
-                                    style={ {height : 100} }
+                                    style={ {height : 80} }
                                     type="text"
                                     ref={ (comments) => this.comments = comments}
                                 />

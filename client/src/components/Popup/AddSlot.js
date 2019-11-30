@@ -2,6 +2,7 @@ import React from 'react'
 import './Popup.css'
 import './PopupMenu/PopupMenu'
 import PopupMenu from "./PopupMenu/PopupMenu";
+import {months, hours, minutes, periods, getMonthNumber} from "../DateTimeUtil"
 
 class AddSlot extends React.Component {
     constructor(props) {
@@ -18,16 +19,17 @@ class AddSlot extends React.Component {
     }
 
     updateMonth = (newMonth) => {
-        //console.log(newMonth);
-        this.setState({sessionMonth : newMonth})
+        const monthNumeric = getMonthNumber(newMonth);
+        //console.log(monthNumeric);
+        this.setState({sessionMonth : monthNumeric});
     };
 
     updateStartHour = (newHour) => {
-        this.setState({startHour : newHour})
+        this.setState({startHour : parseInt(newHour)})
     };
 
     updateStartMinute = (newMin) => {
-        this.setState({startMinute : newMin})
+        this.setState({startMinute : parseInt(newMin)})
     };
 
     updateStartPeriod = (newPer) => {
@@ -35,11 +37,11 @@ class AddSlot extends React.Component {
     };
 
     updateEndHour = (newHour) => {
-        this.setState({endHour : newHour})
+        this.setState({endHour : parseInt(newHour)})
     };
 
     updateEndMinute = (newMin) => {
-        this.setState({endMinute : newMin})
+        this.setState({endMinute : parseInt(newMin)})
     };
 
     updateEndPeriod = (newPer) => {
@@ -47,39 +49,41 @@ class AddSlot extends React.Component {
     };
 
     infoSubmitted = () => {
-        // this object should be the exam session schema
+        // the session object should be used to create an instance of the exam session schema
+        // trim() sanitizes any whitespace at the start of end of the string
+        const dayNumeric = (String(this.day.value)).trim();
+        const yearNumeric = (String(this.year.value).trim());
+        const startDate = new Date(this.state.sessionMonth + ' ' + dayNumeric + ' ' + yearNumeric + ' ' +
+            this.state.startHour + ':' + this.state.startMinute + ' ' + this.state.startPeriod);
+        const endDate = new Date(this.state.sessionMonth + ' ' + dayNumeric + ' ' + yearNumeric + ' ' +
+            this.state.endHour + ':' + this.state.endMinute + ' ' + this.state.endPeriod);
+        //console.log(startDate);
+        //console.log(endDate);
+
         const session = {
-            className : this.className.value,
-            examNum : this.examNum.value,
-            description : this.description.value,
-            date: this.state.sessionMonth + ' ' +  this.day.value + ' ' + this.year.value,
-            startTime: this.state.startHour + ':' + this.state.startMinute + ' ' + this.state.startPeriod,
-            endTime: this.state.endHour + ':' + this.state.endMinute + ' ' + this.state.endPeriod,
+            class_name: this.className.value,
+            exam_num: this.examNum.value,
+            description: this.description.value,
+            start: startDate,
+            end: endDate,
             location: this.location.value,
-            maxCapacity: this.capacity.value,
-            tutor: this.tutor.value
+            capacity: this.capacity.value,
+            tutor: this.tutor.value,
         };
-        //console.log(session);
+        console.log(session);
+        // TODO: create exam session in database
         this.props.closePopup();
     };
 
     render() {
-        const { closePopup, text } = this.props;
-
-        const hours = ['1', '2', '3', '4', '5', '6',
-        '7', '8', '9', '10', '11', '12'];
-        const minutes = ['00', '15', '30', '45'];
-        const periods = ['AM', 'PM'];
-
-        const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September',
-        'October', 'November', 'December'];
+        const { closePopup } = this.props;
 
         return (
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
-                    Back
+                    X
                 </div>
-                <h1>{text}</h1>
+                <h1>Add Slot</h1>
                 <div className='popup_inner'>
                     <div className='message'>
                         <div className='input_label_admin'>
@@ -196,7 +200,7 @@ class AddSlot extends React.Component {
                         </div>
                         <div className='input_label_admin'>
                             <form>
-                                Description
+                                Tutor Name
                                 <input
                                     style={ { height: 20} }
                                     type='text'

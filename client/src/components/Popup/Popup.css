@@ -53,11 +53,11 @@ p {
 
 .close {
     position: absolute;
-    width: 20px;
+    width: 70px;
     height: 20px;
     background: #f9000d;
     padding: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border: solid 2px #000000;
     margin: 10px;
     font-family: Arial, sans-serif;
@@ -68,15 +68,32 @@ p {
     cursor: pointer;
 }
 
+.delete {
+    position: center;
+    width: 70px;
+    height: 20px;
+    background: #f9000d;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 10px auto auto;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.delete:hover {
+    background-color: #a20008;
+    cursor: pointer;
+}
+
 .confirm {
     position: center;
-    width: 130px;
-    height: 80px;
+    width: 120px;
+    height: 50px;
     background: #18b920;
-    padding: 10px;
-    font-size: 2rem;
+    padding: 5px;
+    font-size: 1.6rem;
     border: solid 2px #000000;
-    margin: 8px auto auto;
+    margin: 10px auto auto;
     font-family: Arial, sans-serif;
     text-align: center;
 }
@@ -86,8 +103,8 @@ p {
 }
 
 .sessionInfo {
-    width: 275px;
-    height: 220px;
+    width: 200px;
+    height: 160px;
     background: #ccdef9;
     margin: 10px auto auto;
     padding: 10px;
