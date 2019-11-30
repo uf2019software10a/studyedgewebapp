@@ -35,8 +35,8 @@
 			"_id": "cccc",
 			"class": "PHY2049",
 			"exam_num": 3,
-			"start": "April 1 1970 0:00",
-			"end": "April 1 1970 23:00",
+			"start": "April 1 1970 8:45",
+			"end": "April 1 1970 13:45",
 			"online": true,
 			"location": {
 				"building": "Marston Science Library",

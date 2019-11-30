@@ -103,6 +103,11 @@ p {
     font-family: Arial, sans-serif;
 }
 
+.input_label_admin {
+    margin: 10px;
+    font-family: Arial, sans-serif;
+}
+
 input {
     width: 60%;
     margin: auto 8px auto;
@@ -114,4 +119,23 @@ input {
     word-wrap: break-word;
     white-space: normal;
     position: absolute;
+}
+
+.message {
+    margin: 1rem;
+    padding: 10px;
+    position: center;
+    align-content: center;
+}
+
+.column1 {
+    float: left;
+    padding: 4px;
+    width: 40%;
+}
+
+.column2 {
+    float: left;
+    padding: 4px;
+    width: 60%;
 }

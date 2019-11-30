@@ -9,6 +9,7 @@ router.route('/')
   .post(users.create);;
 
 router.route('/id=:id')
+  .get(users.read)
   .delete(users.delete);
 
 router.route('/userName=:userName')

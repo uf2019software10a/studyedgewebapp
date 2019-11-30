@@ -2,20 +2,16 @@ var mongoose = require('mongoose'),
 		Schema = mongoose.Schema;
 
 var examTileSchema = new Schema({
-	exam_id: { type: Number, required: true, unique: true },
 	class: { type: String, required: true},
 	exam_num: { type: Number, required: true},
 	start: { type: Date, required: true},
 	end: { type: Date, required: true},
 	online: { type: Boolean, required: true},
-	location: { //This would only be used if not-online
-		building: String,
-		floor: String,
-		description: String
-	},
+	location_details: { type: String },
 	capacity: { type: Number, required: true},
 	enrolled: { type: Number, required: true, default: 0},
-	tutor: String //This is going to be the Tutor's name & allows for tutor to be assigned a later date
+	tutor: String, //This is going to be the Tutor's name & allows for tutor to be assigned a later date
+	description: String
 });
 
 var userSchema = new Schema({
@@ -61,23 +57,40 @@ reservationSchema.pre('save', function(next) {
     this.created_at - currDate;
   next();
 });
+var reservation = mongoose.model('reservation', reservationSchema)
 
-userSchema.pre('remove', function(next) {
-    Reservation.remove({user_id: this._id}).exec();
-    next();
+// ============================================================
+// ATTENTION ==================================================
+// ============================================================
+// DO NOT FUCKING MOVE THESE OKAY IT WILL BREAK A LOT OF THINGS
+//
+// ============================================================
+
+userSchema.pre('deleteOne', { document: true, query: false }, function() {
+	reservation.deleteOne({user_id: this._id}).exec();
 });
 
-examTileSchema.pre('remove', function(next) {
-    Reservation.remove({exam_id: this._id}).exec();
-    next();
+examTileSchema.pre('deleteOne', { document: true, query: false }, function() {
+	reservation.deleteOne({exam_id: this._id}).exec();
 });
-
 
 var examTile = mongoose.model('examTile', examTileSchema);
 var user = mongoose.model('user', userSchema);
-var reservation = mongoose.model('reservation', reservationSchema)
 module.exports = {
 	examTile: examTile,
 	user: user,
 	reservation: reservation,
 }
+
+
+//
+// userSchema.pre('deleteOne', function(next) {
+//     reservation.remove({user_id: this._id}).exec();
+//     next();
+// });
+//
+// examTileSchema.pre('deleteOne', function(next) {
+// 		console.log("calling cascade...");
+//     reservation.remove({exam_id: this._id}).exec();
+//     next();
+// });
