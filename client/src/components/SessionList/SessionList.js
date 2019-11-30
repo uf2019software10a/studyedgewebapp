@@ -25,11 +25,11 @@ class SessionList extends React.Component {
 					<button onClick={() => selectedSessionUpdate(session._id)}>
 						<p>Exam {session.exam_num} Review</p>
 						<p>{session.class}</p>
-						<p>{session.tutor}</p>
+						<p>Study Expert Name: {session.tutor}</p>
 						<p>{start_dt_split[0]} {start_dt_split[1]}</p>
 						<p>{start_time} - {end_time}</p>
 						<p>{locType}</p>
-						<p>{session.enrolled}/{session.capacity} slots left!</p>
+						<p>{session.enrolled} of {session.capacity} Slots Left!</p>
 					</button>
 				);
 			});
