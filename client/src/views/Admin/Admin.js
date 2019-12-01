@@ -32,22 +32,27 @@ class AdminApp extends React.Component {
             </b>
           </div>
         </center>
+
         <form>
-          <input
-            type="text"
-            ref={pwInput => (this.pwInput = pwInput)}
-            placeholder="Enter Password"
-          />
-          <button
-            type="button"
-            onClick={e => {
-              this.passwordUpdate();
-              e.preventDefault();
-            }}
-          >
-            {" "}
-            Submit{" "}
-          </button>
+          <div className="pwBox">
+            <input
+              type="text"
+              ref={pwInput => (this.pwInput = pwInput)}
+              placeholder="Enter Password"
+            />
+          </div>
+          <div className="submitButton">
+            <button
+              type="button"
+              onClick={e => {
+                this.passwordUpdate();
+                e.preventDefault();
+              }}
+            >
+              {" "}
+              Submit{" "}
+            </button>
+          </div>
         </form>
       </div>
     );
