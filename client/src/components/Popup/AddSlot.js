@@ -61,7 +61,7 @@ class AddSlot extends React.Component {
         //console.log(endDate);
 
         const session = {
-            class_name: this.className.value,
+            class: this.className.value,
             exam_num: this.examNum.value,
             description: this.description.value,
             start: startDate,

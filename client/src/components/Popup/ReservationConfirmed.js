@@ -24,8 +24,9 @@ class ReservationConfirmed extends React.Component {
                     <div className="message">
                         <p>A confirmation email has been sent to: </p>
                         <p>{email}</p>
-                        <p>--------------</p>
-                        <p>{session.class_name} Exam {session.exam_num}</p>
+                        <p/>
+                        <p>Review details: </p>
+                        <p>{session.class} Exam {session.exam_num}</p>
                         <p>Session details: {session.description}</p>
                         <p>{session.tutor}</p>
                         <p>{month} {day}</p>

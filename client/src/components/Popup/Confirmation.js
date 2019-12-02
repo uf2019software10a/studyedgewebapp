@@ -33,11 +33,10 @@ class Confirmation extends React.Component {
                 <div className="popup_inner"
                 style={{margin: '60px auto 0'}}>
                     <div className='sessionInfo'>
-                        <p>Exam {session.exam_num} Review</p>
-                        <p>{session.class_name}</p>
-                        <p>Study Expert Name: {session.tutor}</p>
-                        <p>{month} {day}</p>
-                        <p>{startTime} - {endTime}</p>
+                        <p>{session.class} Exam {session.exam_num}</p>
+                        <p>{session.description}</p>
+                        <p>Study Expert: {session.tutor}</p>
+                        <p>{month} {day}, {startTime} - {endTime}</p>
                         <p>{locType}</p>
                         <p>{session.enrolled} of {session.capacity} slots left!</p>
                     </div>

@@ -21,7 +21,7 @@ class ViewSlot extends React.Component {
                 <h1>View Slot</h1>
                 <div className='popup_inner'>
                     <div className='message'>
-                        <p>Class: {session.class_name}</p>
+                        <p>Class: {session.class}</p>
                         <p>Exam: {session.exam_num} </p>
                         <p>Description: {session.description} </p>
                         <p>Date: {month} {day} </p>
