@@ -93,11 +93,7 @@ var mongoose = require('mongoose'),
          examTile.start = req.body.start;
          examTile.end = req.body.end;
          examTile.online = req.body.online;
-         exam.location = {
-           building: req.results.building,
-           floor: req.results.floor,
-           description: req.results.description,
-         }
+         examTile.location = req.body.location;
          examTile.capacity = req.body.capacity;
          examTile.enrolled = req.body.enrolled;
          examTile.tutor = req.body.tutor;
@@ -112,7 +108,7 @@ var mongoose = require('mongoose'),
            }
          });
       });
-    }
+    };
 
     /* Middleware: find an exam by its ID, then pass it to the next request handler. */
     exports.examByID = function(req, res, next, id) {

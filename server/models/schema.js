@@ -44,7 +44,7 @@ userSchema.pre('save', function(next) {
   var currDate = new Date();
   this.updated_at = currDate;
   if(!this.created_at)
-    this.created_at - currDate;
+    this.created_at = currDate;
   next();
 });
 
@@ -53,7 +53,7 @@ reservationSchema.pre('save', function(next) {
   var currDate = new Date();
   this.updated_at = currDate;
   if(!this.created_at)
-    this.created_at - currDate;
+    this.created_at = currDate;
   next();
 });
 var reservation = mongoose.model('reservation', reservationSchema)
