@@ -3,7 +3,7 @@ const express = require("express"),
   axios = require("axios"),
   passport = require("passport");
 
-router.post("/login", function(req, res) {
+router.post("/Login", function(req, res) {
   const password = req.body.password;
   console.log("password sent:", password);
 });
