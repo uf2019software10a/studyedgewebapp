@@ -21,17 +21,12 @@ client.connect(err => {
   var examsArr = exams.entries;
   examsArr.forEach(function(element) {
     var exam = new examTile({
-    	exam_id: element.exam_id,
     	class: element.class,
     	exam_num: element.exam_num,
+      description: element.description,
     	start: element.start,
     	end: element.end,
-    	online: element.online,
-    	location: {
-    		building: element.location.building,
-    		floor: element.location.floor,
-    		description: element.location.description
-    	},
+    	location: element.location,
     	capacity: element.capacity,
     	enrolled: element.enrolled,
     	tutor: element.tutor
@@ -39,8 +34,8 @@ client.connect(err => {
 
     // Add to database
     collection_exams.insertOne(exam, function(err, res) {
-      if (err) throw err;
       console.log("inserting... " + exam.class + " (num " + exam.exam_num + ")");
+      if (err) throw err;
       client.close();
     });
   });
@@ -61,8 +56,8 @@ client.connect(err => {
 
     // Add to database
     collection_users.insertOne(tmp, function(err, res) {
-      if (err) throw err;
       console.log("inserting... " + tmp.name + " (email " + tmp.email + ")");
+      if (err) throw err;
       client.close();
     });
   });
