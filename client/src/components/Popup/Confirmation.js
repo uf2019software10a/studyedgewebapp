@@ -1,13 +1,14 @@
 import React from 'react'
 import './Popup.css'
 import {militaryToStandard, isOnline, getMonthName} from "../DateTimeUtil"
+import axios from 'axios'
 
 class Confirmation extends React.Component {
     infoSubmitted = () => {
         const userEmailAddr = this.email.value;
         const specificTopicsPara = this.comments.value;
-        console.log('my email: ', userEmailAddr);
-        console.log('my comments: ', specificTopicsPara);
+        //console.log('my email: ', userEmailAddr);
+        //console.log('my comments: ', specificTopicsPara);
         this.props.emailUpdate(userEmailAddr);
         this.props.closePopup();
         // TODO: setup this boolean

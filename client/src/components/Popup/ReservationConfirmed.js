@@ -22,8 +22,7 @@ class ReservationConfirmed extends React.Component {
                 <h1>{text}</h1>
                 <div className="popup_inner">
                     <div className="message">
-                        <p>A confirmation email has been sent to: </p>
-                        <p>{email}</p>
+                        <p>A confirmation email has been sent to: {email}</p>
                         <p/>
                         <p>Review details: </p>
                         <p>{session.class} Exam {session.exam_num}</p>

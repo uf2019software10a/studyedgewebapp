@@ -22,6 +22,14 @@ const App = () => {
   const [confirmationEmailAddress, setConfirmationEmailAddress] = useState('');
   const [examsList, setExamsList] = useState([]);
 
+  const [showAdmin, setShowAdmin] = useState(true);
+
+  const closeAdmin = React.useCallback(
+      () => {
+          setShowAdmin(false);
+      }
+  );
+
     useEffect(() => {
         fetch('http://localhost:3000/api/exams/')
             .then(res => res.json())
@@ -121,9 +129,9 @@ const App = () => {
             closePopup={() => {}}
         />
         : null }
-        {false ?
+        {showAdmin ?
             <AddSlot
-                closePopup={() => {}}
+                closePopup={closeAdmin}
             />
             : null }
       {showConfirmationPopup ?
@@ -154,7 +162,7 @@ const App = () => {
           : null
       }
       <div className="instructions">
-          Select Class or Exam Number:
+          Select Class and/or Exam Number:
       </div>
 
         <div className="search">
