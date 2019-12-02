@@ -1,20 +1,24 @@
 const express = require("express"),
   router = express.Router(),
-  axios = require("axios");
+  axios = require("axios"),
+  passport = require("passport");
 
-const passwordData = [];
-
-axios.get("/Admin/Login").then(res => {
-  passwordData.push(res.data);
-  console.log("axios recieved:", passwordData[0]);
+router.post("/login", function(req, res) {
+  const password = req.body.password;
+  console.log("password sent:", password);
 });
 
-router.post(
+/*router.post(
   "/Admin/login",
   passport.authenticate("local", {
     successRedirect: "/Admin",
     failureRedirect: "/Admin/login"
   })
-);
+);*/
+
+/*router.post("/login", passport.authenticate("local"), function(req, res) {
+  const password = req.body.password;
+  console.log("password sent:", password);
+});*/
 
 module.exports = router;

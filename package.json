@@ -13,6 +13,7 @@
     "start": "node server/server.js",
     "heroku-postbuild": "cd client && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
+  "proxy": "http://localhost:5000",
   "repository": {
     "type": "git",
     "url": "https://github.com/UFWebApps/React_Template_Repo.git"
@@ -24,8 +25,10 @@
     "axios": "^0.19.0",
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.0",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
+    "is-empty": "^1.2.0",
     "mocha": "^6.2.1",
     "mongoose": "^5.7.1",
     "morgan": "^1.9.1",
@@ -33,7 +36,8 @@
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "should": "^13.2.3",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "validator": "^12.1.0"
   },
   "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
 }

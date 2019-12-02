@@ -8,18 +8,17 @@ import "../../views/Admin/Admin.css";
 import axios from "axios";
 
 class AdminApp extends React.Component {
-  passwordUpdate = () => {
-    const password = this.pwInput.value;
-    console.log("password: ", password);
+  constructor(props) {
+    super(props);
 
-    axios
-      .post("/Admin/login", { password: password })
-      .then(res => {
-        console.log("axios sent:", res.data);
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+    this.passwordUpdate = this.passwordUpdate.bind(this);
+    var password: "";
+  }
+  passwordUpdate = () => {
+    this.password = this.pwInput.value;
+    console.log("password: ", this.password);
+
+    axios.post("/Admin/login", { password: this.password });
   };
   render() {
     return (

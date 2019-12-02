@@ -7,10 +7,11 @@ const path = require("path"),
 userRouter = require("../routes/user.server.routes");
 reservationRouter = require("../routes/reservation.server.routes");
 adminRouter = require("../routes/reservation.server.routes");
-adminLoginRouter = require("../routes/adminlogin.server.routes");
+const adminLoginRouter = require("../routes/adminlogin.server.routes");
 session = require("express-session");
-passport = require("passport");
+const passport = require("passport");
 require("./passport")(passport);
+var cors = require("cors");
 
 module.exports.init = () => {
   mongoose.connect(process.env.DB_URI || require("./config").db.uri, {
@@ -22,19 +23,16 @@ module.exports.init = () => {
 
   // initialize app
   const app = express();
+  app.set("trust proxy", true);
+
+  app.use(cors());
 
   // enable request logging for development debugging
   app.use(morgan("dev"));
 
   // body parsing middleware
+  app.use(bodyParser.urlencoded({ extended: false }));
   app.use(bodyParser.json());
-
-  // add a router
-  app.use("/api/exams", examRouter);
-  app.use("/api/users", userRouter);
-  app.use("/api/reservations", reservationRouter);
-  app.use("/Admin/login", adminLoginRouter);
-  //app.use("/api/Admin", adminLoginRouter);
 
   if (process.env.NODE_ENV === "production") {
     // Serve any static files
@@ -46,6 +44,7 @@ module.exports.init = () => {
     });
   }
 
+  //express session
   app.use(
     session({
       secret: "ewfwefwsadc",
@@ -54,8 +53,16 @@ module.exports.init = () => {
       //cookie: { secure: true }
     })
   );
+
+  //express session
   app.use(passport.initialize());
   app.use(passport.session());
+
+  // add a router
+  app.use("/api/exams", examRouter);
+  app.use("/api/users", userRouter);
+  app.use("/api/reservations", reservationRouter);
+  app.use("/Admin", adminLoginRouter);
 
   return app;
 };
