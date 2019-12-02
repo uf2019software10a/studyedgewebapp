@@ -8,7 +8,7 @@ class SessionList extends React.Component {
 
 		const sessionList = sessions.entries
 			.filter((session) => {
-				return (session.class_name.indexOf(classFilter) >= 0) &&
+				return (session.class.indexOf(classFilter) >= 0) &&
 				(session.exam_num.toString().indexOf(examFilter) >= 0);
 			})
 			.map((session) => {
@@ -23,7 +23,7 @@ class SessionList extends React.Component {
 				return (
 					<button key={session._id} onClick={() => selectedSessionUpdate(session._id)}>
 						<p>Exam {session.exam_num} Review</p>
-						<p>{session.class_name}</p>
+						<p>{session.class}</p>
 						<p>Study Expert Name: {session.tutor}</p>
 						<p>{month} {day}</p>
 						<p>{startTime} - {endTime}</p>

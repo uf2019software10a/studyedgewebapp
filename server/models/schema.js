@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
 		Schema = mongoose.Schema;
 
 var examTileSchema = new Schema({
-	class_name: { type: String, required: true },
+	class: { type: String, required: true },
 	exam_num: { type: Number, required: true },
 	description: { type: String, required: true },
 	start: { type: Date, required: true },

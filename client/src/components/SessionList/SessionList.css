@@ -8,7 +8,7 @@ p {
 
 button {
 	width: 210px;
-	height: 210px;
+	height: auto;
 	background: #ccdef9;
 	padding: 10px 8px;
 	font-size: 1rem;

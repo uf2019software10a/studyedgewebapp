@@ -1,7 +1,7 @@
 {
 	"entries": [{
 			"_id": "aaaa",
-			"class_name": "MAC2312",
+			"class": "MAC2312",
 			"exam_num": 2,
 			"start": "February 23 2018 4:30 PM",
 			"end": "February 23 2018 4:45 PM",
@@ -9,11 +9,11 @@
 			"capacity": 10,
 			"enrolled": 3,
 			"tutor": "John Doe",
-			"description": "yes bro"
+			"description": "hello!"
 		},
 		{
 			"_id": "bbbb",
-			"class_name": "CHM2045",
+			"class": "CHM2045",
 			"exam_num": 1,
 			"start": "March 04 2018 2:30 AM",
 			"end": "February 23 2018 3:00 AM",
@@ -25,7 +25,7 @@
 		},
 		{
 			"_id": "cccc",
-			"class_name": "PHY2049",
+			"class": "PHY2049",
 			"exam_num": 4,
 			"start": "December 30 2016 10:45 AM",
 			"end": "February 23 2018 11:30 AM",

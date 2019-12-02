@@ -67,7 +67,7 @@ class EditOrDelete extends React.Component {
         //console.log(endDate);
 
         const session = {
-            class_name: this.className.value,
+            class: this.className.value,
             exam_num: this.examNum.value,
             description: this.description.value,
             start: startDate,
@@ -105,7 +105,7 @@ class EditOrDelete extends React.Component {
                                     style={ { height: 20} }
                                     type='text'
                                     ref={(className) => this.className = className}
-                                    defaultValue={session.class_name}
+                                    defaultValue={session.class}
                                 />
                             </form>
                         </div>

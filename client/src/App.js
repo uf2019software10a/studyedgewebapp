@@ -153,7 +153,7 @@ const App = ({exams}) => {
             <Menu
                 title="Class..."
                 list={updatedSessions}
-                element={'class_name'}
+                element={'class'}
                 filterUpdate={classNameUpdate}
             />
             <Menu
