@@ -14,7 +14,7 @@ class ViewSlot extends React.Component {
     };
 
     render() {
-        const { closePopup, session } = this.props;
+        const { closePopup, session, editPopup } = this.props;
 
         const startDate = new Date(session.start);
         const endDate = new Date(session.end);
@@ -27,6 +27,9 @@ class ViewSlot extends React.Component {
             <div className='popup'>
                 <div className='close' onClick={() => closePopup()}>
                     X
+                </div>
+                <div className='edit' onClick={() => editPopup()}>
+                    Edit
                 </div>
                 <h1>View Slot</h1>
                 <div className='popup_inner'>

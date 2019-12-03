@@ -131,7 +131,7 @@ const App = () => {
         : null }
         {false ?
         <EditOrDelete
-            session={examsList[0]}
+            session={examsList.length > 0 ? examsList[0] : []}
             closePopup={() => {}}
         />
         : null }

@@ -32,7 +32,7 @@ h1 {
     padding: 10px;
     font-family: Arial, sans-serif;
     font-size: 2rem;
-  
+
 }
 
 .text {
@@ -65,6 +65,40 @@ p {
 }
 .close:hover {
     background-color: #a20008;
+    cursor: pointer;
+}
+.edit {
+    position: relative;
+    right: -100px;
+    width: 70px;
+    height: 20px;
+    background: #00ff00;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.edit:hover {
+    background-color: #01cc20;
+    cursor: pointer;
+}
+.add {
+    position: static;
+    right: -100px;
+    width: 70px;
+    height: 20px;
+    background: #00ff00;
+    padding: 10px;
+    font-size: 1rem;
+    border: solid 2px #000000;
+    margin: 10px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+.add:hover {
+    background-color: #01cc20;
     cursor: pointer;
 }
 
