@@ -11,7 +11,6 @@ import ReservationError from "../../components/Popup/ReservationError";
 import ReservationConfirmed from "../../components/Popup/ReservationConfirmed";
 import "../../index.css";
 
-//change login page
 const Login = ({ exams }) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
   const [classFilter, setClassFilter] = useState("");
