@@ -123,7 +123,7 @@ const App = () => {
   return (
     <div className="app">
       <Header/>
-        {showAdmin ?
+        {false ?
         <ViewSlot
             session={examsList.length > 0 ? examsList[0] : []}
             closePopup={() => {}}
@@ -148,6 +148,7 @@ const App = () => {
               emailUpdate={emailUpdate}
               openReservationConfirmedPopup={openReservationConfirmedPopup}
               openReservationErrorPopup={openReservationErrorPopup}
+              allSessions={examsList}
           />
           : null
       }
@@ -170,7 +171,6 @@ const App = () => {
       <div className="instructions" onClick={openAdmin}>
           Select Class and/or Exam Number:
       </div>
-
         <div className="search">
             <Menu
                 title="Class..."

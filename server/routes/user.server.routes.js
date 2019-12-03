@@ -6,10 +6,11 @@ var users = require('../controllers/user.server.controller.js'),
 router.route('/')
   .get(users.list)
   .put(users.update)
-  .post(users.create);;
+  .post(users.create);
 
 router.route('/id=:id')
   .get(users.read)
+    .put(users.update)
   .delete(users.delete);
 
 router.route('/userName=:userName')
@@ -17,6 +18,7 @@ router.route('/userName=:userName')
 
 router.route('/userEmail=:userEmail')
   .get(users.read)
+    .put(users.update)
   .delete(users.delete);
 
 

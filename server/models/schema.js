@@ -18,7 +18,7 @@ var userSchema = new Schema({
 	exam_id: [{
 		type: Array,
 		contains: {
-			type: Number
+			type: String
 		}
 	}], //This is going to be an array of the _id that the student is enrolled in
 	email: { type: String, required: true, unique: true}
@@ -27,7 +27,7 @@ var userSchema = new Schema({
 var reservationSchema = new Schema({
 	user_id: { type: Schema.ObjectId, required: true},
 	exam_id: { type: Schema.ObjectId, required: true},
-	topics: { type: String, required: true, default: ""}
+	topics: { type: String, default: ""}
 });
 
 examTileSchema.pre('save', function(next) {
