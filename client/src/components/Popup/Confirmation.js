@@ -28,8 +28,7 @@ class Confirmation extends React.Component {
         const userEmailAddr = this.email.value;
         let specificTopicsPara = this.comments.value;
         const userName = this.name.value;
-        //console.log('my email: ', userEmailAddr);
-        //console.log('my comments: ', specificTopicsPara);
+        
         this.props.emailUpdate(userEmailAddr);
         this.props.closePopup();
         // TODO: setup this boolean

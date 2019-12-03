@@ -17,7 +17,7 @@ exports.sendEmail = function(req, res) {
       from: 'ufsoftware10a@gmail.com',
       to: req.body.email,
       subject: 'Your Study Edge Reservation has been Confirmed!',
-      text: req.body.name + ' please bury me in a fucking ditch'
+      text: 'Hello 'req.body.name + '! Your Study Edge Exam Review has been Confirmed. Have  great day!'
     };
 
     transporter.sendMail(mailOptions, function(error, info){
