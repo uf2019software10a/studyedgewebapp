@@ -27,9 +27,9 @@ class Menu extends React.Component {
     };
 
     render() {
-        const {list, element, filterUpdate} = this.props;
+        const {list, element, filterUpdate, openAdmin} = this.props;
         // remove duplicate class names and exam numbers to be displayed to dropdown menu
-        const listReduced = [...new Map(list.entries.map((item) => [item[element], item])).values()];
+        const listReduced = [...new Map(list.map((item) => [item[element], item])).values()];
 
         // sort in alphanumeric order for dropdown menu display
         if(element === 'class') {
@@ -50,7 +50,8 @@ class Menu extends React.Component {
                     {listReduced
                         .map((item) => (
                             <li key={item._id} onClick={() =>
-                                filterUpdate(item[element], this.elementSelected(item[element]))}>
+                                //filterUpdate(item[element], this.elementSelected(item[element]))}>
+                                openAdmin()}>
                                 {element === 'exam_num' ? 'Exam ' : null}
                                 {item[element]}
                             </li>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import NotFound from "./views/NotFound"
 import Header from "./components/Header/Header"
@@ -8,12 +8,12 @@ import Confirmation from "./components/Popup/Confirmation"
 import ReservationError from "./components/Popup/ReservationError";
 import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css"
+import axios from 'axios';
 import AddSlot from "./components/Popup/AddSlot";
 import EditOrDelete from "./components/Popup/EditOrDelete";
 import ViewSlot from "./components/Popup/ViewSlot";
 
-const App = ({exams}) => {
-  const [updatedSessions, setUpdatedSessions] = useState(exams);
+const App = () => {
   const [classFilter, setClassFilter] = useState('');
   const [examFilter, setExamFilter] = useState('');
   const [selectedSession, setSelectedSession] = useState('');
@@ -21,6 +21,41 @@ const App = ({exams}) => {
   const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
   const [showReservationConfirmedPopup, setShowReservationConfirmedPopup] = useState(false);
   const [confirmationEmailAddress, setConfirmationEmailAddress] = useState('');
+  const [examsList, setExamsList] = useState([]);
+
+  const [showAdmin, setShowAdmin] = useState(false);
+
+    const openAdmin = React.useCallback(
+        () => {
+            setShowAdmin(true);
+        }
+    );
+
+  const closeAdmin = React.useCallback(
+      () => {
+          setShowAdmin(false);
+      }
+  );
+
+  /*
+    useEffect(() => {
+        fetch('http://localhost:3000/api/exams/')
+            .then(res => res.json())
+            .then((data) => {
+                setExamsList(data);
+            })
+            .catch(console.log)
+    }, []);
+
+   */
+
+  useEffect(() => {
+      axios.get('http://localhost:3000/api/exams/')
+          .then(res => {
+              const data = res.data;
+              setExamsList(data);
+          })
+  });
 
   const emailUpdate = React.useCallback(
       (email) => {
@@ -96,33 +131,32 @@ const App = ({exams}) => {
         [],
     );
 
-  //console.log(exams)
-  //console.log(updatedSessions);
+  //console.log(examsList);
   return (
     <div className="app">
       <Header/>
         {false ?
         <ViewSlot
-            session={updatedSessions.entries[0]}
+            session={examsList[0]}
             closePopup={() => {}}
         />
         : null }
         {false ?
         <EditOrDelete
-            session={updatedSessions.entries[0]}
+            session={examsList[0]}
             closePopup={() => {}}
         />
         : null }
         {false ?
             <AddSlot
-                closePopup={() => {}}
+                closePopup={closeAdmin}
             />
             : null }
       {showConfirmationPopup ?
           <Confirmation
               text='Confirm Reservation'
               closePopup={closeConfirmationPopup}
-              session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+              session={examsList.find((session) => session._id === selectedSession)}
               emailUpdate={emailUpdate}
               openReservationConfirmedPopup={openReservationConfirmedPopup}
               openReservationErrorPopup={openReservationErrorPopup}
@@ -140,32 +174,33 @@ const App = ({exams}) => {
           <ReservationConfirmed
               text='Exam Slot Confirmed!'
               closePopup={closeReservationConfirmedPopup}
-              session={updatedSessions.entries.find((session) => session._id === selectedSession)}
+              session={examsList.find((session) => session._id === selectedSession)}
               email={confirmationEmailAddress}
           />
           : null
       }
       <div className="instructions">
-          Select Class or Exam Number:
+          Select Class and/or Exam Number:
       </div>
 
         <div className="search">
             <Menu
                 title="Class..."
-                list={updatedSessions}
+                list={examsList}
                 element={'class'}
                 filterUpdate={classNameUpdate}
+                openAdmin={openAdmin}
             />
             <Menu
                 title="Exam..."
-                list={updatedSessions}
+                list={examsList}
                 element={'exam_num'}
                 filterUpdate={examNumberUpdate}
             />
         </div>
         <div className="sessions">
             <SessionList
-            sessions={updatedSessions}
+            sessions={examsList}
             classFilter={classFilter}
             examFilter={examFilter}
             selectedSessionUpdate={selectedUpdate}
