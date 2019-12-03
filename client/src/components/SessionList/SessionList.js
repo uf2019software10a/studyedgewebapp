@@ -14,7 +14,7 @@ class SessionList extends React.Component {
 						(session.exam_num.toString().indexOf(examFilter) >= 0);
 				})
 				.map((session) => {
-					console.log('sess:', session);
+					//console.log('sess:', session);
 					const locType = isOnline(session.location) ? 'Online' : 'In-Person';
 					const startDate = new Date(session.start);
 					const endDate = new Date(session.end);

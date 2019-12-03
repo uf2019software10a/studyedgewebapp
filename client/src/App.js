@@ -8,6 +8,7 @@ import Confirmation from "./components/Popup/Confirmation"
 import ReservationError from "./components/Popup/ReservationError";
 import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css"
+import axios from 'axios';
 import AddSlot from "./components/Popup/AddSlot";
 import EditOrDelete from "./components/Popup/EditOrDelete";
 import ViewSlot from "./components/Popup/ViewSlot";
@@ -22,7 +23,13 @@ const App = () => {
   const [confirmationEmailAddress, setConfirmationEmailAddress] = useState('');
   const [examsList, setExamsList] = useState([]);
 
-  const [showAdmin, setShowAdmin] = useState(true);
+  const [showAdmin, setShowAdmin] = useState(false);
+
+    const openAdmin = React.useCallback(
+        () => {
+            setShowAdmin(true);
+        }
+    );
 
   const closeAdmin = React.useCallback(
       () => {
@@ -30,6 +37,7 @@ const App = () => {
       }
   );
 
+  /*
     useEffect(() => {
         fetch('http://localhost:3000/api/exams/')
             .then(res => res.json())
@@ -38,6 +46,16 @@ const App = () => {
             })
             .catch(console.log)
     }, []);
+
+   */
+
+  useEffect(() => {
+      axios.get('http://localhost:3000/api/exams/')
+          .then(res => {
+              const data = res.data;
+              setExamsList(data);
+          })
+  });
 
   const emailUpdate = React.useCallback(
       (email) => {
@@ -113,7 +131,7 @@ const App = () => {
         [],
     );
 
-  console.log(examsList);
+  //console.log(examsList);
   return (
     <div className="app">
       <Header/>
@@ -129,7 +147,7 @@ const App = () => {
             closePopup={() => {}}
         />
         : null }
-        {showAdmin ?
+        {false ?
             <AddSlot
                 closePopup={closeAdmin}
             />
@@ -171,6 +189,7 @@ const App = () => {
                 list={examsList}
                 element={'class'}
                 filterUpdate={classNameUpdate}
+                openAdmin={openAdmin}
             />
             <Menu
                 title="Exam..."

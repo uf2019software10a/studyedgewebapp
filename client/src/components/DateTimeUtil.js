@@ -22,8 +22,13 @@ export const minutes = ['00', '15', '30', '45'];
 export const periods = ['AM', 'PM'];
 
 export const getHour = (hour) => {
-    hour = hour > 12 ? hour - 13 : hour - 1;
-    return hours[hour];
+    if(hour > 12) {
+        return String(hour - 12);
+    } else if(hour === 0) {
+        return '12';
+    } else {
+        return String(hour);
+    }
 };
 
 export const getMinute = (minute) => {
