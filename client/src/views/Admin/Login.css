@@ -1,0 +1,39 @@
+.AdminLogin {
+  font-family: Arial, sans-serif;
+  padding: 60px;
+  text-align: center;
+  color: white;
+}
+
+.pwBox {
+  top: 50%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -100px;
+  padding-top: 50px;
+  padding-left: 475px;
+  width: 200px;
+  height: 200px;
+}
+
+input[type="text"] {
+  margin: auto;
+  background: #fff;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  padding: 0 2rem;
+  width: 50%;
+  height: 4rem;
+}
+
+.submitButton {
+  height: 50px;
+  padding-top: 10px;
+  width: auto;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  padding-left: 775px;
+  margin-top: -100px;
+  margin-left: -100px;
+}

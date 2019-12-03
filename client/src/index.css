@@ -1,26 +1,25 @@
 .instructions {
-    position: center;
-    text-align: center;
-    margin: auto;
-    font-family: Arial, sans-serif;
-    font-size: 2rem;
-    width: 50%;
-    padding-bottom: 10px;
-    
-  }
+  position: center;
+  text-align: center;
+  margin: auto;
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  width: 50%;
+  padding-bottom: 10px;
+}
 
 .search {
-    position: center;
-    margin: auto;
-    width: 30%;
-    padding: 10px 10px 100px;
+  position: center;
+  margin: auto;
+  width: 30%;
+  padding: 10px 10px 100px;
 }
 
 .sessions {
-    width: 50%;
-    position: center;
-    margin: auto;
-    padding: 10px;
-    background-color: white;
-    border: solid;
+  width: 50%;
+  position: center;
+  margin: auto;
+  padding: 10px;
+  background-color: white;
+  border: solid;
 }
