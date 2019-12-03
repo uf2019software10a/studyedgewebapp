@@ -189,7 +189,6 @@ const App = () => {
                 list={examsList}
                 element={'class'}
                 filterUpdate={classNameUpdate}
-                openAdmin={openAdmin}
             />
             <Menu
                 title="Exam..."
