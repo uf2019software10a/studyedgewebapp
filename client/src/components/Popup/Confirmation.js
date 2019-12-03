@@ -28,12 +28,19 @@ class Confirmation extends React.Component {
         const userEmailAddr = this.email.value;
         let specificTopicsPara = this.comments.value;
         const userName = this.name.value;
-        //console.log('my email: ', userEmailAddr);
-        //console.log('my comments: ', specificTopicsPara);
+        
         this.props.emailUpdate(userEmailAddr);
         this.props.closePopup();
         // TODO: setup this boolean
 
+      axios.post('/send', {name: userName, email: userEmailAddr},
+      {headers: {'Accept': 'application/json'}})
+      .then(function(response){
+        console.log(response);
+      })
+      .catch(function(error){
+        console.log(error);
+      });
 
         /*
         // get the user from the database based on their email
@@ -44,23 +51,24 @@ class Confirmation extends React.Component {
                 console.log(this.user);
             })*/
 
-        this.getUser(userEmailAddr).then((data) => {
-            console.log(data);
-            if(specificTopicsPara.length < 1) {
-                specificTopicsPara = "N/A";
-            }
-            const reservation = {
-                user_id: data._id,
-                exam_id: this.props.session._id,
-                topics: specificTopicsPara
-            };
-            console.log(reservation);
-            // create the reservation
-            axios.post('http://localhost:3000/api/reservations/', reservation)
-                .then((res) => {
-                    console.log(res);
-                })
-        })
+        // this.getUser(userEmailAddr).then((data) => {
+        //     console.log(data);
+        //     if(specificTopicsPara.length < 1) {
+        //         specificTopicsPara = "N/A";
+        //     }
+        //     const reservation = {
+        //         user_id: data._id,
+        //         exam_id: this.props.session._id,
+        //         topics: specificTopicsPara
+        //     };
+        //     console.log(reservation);
+        //
+        //     // create the reservation
+        //     axios.post('http://localhost:3000/api/reservations/', reservation)
+        //         .then((res) => {
+        //             console.log(res);
+        //         })
+        // })
 
         /*
         // get list of exams associated with this user

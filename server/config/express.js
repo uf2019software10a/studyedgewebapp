@@ -1,3 +1,4 @@
+
 const path = require("path"),
   express = require("express"),
   mongoose = require("mongoose"),
@@ -7,11 +8,13 @@ const path = require("path"),
 userRouter = require("../routes/user.server.routes");
 reservationRouter = require("../routes/reservation.server.routes");
 adminRouter = require("../routes/reservation.server.routes");
+ emailRouter = require('../routes/email.server.routes');
 const adminLoginRouter = require("../routes/adminlogin.server.routes");
 session = require("express-session");
 const passport = require("passport");
 require("./passport")(passport);
 var cors = require("cors");
+
 
 module.exports.init = () => {
   mongoose.connect(process.env.DB_URI || require("./config").db.uri, {
@@ -44,6 +47,7 @@ module.exports.init = () => {
     });
   }
 
+
   //express session
   app.use(
     session({
@@ -54,6 +58,7 @@ module.exports.init = () => {
     })
   );
 
+
   //express session
   app.use(passport.initialize());
   app.use(passport.session());
@@ -63,6 +68,6 @@ module.exports.init = () => {
   app.use("/api/users", userRouter);
   app.use("/api/reservations", reservationRouter);
   app.use("/Admin", adminLoginRouter);
-
+  app.use('/send', emailRouter);
   return app;
 };
