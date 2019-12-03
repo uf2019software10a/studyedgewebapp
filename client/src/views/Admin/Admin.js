@@ -100,7 +100,7 @@ const AdminHome = ({ exams }) => {
       ) : null}
       {showAdminAddPopup ? <AddSlot closePopup={closeAdminAddPopup} /> : null}
       <div className="instructions">Select class or exam number:</div>
-      {examsList.length > 0 ? (
+      {examsList.size > 0 ? (
         <div className="search">
           <Menu
             title="Class..."

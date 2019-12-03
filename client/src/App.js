@@ -110,7 +110,7 @@ const App = () => {
       ) : null}
       <div className="instructions">Select Class and/or Exam Number:</div>
       <div className="search">
-        {examsList.length > 0 ? (
+        {examsList.size > 0 ? (
           <div className="search">
             <Menu
               title="Class..."
