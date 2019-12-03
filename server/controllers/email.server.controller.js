@@ -9,7 +9,7 @@ exports.sendEmail = function(req, res) {
       service: 'gmail',
       auth: {
         user: 'ufsoftware10a@gmail.com',
-        pass: 'fallsoftware2019'
+        pass: require('../config/config').email.password
       }
     });
 
@@ -25,7 +25,7 @@ exports.sendEmail = function(req, res) {
         console.log(error);
       }
       else{
-        console.log('Emailsent');
+        console.log('Email Sent');
       }
     });
 

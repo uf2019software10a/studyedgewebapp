@@ -4,5 +4,8 @@
 module.exports = {
     db: {
         uri: 'mongodb+srv://testuser:testuser123@studyedge-as98i.mongodb.net/test?retryWrites=true&w=majority', //place the URI of your mongo database here.
+    },
+    email: {
+      password: 'fallsoftware2019',
     }
 };
