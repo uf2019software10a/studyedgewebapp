@@ -8,9 +8,7 @@ import Confirmation from "./components/Popup/Confirmation"
 import ReservationError from "./components/Popup/ReservationError";
 import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css"
-import AddSlot from "./components/Popup/AddSlot";
-import EditOrDelete from "./components/Popup/EditOrDelete";
-import ViewSlot from "./components/Popup/ViewSlot";
+
 
 const App = ({exams}) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
@@ -101,23 +99,6 @@ const App = ({exams}) => {
   return (
     <div className="app">
       <Header/>
-        {false ?
-        <ViewSlot
-            session={updatedSessions.entries[0]}
-            closePopup={() => {}}
-        />
-        : null }
-        {false ?
-        <EditOrDelete
-            session={updatedSessions.entries[0]}
-            closePopup={() => {}}
-        />
-        : null }
-        {false ?
-            <AddSlot
-                closePopup={() => {}}
-            />
-            : null }
       {showConfirmationPopup ?
           <Confirmation
               text='Confirm Reservation'
