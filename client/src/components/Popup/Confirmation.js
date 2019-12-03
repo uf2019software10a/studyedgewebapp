@@ -31,6 +31,7 @@ class Confirmation extends React.Component {
     const tutor = this.props.session.tutor;
     const className = this.props.session.class;
     const num = this.props.session.exam_num;
+    const location = this.props.session.location;
 
     this.props.emailUpdate(userEmailAddr);
     this.props.closePopup();
@@ -45,6 +46,7 @@ class Confirmation extends React.Component {
           className: className,
           examNum: num,
           tutor: tutor,
+          location: location,
           month: month,
           day: day,
           start: start,

@@ -19,7 +19,7 @@ exports.sendEmail = function(req, res) {
       subject: 'Your Study Edge Reservation has been Confirmed!',
       text: 'Hello '+req.body.name +
       '! Your Study Edge '+req.body.className+' Exam '+req.body.examNum+' Review with ' +req.body.tutor
-      +' has been Confirmed for '+req.body.month+' '+req.body.day +' from '
+      +' has been Confirmed for '+req.body.month+' '+req.body.day +' at '+req.body.location+' from '
       +req.body.start+' - '+req.body.end+'. Have  great day!'
     };
 
