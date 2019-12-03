@@ -100,20 +100,22 @@ const AdminHome = ({ exams }) => {
       ) : null}
       {showAdminAddPopup ? <AddSlot closePopup={closeAdminAddPopup} /> : null}
       <div className="instructions">Select class or exam number:</div>
-      <div className="search">
-        <Menu
-          title="Class..."
-          list={examsList}
-          element={"class"}
-          filterUpdate={classNameUpdate}
-        />
-        <Menu
-          title="Exam..."
-          list={examsList}
-          element={"exam_num"}
-          filterUpdate={examNumberUpdate}
-        />
-      </div>
+      {examsList.length > 0 ? (
+        <div className="search">
+          <Menu
+            title="Class..."
+            list={examsList}
+            element={"class"}
+            filterUpdate={classNameUpdate}
+          />
+          <Menu
+            title="Exam..."
+            list={examsList}
+            element={"exam_num"}
+            filterUpdate={examNumberUpdate}
+          />
+        </div>
+      ) : null}
       <div className="sessions">
         <SessionList
           sessions={examsList}

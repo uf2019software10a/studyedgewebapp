@@ -110,18 +110,22 @@ const App = () => {
       ) : null}
       <div className="instructions">Select Class and/or Exam Number:</div>
       <div className="search">
-        <Menu
-          title="Class..."
-          list={examsList}
-          element={"class"}
-          filterUpdate={classNameUpdate}
-        />
-        <Menu
-          title="Exam..."
-          list={examsList}
-          element={"exam_num"}
-          filterUpdate={examNumberUpdate}
-        />
+        {examsList.length > 0 ? (
+          <div className="search">
+            <Menu
+              title="Class..."
+              list={examsList}
+              element={"class"}
+              filterUpdate={classNameUpdate}
+            />
+            <Menu
+              title="Exam..."
+              list={examsList}
+              element={"exam_num"}
+              filterUpdate={examNumberUpdate}
+            />
+          </div>
+        ) : null}
       </div>
       <div className="sessions">
         <SessionList
