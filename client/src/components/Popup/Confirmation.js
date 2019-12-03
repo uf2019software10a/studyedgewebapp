@@ -24,16 +24,21 @@ class Confirmation extends React.Component {
         console.log(data);
     };
 
-    infoSubmitted = () => {
+    infoSubmitted = (month, day, start, end) => {
         const userEmailAddr = this.email.value;
         let specificTopicsPara = this.comments.value;
         const userName = this.name.value;
-        
+        const tutor = this.props.session.tutor;
+        const className= this.props.session.class;
+        const num = this.props.session.exam_num;
+
         this.props.emailUpdate(userEmailAddr);
         this.props.closePopup();
         // TODO: setup this boolean
 
-      axios.post('/send', {name: userName, email: userEmailAddr},
+      axios.post('/send', {name: userName, email: userEmailAddr,
+        className: className, examNum: num, tutor: tutor, month: month,
+      day: day, start: start, end: end  },
       {headers: {'Accept': 'application/json'}})
       .then(function(response){
         console.log(response);
@@ -143,7 +148,7 @@ class Confirmation extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div className="confirm" onClick={() => this.infoSubmitted()}>
+                <div className="confirm" onClick={() => this.infoSubmitted(month, day, startTime, endTime)}>
                     Book Now
                 </div>
             </div>
