@@ -71,15 +71,19 @@ var mongoose = require('mongoose'),
         /* Create a user */
         exports.create = function(req, res) {
           var user = new User(req.body);
-          user.save(function(err) {
-            if(err) {
-              console.log(err);
-              res.status(400).send(err);
-            } else {
-              res.json(user);
-              console.log(user);
-            }
-          });
+          try {
+            user.save(function(err) {
+              if(err) {
+                console.log(err);
+                res.status(400).send(err);
+              } else {
+                res.json(user);
+                console.log(user);
+              }
+            });
+          } catch(err) {
+            console.log(err);
+          }
         };
 
         /* Update a user */
