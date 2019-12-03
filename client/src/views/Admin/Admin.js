@@ -6,18 +6,12 @@ import Admin from "../../views/Admin/Admin"
 import Header from "../../components/Header/Header"
 import SessionList from "../../components/SessionList/SessionList"
 import Menu from "../../components/Menu/Menu"
-import Confirmation from "../../components/Popup/Confirmation"
-import ReservationError from "../../components/Popup/ReservationError";
-import ReservationConfirmed from "../../components/Popup/ReservationConfirmed";
 //import AdminInformation from "../../components/Popup/AdminInformation";
 import AddSlot from "../../components/Popup/AddSlot";
 import EditOrDelete from "../../components/Popup/EditOrDelete";
 import ViewSlot from "../../components/Popup/ViewSlot";
 import "../../index.css"
 import axios from 'axios';
-import AddSlot from "../../components/Popup/AddSlot";
-import EditOrDelete from "../../components/Popup/EditOrDelete";
-import ViewSlot from "../../components/Popup/ViewSlot";
 
 const AdminHome = ({exams}) => {
   //const [updatedSessions, setUpdatedSessions] = useState(exams);
@@ -40,7 +34,7 @@ const AdminHome = ({exams}) => {
   const selectedUpdate = React.useCallback(
     (newSession) => {
       setSelectedSession(newSession);
-      openAdminViewPopup();
+        openAdminInformationPopup();
       //console.log('updated selected session ID: ', newSession);
     },
     [],
@@ -66,7 +60,9 @@ const AdminHome = ({exams}) => {
             setShowAdminInformtaionPopup(false);
         },
         [],
-    );const openAdminInformtaionPopup = React.useCallback(
+    );
+
+    const openAdminInformationPopup = React.useCallback(
         () => {
             setShowAdminInformtaionPopup(true);
         },
@@ -77,7 +73,8 @@ const AdminHome = ({exams}) => {
             setShowAdminInformtaionPopup(false);
             setShowAdminEditPopup(true);
       }
-    )
+    );
+
     const closeAdminEditPopup = React.useCallback(
         () => {
             setShowAdminEditPopup(false);
@@ -89,7 +86,8 @@ const AdminHome = ({exams}) => {
             setShowAdminEditPopup(true);
         },
         [],
-    );const closeAdminAddPopup = React.useCallback(
+    );
+    const closeAdminAddPopup = React.useCallback(
         () => {
             setShowAdminAddPopup(false);
         },
@@ -112,14 +110,14 @@ const AdminHome = ({exams}) => {
           Welcome Administrator
         </strong>
     </div>
-    <br/>
-    <br/>
-    <div className="add" onClick{...() => openAdminAddPopup()}>
+    <br></br>
+    <br></br>
+    <div className="add" onClick={() => openAdminAddPopup()}>
         Add
     </div>
     {showAdminInformationPopup ?
       <ViewSlot
-          session={examsList.length > 0 ? examsList[0] : []}
+          session={examsList.find((session) => session._id === selectedSession)}
           closePopup={closeAdminInformationPopup}
           editPopup={switchAdminPopupToEdit}
       />
@@ -127,7 +125,7 @@ const AdminHome = ({exams}) => {
     }
     {showAdminEditPopup ?
       <EditOrDelete
-          session={examsList[0]}
+          session={examsList.find((session) => session._id === selectedSession)}
           closePopup={closeAdminEditPopup}
       />
       : null

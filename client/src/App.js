@@ -23,20 +23,6 @@ const App = () => {
   const [confirmationEmailAddress, setConfirmationEmailAddress] = useState('');
   const [examsList, setExamsList] = useState([]);
 
-  const [showAdmin, setShowAdmin] = useState(false);
-
-    const openAdmin = React.useCallback(
-        () => {
-            setShowAdmin(true);
-        }
-    );
-
-  const closeAdmin = React.useCallback(
-      () => {
-          setShowAdmin(false);
-      }
-  );
-
   useEffect(() => {
       axios.get('http://localhost:3000/api/exams/')
           .then(res => {
@@ -151,7 +137,7 @@ const App = () => {
           />
           : null
       }
-      <div className="instructions" onClick={openAdmin}>
+      <div className="instructions">
           Select Class and/or Exam Number:
       </div>
         <div className="search">
