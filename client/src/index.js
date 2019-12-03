@@ -8,6 +8,16 @@ import exams from "./data/exams.json";
 import Login from "./views/Admin/Login";
 import AdminHome from "./views/Admin/Admin";
 import NotFound from "./views/NotFound";
+import Authentication from "./components/Authentication/Authentication";
+import axios from "axios";
+
+var loggedIn = () => {
+  axios.get("/Admin/home").then(res => {
+    console.log("/Admin/home get request from index.js");
+    var loggedin = res.data.success;
+    return loggedin;
+  });
+};
 
 ReactDOM.render(
   <Router>
@@ -19,11 +29,15 @@ ReactDOM.render(
         <Redirect to="/Home" />
       </Route>
       <Route exact path="/Admin/Login">
-        <Login exams={exams} />
+        <Login />
       </Route>
-      <Route exact path="/Admin/Home">
-        <AdminHome exams={exams} />
-      </Route>
+      <Authentication>
+        <Route
+          exact
+          path="/Admin/home"
+          render={() => <AdminHome loggedIn={loggedIn()} exams={exams} />}
+        />
+      </Authentication>
       <Route component={NotFound} />
     </Switch>
   </Router>,

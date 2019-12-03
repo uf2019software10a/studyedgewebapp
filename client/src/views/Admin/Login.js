@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Home from "../../views/Home/Home";
 import Admin from "../../views/Admin/Admin";
 import Header from "../../components/Header/Header";
@@ -18,12 +18,22 @@ class Login extends React.Component {
     this.password = this.pwInput.value;
     console.log("password: ", this.password);
 
-    axios.post("/Admin/Login", {
-      _id: "adminid",
-      username: "admin",
-      password: this.password
-    });
+    axios
+      .post("/Admin/Login", {
+        _id: "adminid",
+        username: "admin",
+        password: this.password
+      })
+      .then(res => {
+        if (!res.data.success) {
+          console.log("Not Authenticated user");
+        } else {
+          console.log("Authenticated user");
+          this.props.history.push("/Admin/home");
+        }
+      });
   };
+
   render() {
     return (
       <div className="AdminApp">
@@ -49,7 +59,7 @@ class Login extends React.Component {
               type="button"
               onClick={e => {
                 this.passwordUpdate();
-                e.preventDefault();
+                //e.preventDefault();
               }}
             >
               {" "}
@@ -62,4 +72,4 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+export default withRouter(Login);
