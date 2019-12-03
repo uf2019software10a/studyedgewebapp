@@ -4,10 +4,10 @@
 module.exports = {
 
     db: {
-        uri: process.env.MONGODB_URI, //place the URI of your mongo database here.
+        uri: 'mongodb+srv://testuser:testuser123@studyedge-as98i.mongodb.net/test?retryWrites=true', //place the URI of your mongo database here.
     },
     email: {
-      password: process.env.EMAIL_CRED,
+      password: 'fallsoftware2019',
     }
 
 };
