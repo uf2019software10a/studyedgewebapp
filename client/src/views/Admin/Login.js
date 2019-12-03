@@ -18,7 +18,11 @@ class Login extends React.Component {
     this.password = this.pwInput.value;
     console.log("password: ", this.password);
 
-    axios.post("/Admin/Login", { password: this.password });
+    axios.post("/Admin/Login", {
+      _id: "adminid",
+      username: "admin",
+      password: this.password
+    });
   };
   render() {
     return (

@@ -1,25 +1,33 @@
 const LocalStrategy = require("passport-local").Strategy;
 
-//create schema
-
 module.exports = function(passport) {
   passport.use(
-    new LocalStrategy(function(password, done) {
+    new LocalStrategy(function(username, password, done) {
       if (password == "password") {
-        console.log("Password correct");
-        return done(null, "test");
+        console.log("Password is correct!");
+        const user = {
+          _id: "adminid",
+          username: username,
+          password: password
+        };
+        return done(null, user);
       } else {
-        console.log("Password incorrect");
+        console.log("Password is incorrect!");
         return done(null, false, { message: "Password incorrect" });
       }
     })
   );
 
   passport.serializeUser(function(user, done) {
-    done(null, "test user");
+    done(null, user._id);
   });
 
-  passport.deserializeUser(function(user, done) {
-    done("test user");
+  passport.deserializeUser(function(id, done) {
+    const user = {
+      _id: "adminid",
+      username: "admin",
+      password: "password"
+    };
+    done(null, user);
   });
 };
