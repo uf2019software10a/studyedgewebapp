@@ -1,55 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect  } from 'react-router-dom';
-import NotFound from "./views/NotFound"
-import Header from "./components/Header/Header"
-import SessionList from "./components/SessionList/SessionList"
-import Menu from "./components/Menu/Menu"
-import Confirmation from "./components/Popup/Confirmation"
+import React, { useState, useEffect } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+import NotFound from "./views/NotFound";
+import Header from "./components/Header/Header";
+import SessionList from "./components/SessionList/SessionList";
+import Menu from "./components/Menu/Menu";
+import Confirmation from "./components/Popup/Confirmation";
 import ReservationError from "./components/Popup/ReservationError";
 import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
-import "./index.css"
-import axios from 'axios';
+import "./index.css";
+import axios from "axios";
 import AddSlot from "./components/Popup/AddSlot";
 import EditOrDelete from "./components/Popup/EditOrDelete";
 import ViewSlot from "./components/Popup/ViewSlot";
 
 const App = () => {
-  const [classFilter, setClassFilter] = useState('');
-  const [examFilter, setExamFilter] = useState('');
-  const [selectedSession, setSelectedSession] = useState('');
+  const [classFilter, setClassFilter] = useState("");
+  const [examFilter, setExamFilter] = useState("");
+  const [selectedSession, setSelectedSession] = useState("");
   const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
-  const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
-  const [showReservationConfirmedPopup, setShowReservationConfirmedPopup] = useState(false);
-  const [confirmationEmailAddress, setConfirmationEmailAddress] = useState('');
-  const [examsList, setExamsList] = useState([]);
-
-  useEffect(() => {
-      axios.get('http://localhost:3000/api/exams/')
-          .then(res => {
-              const data = res.data;
-              setExamsList(data);
-          })
-  });
-
-  const emailUpdate = React.useCallback(
-      (email) => {
-          setConfirmationEmailAddress(email);
-      },
-      [],
-  );
-
-  const selectedUpdate = React.useCallback(
-    (newSession) => {
-      setSelectedSession(newSession);
-      openConfirmationPopup();
-      //console.log('updated selected session ID: ', newSession);
-    },
-    [],
+  const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(
+    false
   );
   const [
     showReservationConfirmedPopup,
     setShowReservationConfirmedPopup
   ] = useState(false);
+  const [confirmationEmailAddress, setConfirmationEmailAddress] = useState("");
+  const [examsList, setExamsList] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/exams/").then(res => {
+      const data = res.data;
+      setExamsList(data);
+    });
+  });
+
+  const emailUpdate = React.useCallback(email => {
+    setConfirmationEmailAddress(email);
+  }, []);
 
   const selectedUpdate = React.useCallback(newSession => {
     setSelectedSession(newSession);
@@ -94,70 +82,16 @@ const App = () => {
   //console.log(examsList);
   return (
     <div className="app">
-<<<<<<< HEAD
-      <Header/>
-      {showConfirmationPopup ?
-          <Confirmation
-              text='Confirm Reservation'
-              closePopup={closeConfirmationPopup}
-              session={examsList.find((session) => session._id === selectedSession)}
-              emailUpdate={emailUpdate}
-              openReservationConfirmedPopup={openReservationConfirmedPopup}
-              openReservationErrorPopup={openReservationErrorPopup}
-              allSessions={examsList}
-          />
-          : null
-      }
-      {showReservationErrorPopup ?
-          <ReservationError
-              text='Exam Slot Error'
-              closePopup={closeReservationErrorPopup}
-          />
-          : null
-      }
-      {showReservationConfirmedPopup ?
-          <ReservationConfirmed
-              text='Exam Slot Confirmed!'
-              closePopup={closeReservationConfirmedPopup}
-              session={examsList.find((session) => session._id === selectedSession)}
-              email={confirmationEmailAddress}
-          />
-          : null
-      }
-      <div className="instructions">
-          Select Class and/or Exam Number:
-      </div>
-        <div className="search">
-            <Menu
-                title="Class..."
-                list={examsList}
-                element={'class'}
-                filterUpdate={classNameUpdate}
-            />
-            <Menu
-                title="Exam..."
-                list={examsList}
-                element={'exam_num'}
-                filterUpdate={examNumberUpdate}
-            />
-        </div>
-        <div className="sessions">
-            <SessionList
-            sessions={examsList}
-            classFilter={classFilter}
-            examFilter={examFilter}
-            selectedSessionUpdate={selectedUpdate}
-            />
-        </div>
-=======
       <Header />
       {showConfirmationPopup ? (
         <Confirmation
           text="Confirm Reservation"
           closePopup={closeConfirmationPopup}
-          session={updatedSessions.entries.find(
-            session => session._id === selectedSession
-          )}
+          session={examsList.find(session => session._id === selectedSession)}
+          emailUpdate={emailUpdate}
+          openReservationConfirmedPopup={openReservationConfirmedPopup}
+          openReservationErrorPopup={openReservationErrorPopup}
+          allSessions={examsList}
         />
       ) : null}
       {showReservationErrorPopup ? (
@@ -170,35 +104,33 @@ const App = () => {
         <ReservationConfirmed
           text="Exam Slot Confirmed!"
           closePopup={closeReservationConfirmedPopup}
-          session={updatedSessions.entries.find(
-            session => session._id === selectedSession
-          )}
+          session={examsList.find(session => session._id === selectedSession)}
+          email={confirmationEmailAddress}
         />
       ) : null}
-      <div className="instructions">Select class or exam number:</div>
+      <div className="instructions">Select Class and/or Exam Number:</div>
       <div className="search">
         <Menu
           title="Class..."
-          list={updatedSessions}
+          list={examsList}
           element={"class"}
           filterUpdate={classNameUpdate}
         />
         <Menu
           title="Exam..."
-          list={updatedSessions}
+          list={examsList}
           element={"exam_num"}
           filterUpdate={examNumberUpdate}
         />
       </div>
       <div className="sessions">
         <SessionList
-          sessions={updatedSessions}
+          sessions={examsList}
           classFilter={classFilter}
           examFilter={examFilter}
           selectedSessionUpdate={selectedUpdate}
         />
       </div>
->>>>>>> origin/adminlogin
     </div>
   );
 };
