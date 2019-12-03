@@ -123,23 +123,6 @@ const App = () => {
   return (
     <div className="app">
       <Header/>
-        {false ?
-        <ViewSlot
-            session={examsList.length > 0 ? examsList[0] : []}
-            closePopup={() => {}}
-        />
-        : null }
-        {false ?
-        <EditOrDelete
-            session={examsList.length > 0 ? examsList[0] : []}
-            closePopup={() => {}}
-        />
-        : null }
-        {false ?
-            <AddSlot
-                closePopup={closeAdmin}
-            />
-            : null }
       {showConfirmationPopup ?
           <Confirmation
               text='Confirm Reservation'

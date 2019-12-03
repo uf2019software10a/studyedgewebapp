@@ -10,6 +10,9 @@ import Confirmation from "../../components/Popup/Confirmation"
 import ReservationError from "../../components/Popup/ReservationError";
 import ReservationConfirmed from "../../components/Popup/ReservationConfirmed";
 //import AdminInformation from "../../components/Popup/AdminInformation";
+import AddSlot from "../../components/Popup/AddSlot";
+import EditOrDelete from "../../components/Popup/EditOrDelete";
+import ViewSlot from "../../components/Popup/ViewSlot";
 import "../../index.css"
 import axios from 'axios';
 import AddSlot from "../../components/Popup/AddSlot";
@@ -26,7 +29,6 @@ const AdminHome = ({exams}) => {
   const [showAdminEditPopup, setShowAdminEditPopup] = useState(false);
   const [showAdminAddPopup, setShowAdminAddPopup] = useState(false);
 
-
   useEffect(() => {
       axios.get('http://localhost:3000/api/exams/')
           .then(res => {
@@ -38,7 +40,7 @@ const AdminHome = ({exams}) => {
   const selectedUpdate = React.useCallback(
     (newSession) => {
       setSelectedSession(newSession);
-      openAdminInformtaionPopup();
+      openAdminViewPopup();
       //console.log('updated selected session ID: ', newSession);
     },
     [],
