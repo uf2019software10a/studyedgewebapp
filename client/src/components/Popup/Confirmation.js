@@ -34,7 +34,7 @@ class Confirmation extends React.Component {
         this.props.closePopup();
         // TODO: setup this boolean
 
-      axios.post('http://localhost:3000/send', {name: userName, email: userEmailAddr},
+      axios.post('/send', {name: userName, email: userEmailAddr},
       {headers: {'Accept': 'application/json'}})
       .then(function(response){
         console.log(response);

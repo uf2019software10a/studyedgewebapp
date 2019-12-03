@@ -3,7 +3,7 @@ var email = require('../controllers/email.server.controller.js'),
     router = express.Router();
 
 
-    router.route('/send')
+    router.route('/')
     .post(email.sendEmail);
 
 
