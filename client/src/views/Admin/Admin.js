@@ -15,9 +15,6 @@ import EditOrDelete from "../../components/Popup/EditOrDelete";
 import ViewSlot from "../../components/Popup/ViewSlot";
 import "../../index.css"
 import axios from 'axios';
-import AddSlot from "../../components/Popup/AddSlot";
-import EditOrDelete from "../../components/Popup/EditOrDelete";
-import ViewSlot from "../../components/Popup/ViewSlot";
 
 const AdminHome = ({exams}) => {
   //const [updatedSessions, setUpdatedSessions] = useState(exams);
@@ -40,7 +37,7 @@ const AdminHome = ({exams}) => {
   const selectedUpdate = React.useCallback(
     (newSession) => {
       setSelectedSession(newSession);
-      openAdminViewPopup();
+      openAdminInformtaionPopup();
       //console.log('updated selected session ID: ', newSession);
     },
     [],
