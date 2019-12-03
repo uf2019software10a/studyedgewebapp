@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Switch, Redirect  } from 'react-router-dom';
 import Home from "../../views/Home/Home"
 import NotFound from "../../views/NotFound"
@@ -14,19 +14,28 @@ import AddSlot from "../../components/Popup/AddSlot";
 import EditOrDelete from "../../components/Popup/EditOrDelete";
 import ViewSlot from "../../components/Popup/ViewSlot";
 import "../../index.css"
-
+import axios from 'axios';
+import AddSlot from "../../components/Popup/AddSlot";
+import EditOrDelete from "../../components/Popup/EditOrDelete";
+import ViewSlot from "../../components/Popup/ViewSlot";
 
 const AdminHome = ({exams}) => {
- const [updatedSessions, setUpdatedSessions] = useState(exams);
- const [classFilter, setClassFilter] = useState('');
- const [examFilter, setExamFilter] = useState('');
- const [selectedSession, setSelectedSession] = useState('');
- const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
- const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
- const [showReservationConfirmedPopup, setShowReservationConfirmedPopup] = useState(false);
- const [confirmationEmailAddress, setConfirmationEmailAddress] = useState('');
- const [showAdminViewPopup, setShowAdminViewPopup] = useState(false);
+  //const [updatedSessions, setUpdatedSessions] = useState(exams);
+  const [examsList, setExamsList] = useState([]);
+  const [classFilter, setClassFilter] = useState('');
+  const [examFilter, setExamFilter] = useState('');
+  const [selectedSession, setSelectedSession] = useState('');
+  const [showAdminInformationPopup, setShowAdminInformtaionPopup] = useState(false);
+  const [showAdminEditPopup, setShowAdminEditPopup] = useState(false);
+  const [showAdminAddPopup, setShowAdminAddPopup] = useState(false);
 
+  useEffect(() => {
+      axios.get('http://localhost:3000/api/exams/')
+          .then(res => {
+              const data = res.data;
+              setExamsList(data);
+          })
+  });
 
   const selectedUpdate = React.useCallback(
     (newSession) => {
@@ -52,57 +61,43 @@ const AdminHome = ({exams}) => {
       },
       [],
   );
-
-  const openConfirmationPopup = React.useCallback(
-      () => {
-          setShowConfirmationPopup(true);
-      },
-      [],
-  );
-
-  const closeConfirmationPopup = React.useCallback(
-      () => {
-          setShowConfirmationPopup(false);
-      },
-      [],
-  );
-
-  const openReservationErrorPopup = React.useCallback(
-      () => {
-          setShowReservationErrorPopup(true);
-      },
-      [],
-  );
-
-  const closeReservationErrorPopup = React.useCallback(
-      () => {
-          setShowReservationErrorPopup(false);
-      },
-      [],
-  );
-
-  const openReservationConfirmedPopup = React.useCallback(
-      () => {
-          setShowReservationConfirmedPopup(true);
-      },
-      [],
-  );
-
-    const closeReservationConfirmedPopup = React.useCallback(
+    const closeAdminInformationPopup = React.useCallback(
         () => {
-            setShowReservationConfirmedPopup(false);
+            setShowAdminInformtaionPopup(false);
+        },
+        [],
+    );const openAdminInformtaionPopup = React.useCallback(
+        () => {
+            setShowAdminInformtaionPopup(true);
         },
         [],
     );
-    const openAdminViewPopup = React.useCallback(
+    const switchAdminPopupToEdit = React.useCallback(
+      () => {
+            setShowAdminInformtaionPopup(false);
+            setShowAdminEditPopup(true);
+      }
+    )
+    const closeAdminEditPopup = React.useCallback(
         () => {
-            setShowAdminViewPopup(true);
+            setShowAdminEditPopup(false);
         },
         [],
     );
-    const closeAdminViewPopup = React.useCallback(
+    const openAdminEditPopup = React.useCallback(
         () => {
-            setShowAdminViewPopup(false);
+            setShowAdminEditPopup(true);
+        },
+        [],
+    );const closeAdminAddPopup = React.useCallback(
+        () => {
+            setShowAdminAddPopup(false);
+        },
+        [],
+    );
+    const openAdminAddPopup = React.useCallback(
+        () => {
+            setShowAdminAddPopup(true);
         },
         [],
     );
@@ -112,38 +107,36 @@ const AdminHome = ({exams}) => {
   return (
     <div className="AdminHome">
     <Header/>
-    At the Admin Dashboard page
-    {showAdminViewPopup ?
-    <ViewSlot
-        session={updatedSessions.entries[0]}
-        closePopup={() => {}}
-    />
-    : null }
-    {false ?
-    <EditOrDelete
-        session={updatedSessions.entries[0]}
-        closePopup={() => {}}
-    />
-    : null }
-    {false ?
+    <div className="instructions">
+        <strong>
+          Welcome Administrator
+        </strong>
+    </div>
+    <br/>
+    <br/>
+    <div className="add" onClick{...() => openAdminAddPopup()}>
+        Add
+    </div>
+    {showAdminInformationPopup ?
+      <ViewSlot
+          session={examsList.length > 0 ? examsList[0] : []}
+          closePopup={closeAdminInformationPopup}
+          editPopup={switchAdminPopupToEdit}
+      />
+    : null
+    }
+    {showAdminEditPopup ?
+      <EditOrDelete
+          session={examsList[0]}
+          closePopup={closeAdminEditPopup}
+      />
+      : null
+    }
+    {showAdminAddPopup ?
         <AddSlot
-            closePopup={() => {}}
+            closePopup={closeAdminAddPopup}
         />
-        : null }
-     {showReservationErrorPopup ?
-          <ReservationError
-              text='Exam Slot Error'
-              closePopup={closeReservationErrorPopup}
-          />
-          : null
-      }
-      {showReservationConfirmedPopup ?
-          <ReservationConfirmed
-              text='Exam Slot Confirmed!'
-              closePopup={closeReservationConfirmedPopup}
-              session={updatedSessions.entries.find((session) => session._id === selectedSession)}
-          />
-          : null
+        : null
       }
       <div className="instructions">
           Select class or exam number:
@@ -151,20 +144,20 @@ const AdminHome = ({exams}) => {
       <div className="search">
           <Menu
               title="Class..."
-              list={updatedSessions}
+              list={examsList}
               element={'class'}
               filterUpdate={classNameUpdate}
           />
           <Menu
               title="Exam..."
-              list={updatedSessions}
+              list={examsList}
               element={'exam_num'}
               filterUpdate={examNumberUpdate}
           />
       </div>
       <div className="sessions">
           <SessionList
-          sessions={updatedSessions}
+          sessions={examsList}
           classFilter={classFilter}
           examFilter={examFilter}
           selectedSessionUpdate={selectedUpdate}

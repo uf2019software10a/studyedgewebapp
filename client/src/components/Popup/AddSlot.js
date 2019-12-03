@@ -3,6 +3,7 @@ import './Popup.css'
 import './PopupMenu/PopupMenu'
 import PopupMenu from "./PopupMenu/PopupMenu";
 import {months, hours, minutes, periods, getMonthNumber} from "../DateTimeUtil"
+import axios from "axios";
 
 class AddSlot extends React.Component {
     constructor(props) {
@@ -71,7 +72,12 @@ class AddSlot extends React.Component {
             tutor: this.tutor.value,
         };
         console.log(session);
-        // TODO: create exam session in database
+        axios.post('http://localhost:3000/api/exams/', session)
+            .then((res) => {
+                console.log('RESPONSE DATA: ', res.data)
+            }).catch((error) => {
+                console.log(error);
+        });
         this.props.closePopup();
     };
 

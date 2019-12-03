@@ -2,6 +2,7 @@ import React from 'react'
 import './Popup.css'
 import './PopupMenu/PopupMenu'
 import PopupMenu from "./PopupMenu/PopupMenu";
+import axios from 'axios';
 import {
     months, hours, minutes, periods,
     getMonthNumber, getMonthName, getHour, getPeriod, getMinute
@@ -10,6 +11,7 @@ import {
 class EditOrDelete extends React.Component {
     defaultStartDate = new Date(this.props.session.start);
     defaultEndDate = new Date(this.props.session.end);
+    ID = this.props.session._id;
 
     constructor(props) {
         super(props);
@@ -54,7 +56,7 @@ class EditOrDelete extends React.Component {
         this.setState({endPeriod : newPer})
     };
 
-    infoSubmitted = () => {
+    editSession = () => {
         // the session object should be used to create an instance of the exam session schema
         // trim() sanitizes any whitespace at the start of end of the string
         const dayNumeric = (String(this.day.value)).trim();
@@ -66,7 +68,7 @@ class EditOrDelete extends React.Component {
         //console.log(startDate);
         //console.log(endDate);
 
-        const session = {
+        axios.put(`http://localhost:3000/api/exams/id=${this.ID}`, {
             class: this.className.value,
             exam_num: this.examNum.value,
             description: this.description.value,
@@ -75,15 +77,29 @@ class EditOrDelete extends React.Component {
             location: this.location.value,
             capacity: this.capacity.value,
             tutor: this.tutor.value,
-        };
-        console.log(session);
-        // TODO: update exam session in database that matches _id
+            enrolled: this.props.session.enrolled
+        })
+            .then((res) => {
+                console.log('RESPONSE DATA: ', res.data)
+            }).catch((error) => {
+            console.log(error);
+        });
+
         this.props.closePopup();
     };
 
     deleteSession = () => {
+        console.log(this.props.session);
         // delete exam session in database with same _id
-        // TODO
+        //const URL = 'http://localhost:3000/api/exams/className=:' + this.props.session.class + ',examNum=:' + this.props.session.exam_num;
+        //console.log(URL);
+        axios.delete(`http://localhost:3000/api/exams/id=${this.ID}`)
+            .then((res) => {
+                console.log('RESPONSE: ', res);
+                console.log('RESPONSE DATA: ', res.data);
+            }).catch((error) => {
+                console.log(error);
+        });
         this.props.closePopup();
     };
 
@@ -229,7 +245,7 @@ class EditOrDelete extends React.Component {
                             </form>
                         </div>
                     </div>
-                    <div className='confirm' onClick={() => this.infoSubmitted()}>
+                    <div className='confirm' onClick={() => this.editSession()}>
                         Update
                     </div>
                 </div>

@@ -1,10 +1,20 @@
 import React from 'react'
 import './Popup.css'
 import {militaryToStandard, getMonthName} from "../DateTimeUtil";
+import axios from 'axios';
 
 class ViewSlot extends React.Component {
+    componentDidMount = () => {
+        axios.get(`http://localhost:3000/api/reservations/exam=${this.props.session._id}`)
+            .then(res => {
+                const data = res.data;
+                //console.log(data);
+                this.comments = data.map(({topics}) => topics).join(" | ");
+            })
+    };
+
     render() {
-        const { closePopup, session } = this.props;
+        const { closePopup, session, editPopup } = this.props;
 
         const startDate = new Date(session.start);
         const endDate = new Date(session.end);
@@ -18,6 +28,9 @@ class ViewSlot extends React.Component {
                 <div className='close' onClick={() => closePopup()}>
                     X
                 </div>
+                <div className='edit' onClick={() => editPopup()}>
+                    Edit
+                </div>
                 <h1>View Slot</h1>
                 <div className='popup_inner'>
                     <div className='message'>
@@ -30,9 +43,8 @@ class ViewSlot extends React.Component {
                         <p>Location/URL: {session.location} </p>
                         <p>Current Capacity: {session.enrolled}</p>
                         <p>Max Capacity: {session.capacity}</p>
-                        <p>Tutor: {session.tutor}</p>
-                        <p>------------------------</p>
-                        <p>Comments: {/*TODO: get all exam comments*/}</p>
+                        <p>Study Expert: {session.tutor}</p>
+                        <p>Comments: {this.comments}</p>
                     </div>
                 </div>
             </div>

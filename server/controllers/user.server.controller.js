@@ -103,7 +103,7 @@ var mongoose = require('mongoose'),
                }
              });
           });
-        }
+        };
 
 
     /* Middleware: find a user by its ID, then pass it to the next request handler. */

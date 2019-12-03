@@ -5,11 +5,12 @@ var exams = require('../controllers/exam.server.controller.js'),
 
 router.route('/')
   .get(exams.list)
-  .put(exams.update)
+  //.put(exams.update)
   .post(exams.create);
 
 router.route('/id=:id')
   .get(exams.read)
+    .put(exams.update)
   .delete(exams.delete);
 
 router.route('/className=:className')
