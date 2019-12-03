@@ -46,68 +46,55 @@ const App = () => {
     },
     [],
   );
+  const [
+    showReservationConfirmedPopup,
+    setShowReservationConfirmedPopup
+  ] = useState(false);
 
-  const classNameUpdate = React.useCallback(
-      (newClass) => {
-        setClassFilter(newClass);
-        //console.log('class name filter: ', newClass);
-      },
-      [],
-  );
+  const selectedUpdate = React.useCallback(newSession => {
+    setSelectedSession(newSession);
+    openConfirmationPopup();
+    //console.log('updated selected session ID: ', newSession);
+  }, []);
 
-  const examNumberUpdate = React.useCallback(
-      (newExam) => {
-        setExamFilter(newExam);
-        //console.log('exam num filter: ', newExam);
-      },
-      [],
-  );
+  const classNameUpdate = React.useCallback(newClass => {
+    setClassFilter(newClass);
+    //console.log('class name filter: ', newClass);
+  }, []);
 
-  const openConfirmationPopup = React.useCallback(
-      () => {
-          setShowConfirmationPopup(true);
-      },
-      [],
-  );
+  const examNumberUpdate = React.useCallback(newExam => {
+    setExamFilter(newExam);
+    //console.log('exam num filter: ', newExam);
+  }, []);
 
-  const closeConfirmationPopup = React.useCallback(
-      () => {
-          setShowConfirmationPopup(false);
-      },
-      [],
-  );
+  const openConfirmationPopup = React.useCallback(() => {
+    setShowConfirmationPopup(true);
+  }, []);
 
-  const openReservationErrorPopup = React.useCallback(
-      () => {
-          setShowReservationErrorPopup(true);
-      },
-      [],
-  );
+  const closeConfirmationPopup = React.useCallback(() => {
+    setShowConfirmationPopup(false);
+  }, []);
 
-  const closeReservationErrorPopup = React.useCallback(
-      () => {
-          setShowReservationErrorPopup(false);
-      },
-      [],
-  );
+  const openReservationErrorPopup = React.useCallback(() => {
+    setShowReservationErrorPopup(true);
+  }, []);
 
-  const openReservationConfirmedPopup = React.useCallback(
-      () => {
-          setShowReservationConfirmedPopup(true);
-      },
-      [],
-  );
+  const closeReservationErrorPopup = React.useCallback(() => {
+    setShowReservationErrorPopup(false);
+  }, []);
 
-    const closeReservationConfirmedPopup = React.useCallback(
-        () => {
-            setShowReservationConfirmedPopup(false);
-        },
-        [],
-    );
+  const openReservationConfirmedPopup = React.useCallback(() => {
+    setShowReservationConfirmedPopup(true);
+  }, []);
+
+  const closeReservationConfirmedPopup = React.useCallback(() => {
+    setShowReservationConfirmedPopup(false);
+  }, []);
 
   //console.log(examsList);
   return (
     <div className="app">
+<<<<<<< HEAD
       <Header/>
       {showConfirmationPopup ?
           <Confirmation
@@ -162,6 +149,56 @@ const App = () => {
             selectedSessionUpdate={selectedUpdate}
             />
         </div>
+=======
+      <Header />
+      {showConfirmationPopup ? (
+        <Confirmation
+          text="Confirm Reservation"
+          closePopup={closeConfirmationPopup}
+          session={updatedSessions.entries.find(
+            session => session._id === selectedSession
+          )}
+        />
+      ) : null}
+      {showReservationErrorPopup ? (
+        <ReservationError
+          text="Exam Slot Error"
+          closePopup={closeReservationErrorPopup}
+        />
+      ) : null}
+      {showReservationConfirmedPopup ? (
+        <ReservationConfirmed
+          text="Exam Slot Confirmed!"
+          closePopup={closeReservationConfirmedPopup}
+          session={updatedSessions.entries.find(
+            session => session._id === selectedSession
+          )}
+        />
+      ) : null}
+      <div className="instructions">Select class or exam number:</div>
+      <div className="search">
+        <Menu
+          title="Class..."
+          list={updatedSessions}
+          element={"class"}
+          filterUpdate={classNameUpdate}
+        />
+        <Menu
+          title="Exam..."
+          list={updatedSessions}
+          element={"exam_num"}
+          filterUpdate={examNumberUpdate}
+        />
+      </div>
+      <div className="sessions">
+        <SessionList
+          sessions={updatedSessions}
+          classFilter={classFilter}
+          examFilter={examFilter}
+          selectedSessionUpdate={selectedUpdate}
+        />
+      </div>
+>>>>>>> origin/adminlogin
     </div>
   );
 };
