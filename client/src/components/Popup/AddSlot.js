@@ -72,7 +72,7 @@ class AddSlot extends React.Component {
             tutor: this.tutor.value,
         };
         console.log(session);
-        axios.post('http://localhost:3000/api/exams/', session)
+        axios.post('/api/exams/', session)
             .then((res) => {
                 console.log('RESPONSE DATA: ', res.data)
             }).catch((error) => {

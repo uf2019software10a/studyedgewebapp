@@ -13,13 +13,13 @@ class Confirmation extends React.Component {
 
     getUser = async (email) => {
         console.log(email);
-        let res = await axios.get(`http://localhost:3000/api/users/userEmail=${email}`);
+        let res = await axios.get(`/api/users/userEmail=${email}`);
         const data = res.data;
         return data[0];
     };
 
     getReservations = async (ID) => {
-        let res = await axios.get(`http://localhost:3000/api/reservations/user=${ID}`);
+        let res = await axios.get(`/api/reservations/user=${ID}`);
         let data = res.data;
         console.log(data);
     };
@@ -49,7 +49,7 @@ class Confirmation extends React.Component {
 
         /*
         // get the user from the database based on their email
-        axios.get(`http://localhost:3000/api/users/userEmail=${userEmailAddr}`)
+        axios.get(`/api/users/userEmail=${userEmailAddr}`)
             .then(res => {
                 const data = res.data;
                 this.user = data[0];
@@ -69,7 +69,7 @@ class Confirmation extends React.Component {
         //     console.log(reservation);
         //
         //     // create the reservation
-        //     axios.post('http://localhost:3000/api/reservations/', reservation)
+        //     axios.post('/api/reservations/', reservation)
         //         .then((res) => {
         //             console.log(res);
         //         })
@@ -77,7 +77,7 @@ class Confirmation extends React.Component {
 
         /*
         // get list of exams associated with this user
-        axios.get(`http://localhost:3000/api/reservations/user=${this.user._id}`)
+        axios.get(`/api/reservations/user=${this.user._id}`)
             .then(res => {
                 const data = res.data;
                 this.reservations = data;

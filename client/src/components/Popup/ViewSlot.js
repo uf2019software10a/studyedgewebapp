@@ -5,7 +5,7 @@ import axios from 'axios';
 
 class ViewSlot extends React.Component {
     componentDidMount = () => {
-        axios.get(`http://localhost:3000/api/reservations/exam=${this.props.session._id}`)
+        axios.get(`/api/reservations/exam=${this.props.session._id}`)
             .then(res => {
                 const data = res.data;
                 //console.log(data);

@@ -26,7 +26,7 @@ const AdminHome = ({ exams }) => {
   const [showAdminAddPopup, setShowAdminAddPopup] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/api/exams/").then(res => {
+    axios.get("/api/exams/").then(res => {
       const data = res.data;
       setExamsList(data);
     });

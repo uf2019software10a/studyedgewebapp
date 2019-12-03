@@ -68,7 +68,7 @@ class EditOrDelete extends React.Component {
         //console.log(startDate);
         //console.log(endDate);
 
-        axios.put(`http://localhost:3000/api/exams/id=${this.ID}`, {
+        axios.put(`/api/exams/id=${this.ID}`, {
             class: this.className.value,
             exam_num: this.examNum.value,
             description: this.description.value,
@@ -91,9 +91,9 @@ class EditOrDelete extends React.Component {
     deleteSession = () => {
         console.log(this.props.session);
         // delete exam session in database with same _id
-        //const URL = 'http://localhost:3000/api/exams/className=:' + this.props.session.class + ',examNum=:' + this.props.session.exam_num;
+        //const URL = '/api/exams/className=:' + this.props.session.class + ',examNum=:' + this.props.session.exam_num;
         //console.log(URL);
-        axios.delete(`http://localhost:3000/api/exams/id=${this.ID}`)
+        axios.delete(`/api/exams/id=${this.ID}`)
             .then((res) => {
                 console.log('RESPONSE: ', res);
                 console.log('RESPONSE DATA: ', res.data);
