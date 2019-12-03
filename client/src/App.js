@@ -37,18 +37,6 @@ const App = () => {
       }
   );
 
-  /*
-    useEffect(() => {
-        fetch('http://localhost:3000/api/exams/')
-            .then(res => res.json())
-            .then((data) => {
-                setExamsList(data);
-            })
-            .catch(console.log)
-    }, []);
-
-   */
-
   useEffect(() => {
       axios.get('http://localhost:3000/api/exams/')
           .then(res => {
@@ -135,9 +123,9 @@ const App = () => {
   return (
     <div className="app">
       <Header/>
-        {false ?
+        {showAdmin ?
         <ViewSlot
-            session={examsList[0]}
+            session={examsList.length > 0 ? examsList[0] : []}
             closePopup={() => {}}
         />
         : null }
@@ -179,7 +167,7 @@ const App = () => {
           />
           : null
       }
-      <div className="instructions">
+      <div className="instructions" onClick={openAdmin}>
           Select Class and/or Exam Number:
       </div>
 
