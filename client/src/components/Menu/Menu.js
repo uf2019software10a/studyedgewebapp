@@ -31,11 +31,11 @@ class Menu extends React.Component {
     // remove duplicate class names and exam numbers to be displayed to dropdown menu
     let listReduced = [];
 
-    if (list.size > 0) {
+    if (typeof(list) !== 'undefined') {
       listReduced = [
         ...new Map(list.map(item => [item[element], item])).values()
       ];
-    }
+    //}
 
     // sort in alphanumeric order for dropdown menu display
     if (element === "class") {
@@ -45,6 +45,7 @@ class Menu extends React.Component {
         a.exam_num.toString().localeCompare(b.exam_num.toString())
       );
     }
+  }
 
     //console.log('reduced: ', listReduced);
     return (

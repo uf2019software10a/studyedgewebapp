@@ -110,7 +110,6 @@ const App = () => {
       ) : null}
       <div className="instructions">Select Class and/or Exam Number:</div>
       <div className="search">
-        {examsList.size > 0 ? (
           <div className="search">
             <Menu
               title="Class..."
@@ -125,7 +124,6 @@ const App = () => {
               filterUpdate={examNumberUpdate}
             />
           </div>
-        ) : null}
       </div>
       <div className="sessions">
         <SessionList
