@@ -8,7 +8,8 @@ class SessionList extends React.Component {
 
 		let sessionList = [];
 		if(typeof(sessions) !== 'undefined') {
-			sessionList = sessions
+			var sessionsCpy = [...this.state.sessions];
+			sessionList = sessionsCpy
 				.filter((session) => {
 					return (session.class.indexOf(classFilter) >= 0) &&
 						(session.exam_num.toString().indexOf(examFilter) >= 0);
