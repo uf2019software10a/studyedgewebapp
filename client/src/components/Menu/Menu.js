@@ -31,7 +31,7 @@ class Menu extends React.Component {
     // remove duplicate class names and exam numbers to be displayed to dropdown menu
     let listReduced = [];
 
-    if (list.size > 0) {
+    if (typeof(list) !== 'undefined') {
       listReduced = [
         ...new Map(list.map(item => [item[element], item])).values()
       ];

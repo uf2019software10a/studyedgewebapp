@@ -7,7 +7,7 @@ class SessionList extends React.Component {
 		const { sessions, classFilter, examFilter, selectedSessionUpdate } = this.props;
 
 		let sessionList = [];
-		if(sessions.length > 0) {
+		if(typeof(sessions) !== 'undefined') {
 			sessionList = sessions
 				.filter((session) => {
 					return (session.class.indexOf(classFilter) >= 0) &&
