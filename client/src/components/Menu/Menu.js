@@ -38,12 +38,15 @@ class Menu extends React.Component {
     }
 
     // sort in alphanumeric order for dropdown menu display
-    if (element === "class") {
-      listReduced.sort((a, b) => a.class.localeCompare(b.class));
-    } else if (element === "exam_num") {
-      listReduced.sort((a, b) =>
-        a.exam_num.toString().localeCompare(b.exam_num.toString())
-      );
+    if(typeof(element) !== 'undefined')
+    {
+      if (element === "class") {
+        listReduced.sort((a, b) => a.class.localeCompare(b.class));
+      } else if (element === "exam_num") {
+        listReduced.sort((a, b) =>
+          a.exam_num.toString().localeCompare(b.exam_num.toString())
+        );
+      }
     }
 
     //console.log('reduced: ', listReduced);
