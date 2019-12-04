@@ -31,11 +31,11 @@ class Menu extends React.Component {
     // remove duplicate class names and exam numbers to be displayed to dropdown menu
     let listReduced = [];
 
-    //if (typeof(list) !== 'undefined' && typeof(item) !== 'undefined') {
+    if (typeof(list) !== 'undefined' /*&& typeof(item) !== 'undefined'*/) {
       listReduced = [
         ...new Map(list.map(item => [item[element], item])).values()
       ];
-    //}
+    }
 
     // sort in alphanumeric order for dropdown menu display
       if (element === "class") {
