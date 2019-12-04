@@ -12,8 +12,13 @@ class SessionList extends React.Component {
 			if(sessionsCpy)
 			sessionList = sessionsCpy
 				.filter((session) => {
+					if(typeof(session.class) !== 'undefined'){
 					return (session.class.indexOf(classFilter) >= 0) &&
 						(session.exam_num.toString().indexOf(examFilter) >= 0);
+					}
+					else{
+						return false;
+					}
 				})
 				.map((session) => {
 					//console.log('sess:', session);
