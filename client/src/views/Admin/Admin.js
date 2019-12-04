@@ -100,7 +100,6 @@ const AdminHome = ({ exams }) => {
       ) : null}
       {showAdminAddPopup ? <AddSlot closePopup={closeAdminAddPopup} /> : null}
       <div className="instructions">Select class or exam number:</div>
-      {typeof (examsList) !== 'undefined' ? (
         <div className="search">
           <Menu
             title="Class..."
@@ -115,7 +114,6 @@ const AdminHome = ({ exams }) => {
             filterUpdate={examNumberUpdate}
           />
         </div>
-      ) : null}
       <div className="sessions">
         <SessionList
           sessions={examsList}
