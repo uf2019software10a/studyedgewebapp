@@ -16,7 +16,7 @@
   height: 200px;
 }
 
-input[type="text"] {
+input[type="password"] {
   margin: auto;
   background: #fff;
   font-size: 1.2rem;

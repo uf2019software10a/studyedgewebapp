@@ -49,7 +49,7 @@ class Login extends React.Component {
         <form>
           <div className="pwBox">
             <input
-              type="text"
+              type="password"
               ref={pwInput => (this.pwInput = pwInput)}
               placeholder="Enter Password"
             />
