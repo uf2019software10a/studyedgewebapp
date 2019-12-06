@@ -1,4 +1,3 @@
-
 const path = require("path"),
   express = require("express"),
   mongoose = require("mongoose"),
@@ -8,13 +7,13 @@ const path = require("path"),
 userRouter = require("../routes/user.server.routes");
 reservationRouter = require("../routes/reservation.server.routes");
 adminRouter = require("../routes/reservation.server.routes");
- emailRouter = require('../routes/email.server.routes');
+emailRouter = require("../routes/email.server.routes");
 const adminLoginRouter = require("../routes/adminlogin.server.routes");
 session = require("express-session");
 const passport = require("passport");
 require("./passport")(passport);
 var cors = require("cors");
-
+var cookieParser = require("cookie-parser");
 
 module.exports.init = () => {
   mongoose.connect(process.env.DB_URI || require("./config").db.uri, {
@@ -28,6 +27,7 @@ module.exports.init = () => {
   const app = express();
   app.set("trust proxy", true);
 
+  app.use(cookieParser());
   app.use(cors());
 
   // enable request logging for development debugging
@@ -47,17 +47,16 @@ module.exports.init = () => {
     });
   }
 
-
   //express session
   app.use(
     session({
+      name: "sessionid",
       secret: "ewfwefwsadc",
       resave: false,
       saveUninitialized: false
       //cookie: { secure: true }
     })
   );
-
 
   //express session
   app.use(passport.initialize());
@@ -68,6 +67,6 @@ module.exports.init = () => {
   app.use("/api/users", userRouter);
   app.use("/api/reservations", reservationRouter);
   app.use("/Admin", adminLoginRouter);
-  app.use('/send', emailRouter);
+  app.use("/send", emailRouter);
   return app;
 };

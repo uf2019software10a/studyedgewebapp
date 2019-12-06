@@ -32,6 +32,10 @@ const AdminHome = ({ exams }) => {
     });
   });
 
+  const loggingout = React.useCallback(() => {
+    axios.post("/Admin/Home", { credentials: "same-origin" });
+  }, []);
+
   const selectedUpdate = React.useCallback(newSession => {
     setSelectedSession(newSession);
     openAdminInformationPopup();
@@ -85,6 +89,9 @@ const AdminHome = ({ exams }) => {
       <div className="add" onClick={() => openAdminAddPopup()}>
         Add
       </div>
+      <div className="logout" onClick={() => loggingout()}>
+        Logout
+      </div>
       {showAdminInformationPopup ? (
         <ViewSlot
           session={examsList.find(session => session._id === selectedSession)}
@@ -100,20 +107,20 @@ const AdminHome = ({ exams }) => {
       ) : null}
       {showAdminAddPopup ? <AddSlot closePopup={closeAdminAddPopup} /> : null}
       <div className="instructions">Select class or exam number:</div>
-        <div className="search">
-          <Menu
-            title="Class..."
-            list={examsList}
-            element={"class"}
-            filterUpdate={classNameUpdate}
-          />
-          <Menu
-            title="Exam..."
-            list={examsList}
-            element={"exam_num"}
-            filterUpdate={examNumberUpdate}
-          />
-        </div>
+      <div className="search">
+        <Menu
+          title="Class..."
+          list={examsList}
+          element={"class"}
+          filterUpdate={classNameUpdate}
+        />
+        <Menu
+          title="Exam..."
+          list={examsList}
+          element={"exam_num"}
+          filterUpdate={examNumberUpdate}
+        />
+      </div>
       <div className="sessions">
         <SessionList
           sessions={examsList}
