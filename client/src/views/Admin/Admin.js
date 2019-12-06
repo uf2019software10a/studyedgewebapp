@@ -27,14 +27,10 @@ const AdminHome = ({ exams }) => {
   const loggedout = useState(false);
 
   useEffect(() => {
-    const controller = new AbortController();
     axios.get("/api/exams/").then(res => {
       const data = res.data;
       setExamsList(data);
     });
-    return function cleanup() {
-      controller.abort();
-    };
   });
 
   const loggingout = React.useCallback(() => {
