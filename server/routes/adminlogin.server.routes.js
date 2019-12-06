@@ -48,6 +48,7 @@ router.get("/logout", (req, res) => {
         message: "Successfully cleared cookie and logged out"
       });
       req.logout();
+      console.log(req.isAuthenticated());
     }
   });
 });

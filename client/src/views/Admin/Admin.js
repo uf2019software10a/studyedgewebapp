@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, Redirect, withRouter } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Home from "../../views/Home/Home";
 import NotFound from "../../views/NotFound";
 import Admin from "../../views/Admin/Admin";
@@ -34,7 +34,7 @@ const AdminHome = ({ exams }) => {
   });
 
   const loggingout = React.useCallback(() => {
-    axios.get("/Admin/Logout");
+    axios.get("/Admin/Logout").then(axios.get("/Admin/Home"));
   }, []);
 
   const selectedUpdate = React.useCallback(newSession => {
@@ -134,4 +134,4 @@ const AdminHome = ({ exams }) => {
   );
 };
 
-export default withRouter(AdminHome);
+export default AdminHome;
