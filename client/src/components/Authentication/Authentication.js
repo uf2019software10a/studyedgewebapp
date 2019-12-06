@@ -10,6 +10,7 @@ class Authentication extends React.Component {
       authenticated: false
     };
   }
+  controller = new AbortController();
 
   componentDidMount() {
     axios.get("/Admin/home").then(res => {
@@ -25,6 +26,10 @@ class Authentication extends React.Component {
         //this.props.history.push("/Admin/home");
       }
     });
+  }
+
+  componentWillUnmount() {
+    this.controller.abort();
   }
 
   componentDidUpdate() {
