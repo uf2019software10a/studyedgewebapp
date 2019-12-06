@@ -13,7 +13,7 @@ import ViewSlot from "../../components/Popup/ViewSlot";
 import "../../index.css";
 import axios from "axios";
 
-const AdminHome = (props, { exams }) => {
+const AdminHome = ({ exams }) => {
   //const [updatedSessions, setUpdatedSessions] = useState(exams);
   const [examsList, setExamsList] = useState([]);
   const [classFilter, setClassFilter] = useState("");
@@ -35,7 +35,6 @@ const AdminHome = (props, { exams }) => {
 
   const loggingout = React.useCallback(() => {
     axios.get("/Admin/Logout");
-    props.isLogOut(true);
   }, []);
 
   const selectedUpdate = React.useCallback(newSession => {
