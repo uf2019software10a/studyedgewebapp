@@ -1,9 +1,12 @@
 .dropdown {
     position: relative;
     display: inline-block;
+    padding-right: 0px;
+    padding-left: 40px;
 }
 
 ul {
+  position: absolute;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -12,7 +15,6 @@ ul {
     border-radius: 2px;
     background-color: white;
     font-weight:bold;
-    position: fixed;
     z-index: 1;
     overflow: auto;
 }
@@ -30,7 +32,7 @@ li:hover {
 }
 
 .button{
-    width: 100px;
+    width: 120px;
     height: 16px;
     background-color: #ffffff;
     padding: 6px;
