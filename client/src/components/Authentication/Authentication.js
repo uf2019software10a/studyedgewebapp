@@ -10,7 +10,7 @@ class Authentication extends React.Component {
       authenticated: false
     };
   }
-  controller = new AbortController();
+  //controller = new AbortController();
 
   componentDidMount() {
     axios.get("/Admin/home").then(res => {
@@ -28,11 +28,11 @@ class Authentication extends React.Component {
     });
   }
 
-  componentWillUnmount() {
+  /*componentWillUnmount() {
     this.controller.abort();
-  }
+  }*/
 
-  componentDidUpdate() {
+  /*componentDidUpdate() {
     axios.get("/Admin/home").then(res => {
       console.log("/Admin/home get request from authentication.js");
       this.setState({
@@ -46,7 +46,7 @@ class Authentication extends React.Component {
         //this.props.history.push("/Admin/home");
       }
     });
-  }
+  }*/
 
   render() {
     if (!this.state.authenticated) {

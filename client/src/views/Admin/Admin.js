@@ -33,14 +33,14 @@ const AdminHome = ({ exams }) => {
     });
   });
 
-  const loggingout = React.useCallback(() => {
+  /*const loggingout = React.useCallback(() => {
     const controller = new AbortController();
     axios.get("/Admin/Logout").then(axios.get("/Admin/Home"));
 
-    return function cleanup() {
+    /*return function cleanup() {
       controller.abort();
-    };
-  }, []);
+    };*/
+  //}, []);*/
 
   const selectedUpdate = React.useCallback(newSession => {
     setSelectedSession(newSession);
@@ -95,9 +95,7 @@ const AdminHome = ({ exams }) => {
       <div className="add" onClick={() => openAdminAddPopup()}>
         Add
       </div>
-      <div className="logout" onClick={() => loggingout()}>
-        Logout
-      </div>
+
       {showAdminInformationPopup ? (
         <ViewSlot
           session={examsList.find(session => session._id === selectedSession)}

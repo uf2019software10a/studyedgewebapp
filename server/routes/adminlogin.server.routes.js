@@ -36,7 +36,7 @@ router.get("/home", (req, res) => {
   }
 });
 
-router.get("/logout", (req, res) => {
+/*router.get("/logout", (req, res) => {
   console.log("logout post request");
   req.session.destroy(err => {
     console.log("hit req.session.destroy");
@@ -51,6 +51,6 @@ router.get("/logout", (req, res) => {
       console.log(req.isAuthenticated());
     }
   });
-});
+});*/
 
 module.exports = router;
