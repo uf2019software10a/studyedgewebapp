@@ -12,7 +12,7 @@ class SessionList extends React.Component {
     } = this.props;
 
     let sessionList = [];
-    if (sessions.size > 0) {
+    if (sessions.length > 0) {
       sessionList = sessions
         .filter(session => {
           return (
