@@ -36,21 +36,18 @@ router.get("/home", (req, res) => {
   }
 });
 
-router.post("/home", (req, res) => {
+router.get("/logout", (req, res) => {
   console.log("logout post request");
-  //res.redirect("/Admin/Login");
   req.session.destroy(err => {
     console.log("hit req.session.destroy");
     if (err) {
       return res.send({ success: false, message: "error logging out" });
     } else {
-      res.send({ success: true, message: "successfully logged out" });
-      req.logout();
       res.clearCookie("sessionid").send({
         success: true,
-        message: "Successfully logged out"
+        message: "Successfully cleared cookie and logged out"
       });
-      //console.log(req.cookies);
+      req.logout();
     }
   });
 });

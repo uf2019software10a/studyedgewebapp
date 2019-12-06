@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Home from "../../views/Home/Home";
 import NotFound from "../../views/NotFound";
 import Admin from "../../views/Admin/Admin";
@@ -13,7 +13,7 @@ import ViewSlot from "../../components/Popup/ViewSlot";
 import "../../index.css";
 import axios from "axios";
 
-const AdminHome = ({ exams }) => {
+const AdminHome = (props, { exams }) => {
   //const [updatedSessions, setUpdatedSessions] = useState(exams);
   const [examsList, setExamsList] = useState([]);
   const [classFilter, setClassFilter] = useState("");
@@ -24,6 +24,7 @@ const AdminHome = ({ exams }) => {
   );
   const [showAdminEditPopup, setShowAdminEditPopup] = useState(false);
   const [showAdminAddPopup, setShowAdminAddPopup] = useState(false);
+  const loggedout = useState(false);
 
   useEffect(() => {
     axios.get("/api/exams/").then(res => {
@@ -33,7 +34,8 @@ const AdminHome = ({ exams }) => {
   });
 
   const loggingout = React.useCallback(() => {
-    axios.post("/Admin/Home", { credentials: "same-origin" });
+    axios.get("/Admin/Logout");
+    props.isLogOut(true);
   }, []);
 
   const selectedUpdate = React.useCallback(newSession => {
@@ -133,4 +135,4 @@ const AdminHome = ({ exams }) => {
   );
 };
 
-export default AdminHome;
+export default withRouter(AdminHome);

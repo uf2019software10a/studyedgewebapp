@@ -9,6 +9,7 @@ import Login from "./views/Admin/Login";
 import AdminHome from "./views/Admin/Admin";
 import NotFound from "./views/NotFound";
 import Authentication from "./components/Authentication/Authentication";
+import Logout from "./components/Logout/Logout";
 import axios from "axios";
 
 var loggedIn = () => {
@@ -30,6 +31,9 @@ ReactDOM.render(
       </Route>
       <Route exact path="/Admin/Login">
         <Login />
+      </Route>
+      <Route exact path="/Admin/Logout">
+        <Logout />
       </Route>
       <Authentication>
         <Route

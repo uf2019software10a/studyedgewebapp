@@ -38,6 +38,7 @@
     "nodemon": "^1.18.10",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "react-history": "^0.18.2",
     "should": "^13.2.3",
     "supertest": "^4.0.2",
     "validator": "^12.1.0"
