@@ -1,36 +1,59 @@
-## Part II: Code Quality
+# Study Edge (Study Social) Reservation Web App
+Description Goes Here
 
-* Appropriately commented code that will allow someone to easily continue development
-* Use GitHub Issues - document outstanding bug report - list and description of bugs or incomplete features
-* Appropriately attributed code that you borrowed or tweaked - This should be provide in your GitHub readme files and where borrowed code was used. 
+## Features
+
+
+## Dependencies
+These can be found in package.json . These must be installed on local in order to run development scripts.
+* "all": "0.0.0",
+* "axios": "^0.19.0",
+* "body-parser": "^1.19.0",
+* "concurrently": "^4.1.0",
+* "cookie-parser": "^1.4.4",
+* "cors": "^2.8.5",
+* "express": "^4.17.1",
+* "express-session": "^1.17.0",
+* "is-empty": "^1.2.0",
+* "mocha": "^6.2.1",
+* "mongoose": "^5.7.1",
+* "morgan": "^1.9.1",
+* "nodemailer": "^6.3.1",
+* "nodemon": "^1.18.10",
+* "passport": "^0.4.0",
+* "passport-local": "^1.0.0",
+* "react-history": "^0.18.2",
+* "should": "^13.2.3",
+* "supertest": "^4.0.2",
+* "validator": "^12.1.0"
+ 
  
 
-## Part III: Updated GitHub ReadMe file
+## Links
+Deployed site link: ADD
+
+
+## Running Project Locally
+
+## Running Project through Heoku
 
 Please provide the following information in your ReadMe file
+This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file. 
 
-* Link to the deployed page
-* Credit people/organizations you borrowed code from  or APIs you used - e.g., Bootstrap,  
-* List of all project features implemented and associated screenshots
-* include landing or home page
-* Instructions for how to run the project locally or on Heroku
-* How to update database and server connections
+
+ 
+## Information about MongoDB
+* 
 
 ##
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 This project contains an example project board meant to showcase how one can be used. The issues posted to it are not real issues.
 
-#### _**IMPORTANT NOTE**_ - 
-This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
-- local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
-- production: Since the config file is not pushed when you deploy your app, you must specifiy your db uri in heorku. Set the uri in heroku as specified in [this](https://devcenter.heroku.com/articles/config-vars) resource. Make sure you name the environement variable "DB_URI".
 
 ## Getting Started
-This repository aims to assist you in beginning work on a MERN stack application with a solid file structure as a foundation. To get started make a copy of this template repo for your project teams.
 
 Since this project will hold both the client application and the server application there will be node modules in two different places. First run `npm install` from the root. After this you will run `npm run-script install-all` from the root. From now on run this command anytime you want to install all modules again. This is a script we have defined in package.json .
 
-This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file. 
 
 ## File structure
 #### `client` - Holds the client application
