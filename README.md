@@ -77,3 +77,25 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+
+
+## Part II: Code Quality
+
+* Appropriately commented code that will allow someone to easily continue development
+* Use GitHub Issues - document outstanding bug report - list and description of bugs or incomplete features
+* Appropriately attributed code that you borrowed or tweaked - This should be provide in your GitHub readme files and where borrowed code was used. 
+ 
+
+## Part III: Updated GitHub ReadMe file
+
+Please provide the following information in your ReadMe file
+
+* Link to the deployed page
+* Credit people/organizations you borrowed code from  or APIs you used - e.g., Bootstrap,  
+* List of all project features implemented and associated screenshots
+* include landing or home page
+* Instructions for how to run the project locally or on Heroku
+* How to update database and server connections
