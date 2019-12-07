@@ -24,7 +24,6 @@ const AdminHome = ({ exams }) => {
   );
   const [showAdminEditPopup, setShowAdminEditPopup] = useState(false);
   const [showAdminAddPopup, setShowAdminAddPopup] = useState(false);
-  const loggedout = useState(false);
 
   useEffect(() => {
     axios.get("/api/exams/").then(res => {
@@ -32,15 +31,6 @@ const AdminHome = ({ exams }) => {
       setExamsList(data);
     });
   });
-
-  /*const loggingout = React.useCallback(() => {
-    const controller = new AbortController();
-    axios.get("/Admin/Logout").then(axios.get("/Admin/Home"));
-
-    /*return function cleanup() {
-      controller.abort();
-    };*/
-  //}, []);*/
 
   const selectedUpdate = React.useCallback(newSession => {
     setSelectedSession(newSession);
