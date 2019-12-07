@@ -10,8 +10,7 @@ router.post("/login", passport.authenticate("local"), function(req, res) {
   if (req.isAuthenticated()) {
     return res.send({
       success: true,
-      message: "login was successful",
-      user: req.user
+      message: "login was successful"
     });
   } else {
     res.send({
