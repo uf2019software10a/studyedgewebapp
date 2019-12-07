@@ -22,7 +22,7 @@ router.post("/login", passport.authenticate("local"), function(req, res) {
 });
 
 //Admin/Home GET request to retrieve whether user is authenticated or not
-//Sends back whether user is authenticated or not to Authenticated.js file
+//Sends back whether user is authenticated or not to Authentication.js file
 router.get("/home", (req, res) => {
   console.log("req.isAuthenticated: ", req.isAuthenticated());
   if (req.isAuthenticated()) {
