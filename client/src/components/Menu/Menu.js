@@ -16,6 +16,7 @@ class Menu extends React.Component {
     }));
   };
 
+  // update the header when an actual value has been selected
   elementSelected = newHeader => {
     if (this.props.element === "exam_num") {
       newHeader = "Exam " + newHeader;
@@ -31,11 +32,13 @@ class Menu extends React.Component {
     // remove duplicate class names and exam numbers to be displayed to dropdown menu
     let listReduced = [];
 
+    // reduce the list by removing any duplicate values EITHER
+    // by exam number or class name
+    // based on what we've passed into this component
     if (typeof(list) !== 'undefined') {
       listReduced = [
         ...new Map(list.map(item => [item[element], item])).values()
       ];
-    //}
 
     // sort in alphanumeric order for dropdown menu display
     if (element === "class") {

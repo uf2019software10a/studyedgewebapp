@@ -18,20 +18,18 @@ const App = () => {
   const [examFilter, setExamFilter] = useState("");
   const [selectedSession, setSelectedSession] = useState("");
   const [showConfirmationPopup, setShowConfirmationPopup] = useState(false);
-  const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(
-    false
-  );
-  const [
-    showReservationConfirmedPopup,
-    setShowReservationConfirmedPopup
-  ] = useState(false);
+  const [showReservationErrorPopup, setShowReservationErrorPopup] = useState(false);
+  const [showReservationConfirmedPopup, setShowReservationConfirmedPopup] = useState(false);
   const [confirmationEmailAddress, setConfirmationEmailAddress] = useState("");
   const [examsList, setExamsList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
+  // get the study session data from the DB
   useEffect(() => {
     axios.get("/api/exams/").then(res => {
       const data = res.data;
       setExamsList(data);
+      setIsLoading(false);
     });
   });
 
@@ -39,11 +37,10 @@ const App = () => {
     setConfirmationEmailAddress(email);
   }, []);
 
-  const selectedUpdate = React.useCallback(newSession => {
+  const selectedUpdate = (newSession) => {
     setSelectedSession(newSession);
     openConfirmationPopup();
-    //console.log('updated selected session ID: ', newSession);
-  }, []);
+  };
 
   const classNameUpdate = React.useCallback(newClass => {
     setClassFilter(newClass);

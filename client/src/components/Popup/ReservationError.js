@@ -1,6 +1,8 @@
 import React from 'react'
 import './Popup.css'
 
+// this popup simply tells the user that they cannot sign up for this exam,
+// because they have already signed up for a study session for this particular exam
 class ReservationError extends React.Component {
     render() {
         const { closePopup, text } = this.props;

@@ -58,8 +58,12 @@ class AddSlot extends React.Component {
   infoSubmitted = () => {
     // the session object should be used to create an instance of the exam session schema
     // trim() sanitizes any whitespace at the start of end of the string
+    // this way we only get the actual day and year values from the string incase someone accidentally
+    // adds a space before or after the text
     const dayNumeric = String(this.day.value).trim();
     const yearNumeric = String(this.year.value).trim();
+
+    // create JS Date objects based on the user-provided month, day, year, hour, minute, and period (AM or PM)
     const startDate = new Date(
       this.state.sessionMonth +
         " " +
@@ -89,8 +93,9 @@ class AddSlot extends React.Component {
     //console.log(startDate);
     //console.log(endDate);
 
+    // create session object based on the exam slot tile schema using the user-provided information
     const session = {
-      class: this.className.value,
+      class: this.className.value.replace(/\s/g,''), // remove all the whitespace from class name
       exam_num: this.examNum.value,
       description: this.description.value,
       start: startDate,
@@ -100,6 +105,8 @@ class AddSlot extends React.Component {
       tutor: this.tutor.value
     };
     console.log(session);
+
+    // create this session in the database
     axios
       .post("/api/exams/", session)
       .then(res => {

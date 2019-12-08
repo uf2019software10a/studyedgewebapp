@@ -1,6 +1,7 @@
 import React from 'react';
 import './PopupMenu.css'
 
+// this is like the other Menu component I created for the index page, but a little different for editing a session
 class PopupMenu extends React.Component {
     constructor(props) {
         super(props);
@@ -16,6 +17,7 @@ class PopupMenu extends React.Component {
         }))
     };
 
+    // update the menu header when a new element in the list is selected
     elementSelected = (newHeader) => {
         this.setState(() => ({
             header: newHeader,

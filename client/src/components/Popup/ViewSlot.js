@@ -3,7 +3,9 @@ import "./Popup.css";
 import { militaryToStandard, getMonthName } from "../DateTimeUtil";
 import axios from "axios";
 
+// admin view of a study session
 class ViewSlot extends React.Component {
+  // get all the comments from users
   componentDidMount = () => {
     axios.get(`/api/reservations/exam=${this.props.session._id}`).then(res => {
       const data = res.data;
@@ -28,6 +30,7 @@ class ViewSlot extends React.Component {
       endDate.getMinutes()
     );
 
+    // this has all the exam information, plus the comments that users have put in
     return (
       <div className="popup">
         <div className="close" onClick={() => closePopup()}>

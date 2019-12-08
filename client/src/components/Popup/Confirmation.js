@@ -11,11 +11,35 @@ class Confirmation extends React.Component {
     };
   }
 
+  // this just updates a session by incrementing the number of enrolled students
+    // this should be called after a user sucessfully signs up for a study session
+  updateEnrolled = async (session) => {
+    await axios
+        .put(`/api/exams/id=${session._id}`, {
+          class: session.class,
+          exam_num: session.exam_num,
+          description: session.description,
+          start: session.start,
+          end: session.end,
+          location: session.location,
+          capacity: session.capacity,
+          tutor: session.tutor,
+          enrolled: session.enrolled + 1
+        })
+        .then(res => {
+          console.log("RESPONSE DATA: ", res.data);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+  };
+
+  // this gets a user object from their email
   getUser = async email => {
     console.log(email);
     let res = await axios.get(`/api/users/userEmail=${email}`);
     const data = res.data;
-    return data[0];
+    return data[0]; // because emails are unique, we can just return the first value we get
   };
 
   getReservations = async ID => {
@@ -33,9 +57,8 @@ class Confirmation extends React.Component {
     const num = this.props.session.exam_num;
     const location = this.props.session.location;
 
-    this.props.emailUpdate(userEmailAddr);
-    this.props.closePopup();
-    // TODO: setup this boolean
+    this.props.emailUpdate(userEmailAddr); // update the selected email
+    this.props.closePopup(); // close the confirmation popup
 
     axios
       .post(
@@ -60,6 +83,10 @@ class Confirmation extends React.Component {
       .catch(function(error) {
         console.log(error);
       });
+
+      this.updateEnrolled(this.props.session).then(r => console.log(r));
+
+      this.props.openReservationConfirmedPopup();
 
     /*
         // get the user from the database based on their email
@@ -137,7 +164,7 @@ class Confirmation extends React.Component {
             </p>
             <p>{locType}</p>
             <p>
-              {session.enrolled} of {session.capacity} slots left!
+              {session.capacity - session.enrolled} of {session.capacity} slots left!
             </p>
           </div>
           <div className="text">

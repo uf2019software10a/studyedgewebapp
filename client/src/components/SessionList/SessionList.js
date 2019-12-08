@@ -11,8 +11,11 @@ class SessionList extends React.Component {
       selectedSessionUpdate
     } = this.props;
 
+    // initialize the list of study sessions as an empty list
+    // check if there exists at least one session/the app has finished getting the sesssion list
     let sessionList = [];
     if (sessions.length > 0) {
+      // filter based on the class name and exam number
       sessionList = sessions
         .filter(session => {
           return (
@@ -20,8 +23,10 @@ class SessionList extends React.Component {
             session.exam_num.toString().indexOf(examFilter) >= 0
           );
         })
+          // set up the location, date, and time variables to be returned
         .map(session => {
           //console.log('sess:', session);
+          // display only whether or not the session is online, not the actual location
           const locType = isOnline(session.location) ? "Online" : "In-Person";
           const startDate = new Date(session.start);
           const endDate = new Date(session.end);
@@ -52,7 +57,7 @@ class SessionList extends React.Component {
               </p>
               <p>{locType}</p>
               <p>
-                {session.enrolled} of {session.capacity} slots left!
+                {session.capacity - session.enrolled} of {session.capacity} slots left!
               </p>
             </button>
           );

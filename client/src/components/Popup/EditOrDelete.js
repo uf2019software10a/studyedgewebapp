@@ -63,6 +63,7 @@ class EditOrDelete extends React.Component {
     this.setState({ endPeriod: newPer });
   };
 
+  // edit the selected session based on user-provided info
   editSession = () => {
     // the session object should be used to create an instance of the exam session schema
     // trim() sanitizes any whitespace at the start of end of the string
@@ -97,6 +98,7 @@ class EditOrDelete extends React.Component {
     //console.log(startDate);
     //console.log(endDate);
 
+    // UPDATE exam by its _id
     axios
       .put(`/api/exams/id=${this.ID}`, {
         class: this.className.value,
@@ -119,6 +121,7 @@ class EditOrDelete extends React.Component {
     this.props.closePopup();
   };
 
+  // delete the selected session
   deleteSession = () => {
     console.log(this.props.session);
     // delete exam session in database with same _id
