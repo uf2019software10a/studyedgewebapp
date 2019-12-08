@@ -36,12 +36,9 @@ class Menu extends React.Component {
     // by exam number or class name
     // based on what we've passed into this component
     if (this.props && this.props.list && this.props.list.length > 0) {
-      /*
       listReduced = [
         ...new Map(this.props.list.map(item => [item[element], item])).values()
       ];
-       */
-      listReduced = this.props.list;
 
     // sort in alphanumeric order for dropdown menu display
     if (element === "class") {
@@ -65,7 +62,7 @@ class Menu extends React.Component {
 
         {this.props && this.props.list.length > 0 && this.state.displayMenu ? (
           <ul>
-            {listReduced.map(item => (
+            {this.props.list.map(item => (
               <li
                 key={item._id}
                 onClick={() =>
