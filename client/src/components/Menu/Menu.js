@@ -35,7 +35,7 @@ class Menu extends React.Component {
     // reduce the list by removing any duplicate values EITHER
     // by exam number or class name
     // based on what we've passed into this component
-    if (typeof(list) !== 'undefined') {
+    if (this.props && list.length > 0) {
       listReduced = [
         ...new Map(list.map(item => [item[element], item])).values()
       ];
@@ -51,14 +51,16 @@ class Menu extends React.Component {
   }
 
     //console.log('reduced: ', listReduced);
+    //console.log(this.props);
     return (
       <div className="dropdown">
+
         <div className="button" onClick={this.toggleMenu.bind(this)}>
           {this.state.header}
           <i className="arrow down" />
         </div>
 
-        {this.state.displayMenu && (
+        {this.props && this.props.list.length > 0 && this.state.displayMenu ? (
           <ul>
             {listReduced.map(item => (
               <li
@@ -75,10 +77,13 @@ class Menu extends React.Component {
               </li>
             ))}
           </ul>
-        )}
+        ) : null}
+
       </div>
     );
+
   }
+
 }
 
 export default Menu;

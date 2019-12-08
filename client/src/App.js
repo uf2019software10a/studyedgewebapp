@@ -101,7 +101,7 @@ const App = () => {
         />
       ) : null}
       <div className="instructions">Select Class and/or Exam Number:</div>
-      {!isLoading && examsList.length > 0 && typeof(examsList) !== "undefined" ? (
+      {!isLoading && examsList.length > 0 && examsList ? (
       <div className="search">
           <div className="search">
             <Menu
@@ -118,8 +118,8 @@ const App = () => {
             />
           </div>
       </div>
-      ) : null}
-      {!isLoading && examsList.length > 0 && typeof(examsList) !== "undefined" ? (
+      ) : console.log(examsList)}
+      {!isLoading && examsList.length > 0 && examsList ? (
       <div className="sessions">
         <SessionList
           sessions={examsList}
