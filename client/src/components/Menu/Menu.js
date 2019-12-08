@@ -32,6 +32,7 @@ class Menu extends React.Component {
     // remove duplicate class names and exam numbers to be displayed to dropdown menu
     let listReduced = [];
 
+    /*
     // reduce the list by removing any duplicate values EITHER
     // by exam number or class name
     // based on what we've passed into this component
@@ -49,6 +50,7 @@ class Menu extends React.Component {
       );
     }
   }
+  */
 
     //console.log('reduced: ', listReduced);
     //console.log(this.props);
