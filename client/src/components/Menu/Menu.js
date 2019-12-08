@@ -6,7 +6,8 @@ class Menu extends React.Component {
     super(props);
     this.state = {
       displayMenu: false,
-      header: this.props.title
+      header: this.props.title,
+      isLoading: true
     };
   }
 
@@ -51,6 +52,8 @@ class Menu extends React.Component {
     }
   }
 
+    setTimeout(() => {this.setState({isLoading:false})}, 3000);
+
     //console.log('reduced: ', listReduced);
     //console.log(this.props);
     return (
@@ -61,7 +64,7 @@ class Menu extends React.Component {
           <i className="arrow down" />
         </div>
 
-        {listReduced && listReduced.length > 0 && this.state.displayMenu ? (
+        {listReduced && listReduced.length > 0 && this.state.displayMenu && !this.state.isLoading ? (
           <ul>
             {listReduced.map(item => (
               <li
