@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import NotFound from "./views/NotFound";
 import Header from "./components/Header/Header";
 import SessionList from "./components/SessionList/SessionList";
 import Menu from "./components/Menu/Menu";
@@ -9,9 +7,6 @@ import ReservationError from "./components/Popup/ReservationError";
 import ReservationConfirmed from "./components/Popup/ReservationConfirmed";
 import "./index.css";
 import axios from "axios";
-import AddSlot from "./components/Popup/AddSlot";
-import EditOrDelete from "./components/Popup/EditOrDelete";
-import ViewSlot from "./components/Popup/ViewSlot";
 
 const App = () => {
   const [classFilter, setClassFilter] = useState("");
@@ -106,6 +101,7 @@ const App = () => {
         />
       ) : null}
       <div className="instructions">Select Class and/or Exam Number:</div>
+      {!isLoading ? (
       <div className="search">
           <div className="search">
             <Menu
@@ -122,6 +118,8 @@ const App = () => {
             />
           </div>
       </div>
+      ) : null}
+      {!isLoading ? (
       <div className="sessions">
         <SessionList
           sessions={examsList}
@@ -130,6 +128,7 @@ const App = () => {
           selectedSessionUpdate={selectedUpdate}
         />
       </div>
+      ) : null}
     </div>
   );
 };
