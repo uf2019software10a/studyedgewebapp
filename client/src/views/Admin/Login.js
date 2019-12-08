@@ -14,10 +14,14 @@ class Login extends React.Component {
     this.passwordUpdate = this.passwordUpdate.bind(this);
     var password: "";
   }
+
+  //When submit button is clicked, this function is activated
   passwordUpdate = () => {
     this.password = this.pwInput.value;
     console.log("password: ", this.password);
 
+    //POST request is sent to backend to check if password is correct
+    //_id and username are dumby variables that passport uses for authentication
     axios
       .post("/Admin/Login", {
         _id: "adminid",
@@ -25,6 +29,7 @@ class Login extends React.Component {
         password: this.password
       })
       .then(res => {
+        //if password is correct, the user is sent to /Admin/Home
         if (!res.data.success) {
           console.log("Not Authenticated user");
         } else {
@@ -49,7 +54,7 @@ class Login extends React.Component {
         <form>
           <div className="pwBox">
             <input
-              type="text"
+              type="password"
               ref={pwInput => (this.pwInput = pwInput)}
               placeholder="Enter Password"
             />
@@ -59,7 +64,6 @@ class Login extends React.Component {
               type="button"
               onClick={e => {
                 this.passwordUpdate();
-                //e.preventDefault();
               }}
             >
               {" "}

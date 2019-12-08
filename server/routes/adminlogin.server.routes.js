@@ -3,31 +3,26 @@ const express = require("express"),
   axios = require("axios"),
   passport = require("passport");
 
+//when the user submits the password in /Admin/Login, a POST request is sent here
+//Passport.js file is called to authenticate user
 router.post("/login", passport.authenticate("local"), function(req, res) {
-  const password = req.body.password;
-  const username = req.body.username;
-  const id = req.body._id;
-  /*console.log("password sent:", password);
-  console.log("username sent:", username);
-  console.log("id sent:", id);*/
-  console.log("req.isAuthenticated: ", req.isAuthenticated());
+  console.log("isAuthenticated: ", req.isAuthenticated());
   if (req.isAuthenticated()) {
-    console.log("req.user.password:", req.user.password);
     return res.send({
       success: true,
-      message: "login was successful",
-      user: req.user
+      message: "login was successful"
     });
   } else {
     res.send({
       success: false,
-      message: "failed to authenticate"
+      message: "failed to login"
     });
   }
 });
 
+//Admin/Home GET request to retrieve whether user is authenticated or not
+//Sends back whether user is authenticated or not to Authentication.js file
 router.get("/home", (req, res) => {
-  console.log("get request to /Admin/home");
   console.log("req.isAuthenticated: ", req.isAuthenticated());
   if (req.isAuthenticated()) {
     return res.send({ success: true, message: "user is authenticated" });

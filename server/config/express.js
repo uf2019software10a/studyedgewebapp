@@ -23,8 +23,8 @@ module.exports.init = () => {
 
   // initialize app
   const app = express();
-  app.set("trust proxy", true);
 
+  app.set("trust proxy", true);
   app.use(cors());
 
   // enable request logging for development debugging
@@ -44,9 +44,10 @@ module.exports.init = () => {
     });
   }
 
-  //express session
+  //initialize express session
   app.use(
     session({
+      name: "sessionid",
       secret: "ewfwefwsadc",
       resave: false,
       saveUninitialized: false
@@ -54,7 +55,7 @@ module.exports.init = () => {
     })
   );
 
-  //express session
+  //initialize passport session
   app.use(passport.initialize());
   app.use(passport.session());
 
@@ -63,6 +64,5 @@ module.exports.init = () => {
   app.use("/api/users", userRouter);
   app.use("/api/reservations", reservationRouter);
   app.use("/Admin", adminLoginRouter);
-
   return app;
 };

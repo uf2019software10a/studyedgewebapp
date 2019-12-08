@@ -12,17 +12,18 @@ class Authentication extends React.Component {
   }
 
   componentDidMount() {
+    //GET request to see if user is authenticated
     axios.get("/Admin/home").then(res => {
       console.log("/Admin/home get request from authentication.js");
       this.setState({
         authenticated: res.data.success
       });
-      if (!res.data.success) {
+      //if user is not authenticated, user is redirected to /Admin/login
+      if (!this.state.authenticated) {
         this.props.history.push("/Admin/login");
         console.log("Not Authenticated user");
       } else {
         console.log("Authenticated user");
-        //this.props.history.push("/Admin/home");
       }
     });
   }
