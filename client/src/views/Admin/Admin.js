@@ -33,6 +33,8 @@ const AdminHome = ({ exams }) => {
     });
   });
 
+  //sends GET request to /Admin/Logout to destroy session and clear clear cookie
+  //also aborts requests to redirect user to /Admin/Login without errors
   const loggingout = React.useCallback(() => {
     const controller = new AbortController();
     axios.get("/Admin/Logout").then(axios.get("/Admin/Home"));

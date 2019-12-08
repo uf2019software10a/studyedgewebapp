@@ -25,8 +25,8 @@ module.exports.init = () => {
 
   // initialize app
   const app = express();
-  app.set("trust proxy", true);
 
+  app.set("trust proxy", true);
   app.use(cookieParser());
   app.use(cors());
 
@@ -47,7 +47,7 @@ module.exports.init = () => {
     });
   }
 
-  //express session
+  //initialize express session
   app.use(
     session({
       name: "sessionid",
@@ -58,7 +58,7 @@ module.exports.init = () => {
     })
   );
 
-  //express session
+  //initialize passport session
   app.use(passport.initialize());
   app.use(passport.session());
 

@@ -12,14 +12,6 @@ import Authentication from "./components/Authentication/Authentication";
 import Logout from "./components/Logout/Logout";
 import axios from "axios";
 
-var loggedIn = () => {
-  axios.get("/Admin/home").then(res => {
-    console.log("/Admin/home get request from index.js");
-    var loggedin = res.data.success;
-    return loggedin;
-  });
-};
-
 ReactDOM.render(
   <Router>
     <Switch>

@@ -12,17 +12,18 @@ class Logout extends React.Component {
   }
 
   componentDidMount() {
+    //GET request to destroy session and delete cookie
     axios.get("/Admin/logout").then(res => {
       console.log("/Admin/login get request from logout.js");
       this.setState({
         loggedout: res.data.success
       });
-      if (res.data.success) {
+      //if logged out, redirect to /Admin/Login
+      if (this.state.loggedout) {
         this.props.history.push("/Admin/login");
         console.log("logged out");
       } else {
         console.log("error logging out");
-        //this.props.history.push("/Admin/home");
       }
     });
   }
