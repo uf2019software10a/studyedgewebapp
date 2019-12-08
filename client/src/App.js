@@ -25,6 +25,7 @@ const App = () => {
       const data = res.data;
       setExamsList(data);
       setIsLoading(false);
+      setTimeout(() => {setIsLoading(false)}, 3000);
     });
   });
 

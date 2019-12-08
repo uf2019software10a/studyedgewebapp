@@ -29,10 +29,10 @@ class Menu extends React.Component {
 
   render() {
     const { list, element, filterUpdate } = this.props;
+
     // remove duplicate class names and exam numbers to be displayed to dropdown menu
     let listReduced = [];
 
-    /*
     // reduce the list by removing any duplicate values EITHER
     // by exam number or class name
     // based on what we've passed into this component
@@ -50,7 +50,6 @@ class Menu extends React.Component {
       );
     }
   }
-  */
 
     //console.log('reduced: ', listReduced);
     //console.log(this.props);
@@ -62,9 +61,9 @@ class Menu extends React.Component {
           <i className="arrow down" />
         </div>
 
-        {this.props && this.props.list.length > 0 && this.state.displayMenu ? (
+        {listReduced && listReduced.length > 0 && this.state.displayMenu ? (
           <ul>
-            {this.props.list.map(item => (
+            {listReduced.map(item => (
               <li
                 key={item._id}
                 onClick={() =>
