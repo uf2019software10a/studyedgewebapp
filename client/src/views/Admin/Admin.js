@@ -12,7 +12,7 @@ import ReservationConfirmed from "../../components/Popup/ReservationConfirmed";
 import AdminInformation from "../../components/Popup/AdminInformation";
 import "../../index.css";
 
-const AdminHome = ({ loggedin, exams }) => {
+const AdminHome = ({ exams }) => {
   const [updatedSessions, setUpdatedSessions] = useState(exams);
   const [classFilter, setClassFilter] = useState("");
   const [examFilter, setExamFilter] = useState("");

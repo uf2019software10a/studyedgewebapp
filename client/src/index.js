@@ -11,14 +11,6 @@ import NotFound from "./views/NotFound";
 import Authentication from "./components/Authentication/Authentication";
 import axios from "axios";
 
-var loggedIn = () => {
-  axios.get("/Admin/home").then(res => {
-    console.log("/Admin/home get request from index.js");
-    var loggedin = res.data.success;
-    return loggedin;
-  });
-};
-
 ReactDOM.render(
   <Router>
     <Switch>
@@ -35,7 +27,7 @@ ReactDOM.render(
         <Route
           exact
           path="/Admin/home"
-          render={() => <AdminHome loggedIn={loggedIn()} exams={exams} />}
+          render={() => <AdminHome exams={exams} />}
         />
       </Authentication>
       <Route component={NotFound} />
