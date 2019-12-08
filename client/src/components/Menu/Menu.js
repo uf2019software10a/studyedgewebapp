@@ -34,25 +34,27 @@ class Menu extends React.Component {
     // remove duplicate class names and exam numbers to be displayed to dropdown menu
     let listReduced = [];
 
-    // reduce the list by removing any duplicate values EITHER
-    // by exam number or class name
-    // based on what we've passed into this component
-    if (this.props && this.props.list && this.props.list.length > 0) {
-      listReduced = [
-        ...new Map(this.props.list.map(item => [item[element], item])).values()
-      ];
+    setTimeout(() => {
+      // reduce the list by removing any duplicate values EITHER
+      // by exam number or class name
+      // based on what we've passed into this component
+      if (this.props && this.props.list && this.props.list.length > 0) {
+        listReduced = [
+          ...new Map(this.props.list.map(item => [item[element], item])).values()
+        ];
 
-    // sort in alphanumeric order for dropdown menu display
-    if (element === "class") {
-      listReduced.sort((a, b) => a.class.localeCompare(b.class));
-    } else if (element === "exam_num") {
-      listReduced.sort((a, b) =>
-        a.exam_num.toString().localeCompare(b.exam_num.toString())
-      );
-    }
-  }
+        // sort in alphanumeric order for dropdown menu display
+        if (element === "class") {
+          listReduced.sort((a, b) => a.class.localeCompare(b.class));
+        } else if (element === "exam_num") {
+          listReduced.sort((a, b) =>
+              a.exam_num.toString().localeCompare(b.exam_num.toString())
+          );
+        }
+      }
+      setTimeout(() => {this.setState({isLoading:false})}, 3000);
+    }, 3000);
 
-    setTimeout(() => {this.setState({isLoading:false})}, 3000);
 
     //console.log('reduced: ', listReduced);
     //console.log(this.props);
