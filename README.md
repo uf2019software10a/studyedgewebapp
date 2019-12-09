@@ -13,6 +13,10 @@ Study Edge wants to implement tutoring for small groups ranging around 5-10 indi
 * Administration Side can Add, Edit, and Delete exam Slots
 * Administration Side can also view current slots to see specific students and topic they want to have covered
 
+## Sourced code
+* Eliminate duplicates from an array of objects based on an element of that object
+=> https://dev.to/marinamosti/removing-duplicates-in-an-array-of-objects-in-js-with-sets-3fep
+
 ## Dependencies
 These can be found in package.json . These must be installed on local in order to run development scripts.
 * "all": "0.0.0",
