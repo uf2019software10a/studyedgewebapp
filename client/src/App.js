@@ -25,6 +25,7 @@ const App = () => {
       const data = res.data;
       setExamsList(data);
       setIsLoading(false);
+      setTimeout(() => {setIsLoading(false)}, 3000);
     });
   });
 
@@ -101,7 +102,7 @@ const App = () => {
         />
       ) : null}
       <div className="instructions">Select Class and/or Exam Number:</div>
-      {!isLoading ? (
+      {!isLoading && examsList.length > 0 && examsList ? (
       <div className="search">
           <div className="search">
             <Menu
@@ -118,8 +119,8 @@ const App = () => {
             />
           </div>
       </div>
-      ) : null}
-      {!isLoading ? (
+      ) : console.log(examsList)}
+      {!isLoading && examsList.length > 0 && examsList ? (
       <div className="sessions">
         <SessionList
           sessions={examsList}
