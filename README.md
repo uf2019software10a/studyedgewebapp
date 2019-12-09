@@ -1,8 +1,17 @@
 # Study Edge (Study Social) Reservation Web App
-Description Goes Here
+This is the github code for CEN3031 Group 10A's Project, which is a reservation system for Study Edge. 
+
+## Overview
+Study Edge wants to implement tutoring for small groups ranging around 5-10 individuals. A student will first sign in through Study Edge's Facebook app, and then be redirected to the reservation system. Students can pick their exam or class, and reserve slots that are availible. After reserving, the location or url(if an online review) will be displayed. The admin side of the site is able to create and edit the exam review slots. It can also reivew a specific slot in order to see which students signed up and what they want to be covered.
 
 ## Features
-
+* Students Verified through Study Edge's Facebook App
+* Filter View Slots by Exams and/or Class 
+* Students can enter prefered email and topics they want covered in the review session
+* Confirmation Email with details of exam sessions sent to user's prefered email. 
+* Students can only sign up for 1 review session per distinct exam (Ex. can't sign up for multiple MAC2311 Exam 1)
+* Administration Side can Add, Edit, and Delete exam Slots
+* Administration Side can also view current slots to see specific students and topic they want to have covered
 
 ## Dependencies
 These can be found in package.json . These must be installed on local in order to run development scripts.
@@ -27,23 +36,9 @@ These can be found in package.json . These must be installed on local in order t
 * "supertest": "^4.0.2",
 * "validator": "^12.1.0"
  
- 
-
-## Links
-Deployed site link: ADD
-
 
 ## Running Project Locally
-
-## Running Project through Heoku
-
-Please provide the following information in your ReadMe file
-This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file. 
-
-
- 
-## Information about MongoDB
-* 
+Cloning the GitHub and running 'npm run-script dev' sets up the development to run locally
 
 ##
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
