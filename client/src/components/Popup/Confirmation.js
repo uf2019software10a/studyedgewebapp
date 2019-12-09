@@ -86,8 +86,6 @@ class Confirmation extends React.Component {
 
       this.updateEnrolled(this.props.session).then(r => console.log(r));
 
-      this.props.openReservationConfirmedPopup();
-
     /*
         // get the user from the database based on their email
         axios.get(`/api/users/userEmail=${userEmailAddr}`)
@@ -97,24 +95,26 @@ class Confirmation extends React.Component {
                 console.log(this.user);
             })*/
 
-    // this.getUser(userEmailAddr).then((data) => {
-    //     console.log(data);
-    //     if(specificTopicsPara.length < 1) {
-    //         specificTopicsPara = "N/A";
-    //     }
-    //     const reservation = {
-    //         user_id: data._id,
-    //         exam_id: this.props.session._id,
-    //         topics: specificTopicsPara
-    //     };
-    //     console.log(reservation);
-    //
-    //     // create the reservation
-    //     axios.post('/api/reservations/', reservation)
-    //         .then((res) => {
-    //             console.log(res);
-    //         })
-    // })
+     this.getUser(userEmailAddr).then((data) => {
+         console.log(data);
+         if(specificTopicsPara.length < 1) {
+             specificTopicsPara = "N/A";
+         }
+         const reservation = {
+             user_id: data._id,
+             exam_id: this.props.session._id,
+             topics: specificTopicsPara
+         };
+         console.log(reservation);
+
+         // create the reservation
+         axios.post('/api/reservations/', reservation)
+             .then((res) => {
+                 console.log(res);
+             })
+     });
+
+      this.props.openReservationConfirmedPopup();
 
     /*
         // get list of exams associated with this user
@@ -127,7 +127,6 @@ class Confirmation extends React.Component {
                 console.log(error);
         })
          */
-    //true ? this.props.openReservationConfirmedPopup() : this.props.openReservationErrorPopup();
   };
 
   render() {
