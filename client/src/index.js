@@ -9,6 +9,7 @@ import Login from "./views/Admin/Login";
 import AdminHome from "./views/Admin/Admin";
 import NotFound from "./views/NotFound";
 import Authentication from "./components/Authentication/Authentication";
+import UserEmail from "./components/UserEmail/UserEmail";
 import axios from "axios";
 
 ReactDOM.render(
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route exact path="/Admin/Login">
         <Login />
       </Route>
+      <UserEmail />
       <Authentication>
         <Route
           exact

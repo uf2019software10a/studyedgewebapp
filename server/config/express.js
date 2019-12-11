@@ -9,6 +9,7 @@ reservationRouter = require("../routes/reservation.server.routes");
 adminRouter = require("../routes/reservation.server.routes");
 emailRouter = require("../routes/email.server.routes");
 const adminLoginRouter = require("../routes/adminlogin.server.routes");
+const userLoginRouter = require("../routes/userlogin.server.routes");
 session = require("express-session");
 const passport = require("passport");
 require("./passport")(passport);
@@ -34,7 +35,7 @@ module.exports.init = () => {
   app.use(morgan("dev"));
 
   // body parsing middleware
-  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.urlencoded({ extended: true }));
   app.use(bodyParser.json());
 
   if (process.env.NODE_ENV === "production") {
@@ -67,6 +68,7 @@ module.exports.init = () => {
   app.use("/api/users", userRouter);
   app.use("/api/reservations", reservationRouter);
   app.use("/Admin", adminLoginRouter);
+  app.use("/userlogin", userLoginRouter);
   app.use("/send", emailRouter);
   return app;
 };
