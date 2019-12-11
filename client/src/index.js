@@ -24,10 +24,11 @@ ReactDOM.render(
       <Route exact path="/Admin/Login">
         <Login />
       </Route>
-      <Route exact path="/email=:email/fname=:fname/lname=:lname"
-        component={UserEmail}/>
-
-      <UserEmail />
+      <Route
+        exact
+        path="/email=:email/fname=:fname/lname=:lname"
+        component={UserEmail}
+      />
       <Authentication>
         <Route
           exact
